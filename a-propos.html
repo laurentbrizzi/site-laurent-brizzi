@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos — Laurent Brizzi, artiste plasticien</title>
+  <meta name="description" content="Parcours et démarche de Laurent Brizzi, artiste plasticien à Boulogne-sur-Mer : vingt ans de pratique, résidences, commandes publiques, expositions et collaborations.">
+
+  <!-- À COMPLÉTER : og:url une fois le domaine branché, og:image en 1200 × 630
+       (un portrait à l'atelier conviendrait mieux qu'une œuvre). -->
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="À propos — Laurent Brizzi, artiste plasticien">
+  <meta property="og:description" content="Vingt ans de pratique à Boulogne-sur-Mer : peinture, sculpture, bas-reliefs, street art.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+
+  <!-- Données structurées Person, exigées par le §8. Écrites en dur et non
+       injectées par script : ces informations ne changent pas, et un robot
+       qui n'exécute pas le JavaScript doit pouvoir les lire.
+       À COMPLÉTER : l'url et sameAs une fois le domaine et les profils
+       publics confirmés. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Laurent Brizzi",
+    "jobTitle": "Artiste plasticien",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Boulogne-sur-Mer",
+      "addressRegion": "Hauts-de-France",
+      "addressCountry": "FR"
+    },
+    "knowsAbout": [
+      "Peinture",
+      "Sculpture",
+      "Bas-relief",
+      "Street art",
+      "Effets spéciaux",
+      "Impression 3D",
+      "Scénographie"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html" aria-current="page">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section section--filet">
+    <div class="bande bande--etroite flux">
+
+      <h1>Laurent Brizzi</h1>
+
+      <!-- À COMPLÉTER : la biographie courte, 800 signes (§12). Né où, formé
+           à quoi, installé à Boulogne-sur-Mer depuis quand, ce qu'il fabrique.
+           Au passé composé et au présent, pas au conditionnel. Jamais de
+           superlatif auto-attribué (§9). -->
+
+      <p class="mono mono--etiquette">Disciplines</p>
+      <p class="mono hors-mesure">
+        Peinture — acrylique, aquarelle, huile, encre, aérographe<br>
+        Sculpture et bas-reliefs<br>
+        Street art<br>
+        Effets spéciaux et maquillage artistique<br>
+        Modélisation et impression 3D · découpe et gravure laser<br>
+        Musique — studio Conviction Sound<br>
+        Vidéographie
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section" data-fond="clair">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">La démarche</h2>
+
+      <!-- À COMPLÉTER : le texte de démarche, une page (§12). Ce qui est
+           cherché, pas ce qu'on voit. Les influences peuvent être nommées —
+           H.R. Giger, Salvador Dalí, Zdzisław Beksiński — à condition de dire
+           ce qu'on en fait, pas seulement qu'on les admire.
+           Bannir « interroger les limites du réel » et « dialogue entre
+           matière et lumière » (§9). -->
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Parcours</h2>
+
+      <div class="parcours" data-parcours>
+        <p class="message">
+          <strong>Chargement du parcours…</strong><br>
+          Si ce message reste affiché, le script n'a pas pu s'exécuter : soit
+          JavaScript est désactivé, soit la page a été ouverte directement
+          depuis le disque. Dans ce second cas, lancez
+          « node scripts/serveur.mjs » puis ouvrez http://localhost:8000/
+        </p>
+      </div>
+
+      <noscript>
+        <p class="message">
+          <strong>Cette page a besoin de JavaScript pour afficher le parcours.</strong><br>
+          Écrivez depuis la <a href="contact.html">page contact</a> :
+          Laurent vous enverra son CV.
+        </p>
+      </noscript>
+
+      <!-- À COMPLÉTER : les années manquent sur presque toutes les entrées,
+           et les expositions n'ont ni lieu ni date. Une liste sans dates
+           affaiblit un dossier au lieu de le porter. Voir data/parcours.json. -->
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">Dossier et CV</h2>
+
+      <!-- À COMPLÉTER : le CV artistique et le dossier en PDF, à déposer dans
+           /docs (§12). Les liens ne sont pas écrits tant que les fichiers
+           n'existent pas : le §3 dit qu'une institution doit trouver un CV en
+           moins de trente secondes, un lien mort serait pire que rien. -->
+
+      <p>
+        Le dossier artistique et le CV sont disponibles sur demande.
+      </p>
+
+      <p><a href="contact.html">Les demander</a></p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <p class="mono"><a href="mailto:atelierlaurentbrizzi@gmail.com">atelierlaurentbrizzi@gmail.com</a></p>
+      <p class="mono"><a href="tel:+33665697372">06&nbsp;65&nbsp;69&nbsp;73&nbsp;72</a></p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Artiste-auteur · SIRET 433&nbsp;596&nbsp;517&nbsp;00022
+    </p>
+
+  </div>
+</footer>
+
+<script type="module" src="assets/js/pages.js"></script>
+
+</body>
+</html>

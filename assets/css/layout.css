@@ -68,6 +68,13 @@
   margin-block-end: var(--espace-l);
 }
 
+/* Libère un bloc de la mesure de lecture. Les 62ch de base.css sont faits
+   pour de la prose ; une liste de techniques ou de dimensions n'a aucune
+   raison de se briser au milieu d'une ligne pour les respecter. */
+.hors-mesure {
+  max-width: none;
+}
+
 /* Deux sections de même fond qui se suivent ont besoin d'une séparation.
    Deux sections de fonds différents, non : le changement de fond suffit. */
 .section--filet + .section--filet {

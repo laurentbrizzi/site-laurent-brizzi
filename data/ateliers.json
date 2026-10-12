@@ -1,0 +1,42 @@
+[
+  {
+    "id": "accessoires",
+    "titre": "Fabrication d'accessoires",
+    "public": "Tous publics",
+    "duree": "",
+    "effectif": "",
+    "materiel": "",
+    "description": "",
+    "images": []
+  },
+  {
+    "id": "marionnettes",
+    "titre": "Marionnettes",
+    "public": "Tous publics",
+    "duree": "",
+    "effectif": "",
+    "materiel": "",
+    "description": "",
+    "images": []
+  },
+  {
+    "id": "technologies-medievales",
+    "titre": "Technologies médiévales",
+    "public": "Enfants",
+    "duree": "",
+    "effectif": "",
+    "materiel": "",
+    "description": "",
+    "images": []
+  },
+  {
+    "id": "masque",
+    "titre": "Le masque",
+    "public": "Tous publics",
+    "duree": "",
+    "effectif": "",
+    "materiel": "",
+    "description": "",
+    "images": []
+  }
+]

@@ -19,6 +19,7 @@
    ========================================================================== */
 
 import { createServer } from "node:http";
+import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -73,8 +74,42 @@ const serveur = createServer(async (requete, reponse) => {
   }
 });
 
+/* Ouvre le navigateur sur le site une fois le serveur prêt. Activé par
+   l'option --ouvrir, que le raccourci « Ouvrir le site » passe. On ne le
+   fait pas par défaut : les contrôles automatisés lancent ce serveur eux
+   aussi, et n'ont aucune raison de faire surgir une fenêtre. */
+const ouvrirNavigateur = (adresse) => {
+  const commandes = {
+    win32: ["cmd", ["/c", "start", "", adresse]],
+    darwin: ["open", [adresse]],
+  };
+  const [commande, args] = commandes[process.platform] ?? ["xdg-open", [adresse]];
+
+  try {
+    spawn(commande, args, { detached: true, stdio: "ignore" }).unref();
+  } catch {
+    /* Pas grave : l'adresse est affichée juste au-dessus, elle se recopie. */
+  }
+};
+
+/* Le cas le plus fréquent : le site tourne déjà, dans une autre fenêtre
+   restée ouverte. Sans ce garde-fou, Node crache une pile d'appels de
+   quinze lignes — illisible, et alarmante pour qui n'est pas développeur.
+   On le dit en français, on ouvre le navigateur, et on s'arrête. */
+serveur.on("error", (erreur) => {
+  if (erreur.code !== "EADDRINUSE") throw erreur;
+
+  const adresse = "http://localhost:" + port + "/";
+  console.log("Le site tourne déjà sur " + adresse);
+  console.log("(une autre fenêtre est sans doute restée ouverte)");
+  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse);
+  process.exit(0);
+});
+
 serveur.listen(port, () => {
+  const adresse = "http://localhost:" + port + "/";
   console.log("Site servi depuis " + racine);
-  console.log("→ http://localhost:" + port + "/temoin.html");
+  console.log("→ " + adresse);
   console.log("Ctrl+C pour arrêter.");
+  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse);
 });

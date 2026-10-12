@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ateliers — Laurent Brizzi, artiste plasticien</title>
+  <meta name="description" content="Ateliers créatifs tous publics menés par Laurent Brizzi à Boulogne-sur-Mer : fabrication d'accessoires, marionnettes, technologies médiévales, masque. Interventions en structure culturelle, scolaire et associative.">
+
+  <!-- À COMPLÉTER : og:url une fois le domaine branché, og:image en 1200 × 630
+       (une photo d'atelier en situation, pas une œuvre). -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="Ateliers — Laurent Brizzi, artiste plasticien">
+  <meta property="og:description" content="Ateliers créatifs tous publics : accessoires, marionnettes, technologies médiévales, masque.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html">Œuvres</a></li>
+        <li><a href="ateliers.html" aria-current="page">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h1>Ateliers</h1>
+
+      <!-- À COMPLÉTER : trois ou quatre phrases de Laurent. Ce qui se passe
+           concrètement dans un atelier, ce que les participants repartent
+           avec. Les gestes et les matériaux nommés (§9). C'est le texte que
+           lira une médiatrice culturelle avant de décrocher son téléphone. -->
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Les interventions</h2>
+
+      <!-- Les caractéristiques pratiques — durée, effectif, matériel — sont
+           vides tant que Laurent ne les a pas fixées. Elles ne s'affichent
+           pas plutôt que d'apparaître blanches : voir data/ateliers.json. -->
+
+      <div class="ateliers" data-ateliers>
+        <p class="message">
+          <strong>Chargement des ateliers…</strong><br>
+          Si ce message reste affiché, le script n'a pas pu s'exécuter : soit
+          JavaScript est désactivé, soit la page a été ouverte directement
+          depuis le disque. Dans ce second cas, lancez
+          « node scripts/serveur.mjs » puis ouvrez http://localhost:8000/
+        </p>
+      </div>
+
+      <noscript>
+        <p class="message">
+          <strong>Cette page a besoin de JavaScript pour afficher les ateliers.</strong><br>
+          Écrivez depuis la <a href="contact.html">page contact</a> :
+          Laurent vous enverra la fiche des ateliers.
+        </p>
+      </noscript>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section" data-fond="clair">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Ils ont accueilli ce travail</h2>
+
+      <ul class="references mono">
+        <li>DRAC Hauts-de-France — résidence « Artiste Rencontre Territoire »</li>
+        <li>Projet européen MY-MA — ateliers en Pologne et en Italie</li>
+        <li>Ville de Boulogne-sur-Mer</li>
+        <li>Cirq'O Vent</li>
+        <li>Pas de Traverses</li>
+      </ul>
+
+      <!-- À COMPLÉTER : vérifier avec Laurent que cette liste est exacte et
+           publiable telle quelle, et préciser pour chacun ce qui a été mené.
+           Une référence vague dessert plus qu'elle ne sert. -->
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">Monter un atelier ensemble</h2>
+
+      <p>
+        Les ateliers s'adaptent au lieu, à l'âge des participants et au temps
+        dont vous disposez. Dites-moi le cadre, je vous réponds avec un
+        déroulé et un devis.
+      </p>
+
+      <!-- À COMPLÉTER : la fiche ateliers en PDF, à déposer dans /docs.
+           Le lien n'est pas écrit tant que le fichier n'existe pas — un lien
+           mort sur une page qui sert à être contacté coûte cher. -->
+
+      <p><a href="contact.html">Demander un devis</a></p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <p class="mono"><a href="mailto:atelierlaurentbrizzi@gmail.com">atelierlaurentbrizzi@gmail.com</a></p>
+      <p class="mono"><a href="tel:+33665697372">06&nbsp;65&nbsp;69&nbsp;73&nbsp;72</a></p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Artiste-auteur · SIRET 433&nbsp;596&nbsp;517&nbsp;00022
+    </p>
+
+  </div>
+</footer>
+
+<script type="module" src="assets/js/pages.js"></script>
+
+</body>
+</html>

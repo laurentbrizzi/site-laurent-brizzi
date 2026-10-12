@@ -252,22 +252,20 @@
    agence, pas atelier.
    -------------------------------------------------------------------------- */
 
+/* Empilées, et non séparées par des barres verticales. La première version
+   les alignait en ligne avec un filet à droite de chacune : dès qu'une
+   référence passait à la ligne — « DRAC Hauts-de-France — résidence
+   “Artiste Rencontre Territoire” » en fait deux — le filet se retrouvait
+   détaché, flottant au milieu du vide. Une liste verticale ne peut pas
+   produire ça, et elle se parcourt mieux. */
 .references {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espace-2xs) var(--espace-m);
   margin-block-start: var(--espace-m);
 }
 
 .references li {
-  padding-inline-end: var(--espace-m);
-  border-inline-end: var(--filet-epaisseur) solid var(--filet-couleur);
+  padding-block: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
   color: var(--texte-secondaire);
-}
-
-.references li:last-child {
-  padding-inline-end: 0;
-  border-inline-end: 0;
 }
 
 
@@ -491,6 +489,132 @@
 .loupe__bouton:hover {
   border-color: var(--vert-de-gris-clair);
   color: var(--vert-de-gris-clair);
+}
+
+
+/* --------------------------------------------------------------------------
+   Les coordonnées
+   Paire terme/valeur, employée sur la page contact et dans les mentions
+   légales. Même forme que les mentions d'une fiche produit : la structure
+   du site ne change pas de langage d'une page à l'autre.
+   -------------------------------------------------------------------------- */
+
+.coordonnees__ligne {
+  display: grid;
+  gap: var(--espace-3xs);
+  padding-block: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 480px) {
+
+  .coordonnees__ligne {
+    grid-template-columns: 14rem 1fr;
+    gap: var(--espace-s);
+  }
+}
+
+.coordonnees__ligne dt {
+  color: var(--texte-secondaire);
+}
+
+.coordonnees__ligne dd {
+  margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   Les ateliers
+   Une colonne par atelier à partir de 960px. Pas de carte : le filet et le
+   vide suffisent à les séparer, comme partout ailleurs.
+   -------------------------------------------------------------------------- */
+
+.ateliers {
+  display: grid;
+  gap: var(--espace-xl);
+}
+
+@media (min-width: 960px) {
+
+  .ateliers {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espace-xl) var(--gouttiere);
+    align-items: start;
+  }
+}
+
+.atelier__titre {
+  padding-block-end: var(--espace-2xs);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.atelier__detail {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--espace-s);
+  padding-block: var(--espace-3xs);
+}
+
+.atelier__detail dt {
+  color: var(--texte-secondaire);
+}
+
+.atelier__detail dd {
+  margin: 0;
+}
+
+.atelier__details {
+  margin-block-start: var(--espace-2xs);
+}
+
+.atelier__texte {
+  margin-block-start: var(--espace-s);
+}
+
+
+/* --------------------------------------------------------------------------
+   Le parcours
+   La période à gauche en mono, l'intitulé à droite. C'est la forme d'un CV
+   d'artiste, et c'est ce que cherche le premier public du §3.
+   -------------------------------------------------------------------------- */
+
+.parcours__groupe + .parcours__groupe {
+  margin-block-start: var(--espace-xl);
+}
+
+.parcours__titre {
+  padding-block-end: var(--espace-2xs);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.parcours__entree {
+  display: grid;
+  gap: var(--espace-3xs);
+  padding-block: var(--espace-xs);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 480px) {
+
+  .parcours__entree {
+    grid-template-columns: 9rem 1fr;
+    gap: var(--espace-s);
+  }
+}
+
+.parcours__periode {
+  color: var(--texte-secondaire);
+  font-variant-numeric: tabular-nums;
+}
+
+.parcours__intitule {
+  display: block;
+}
+
+.parcours__complement {
+  display: block;
+  margin-block-start: var(--espace-3xs);
+  color: var(--texte-secondaire);
 }
 
 
