@@ -686,23 +686,37 @@
   align-items: start;
 }
 
-/* max-height : la pièce en kit est photographiée en très haut format et
-   occupait deux écrans à elle seule. object-fit: contain plutôt que cover,
-   parce qu'on ne recadre pas une pièce ; le vide se remplit d'ardoise. */
+/* La proportion vient du fichier, jamais du CSS. Les deux plafonds bornent
+   l'image sans la déformer ni la recadrer : le navigateur la réduit jusqu'à
+   ce qu'elle tienne dans les deux, et la boîte prend exactement sa taille.
+
+   Le plafond de hauteur existe parce que la pièce en kit est photographiée
+   en très haut format et occupait deux écrans à elle seule.
+
+   La version précédente combinait width: 100% et object-fit: contain. Sur
+   une photo carrée on ne voyait rien ; dès que la Basilique est passée en
+   cadrage vertical, l'image s'est retrouvée enfermée dans une boîte plus
+   large qu'elle, avec deux bandes d'ardoise sur les côtés. Ne pas y revenir :
+   object-fit ne sert que si la boîte impose une proportion, et ici elle n'en
+   impose aucune. */
 .produit__image {
   grid-column: 1 / -1;
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   max-height: 72vh;
-  object-fit: contain;
+  width: auto;
+  height: auto;
+  justify-self: start;
   background-color: var(--fond-souleve);
 }
 
 /* Les vues secondaires occupent un tiers de la largeur chacune : assez
-   grandes pour être lisibles, assez petites pour rester secondaires. */
+   grandes pour être lisibles, assez petites pour rester secondaires. Elles
+   remplissent leur colonne, d'où le retour à width: 100%. */
 .produit__image--secondaire {
   grid-column: span 1;
+  width: 100%;
   max-height: none;
+  justify-self: stretch;
 }
 
 
@@ -760,6 +774,76 @@
   font-weight: var(--graisse-accent);
   font-variant-numeric: tabular-nums;
   color: var(--texte);
+}
+
+
+/* --- Les séries de pièces uniques -----------------------------------------
+   Sept veilleuses différentes sous un même intitulé. La grille est posée
+   sous les deux colonnes de la fiche, sinon les vignettes se tasseraient
+   dans la colonne de texte.
+
+   Même discipline que la grille des œuvres : colonnes régulières, pas de
+   carte, pas d'ombre. Ce qui distingue une pièce d'une autre est sa photo,
+   pas un encadrement.                                                      */
+
+.produit__serie {
+  grid-column: 1 / -1;
+  margin-block-start: var(--espace-l);
+  padding-block-start: var(--espace-l);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.produit__serie-titre {
+  margin-block-end: var(--espace-m);
+  color: var(--texte-secondaire);
+}
+
+.serie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--espace-m);
+  list-style: none;
+  align-items: start;
+}
+
+.variante__image {
+  width: 100%;
+  height: auto;
+  background-color: var(--fond-souleve);
+}
+
+/* Même emplacement en attente que dans le portfolio : une zone d'ardoise à
+   la bonne proportion, pour que la grille ne saute pas quand les photos
+   arriveront. */
+.variante__attente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  padding: var(--espace-2xs);
+  background-color: var(--fond-souleve);
+  border: var(--filet-epaisseur) solid var(--filet-couleur);
+  color: var(--texte-secondaire);
+  text-align: center;
+}
+
+.variante__numero {
+  margin-block-start: var(--espace-2xs);
+  color: var(--texte);
+}
+
+.variante__etat {
+  margin-block-start: var(--espace-2xs);
+  color: var(--texte-secondaire);
+}
+
+/* Une pièce vendue reste visible : la série garde son sens une fois
+   épuisée. Elle est seulement mise en retrait, jamais barrée — ce n'est
+   pas une erreur, c'est une vente. */
+.variante__etat--vendue {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: var(--interlettre-mono);
 }
 
 

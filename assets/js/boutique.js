@@ -73,6 +73,103 @@ function construireVisuels(produit) {
 
 
 /* --------------------------------------------------------------------------
+   Les séries de pièces uniques
+   Les veilleuses vitrail ne sont pas sept exemplaires d'un même objet :
+   ce sont sept objets différents vendus sous un même intitulé. Une fiche
+   porte donc les informations communes — technique, dimensions, prix,
+   délai — et une grille en dessous donne le choix, pièce par pièce.
+
+   Chaque pièce a son propre lien de paiement. C'est la conséquence directe
+   de l'unicité : avec un seul lien pour sept objets, deux acheteurs peuvent
+   payer le même le même jour, et il faut en rembourser un.
+
+   Une pièce vendue reste affichée, marquée « Vendue ». On ne la retire pas :
+   la série garde son sens une fois épuisée, et l'acheteur voit que les
+   pièces partent.
+   -------------------------------------------------------------------------- */
+
+const estUneSerie = (produit) =>
+  Array.isArray(produit.variantes) && produit.variantes.length > 0;
+
+
+function construireVariante(produit, variante) {
+  const bloc = document.createElement("li");
+  bloc.className = "variante";
+
+  const total = produit.edition?.total ?? produit.variantes.length;
+
+  /* La photo est le seul moyen de choisir entre des pièces uniques. Tant
+     qu'elle manque, on montre un emplacement plutôt que rien : le visiteur
+     voit la série entière, et laquelle n'est pas encore photographiée. */
+  if (variante.image?.fichier) {
+    const image = document.createElement("img");
+    image.className = "variante__image";
+    if (variante.image.largeur) image.width = variante.image.largeur;
+    if (variante.image.hauteur) image.height = variante.image.hauteur;
+    image.alt = variante.image.alt ?? "";
+    image.decoding = "async";
+    image.loading = "lazy";
+    image.src = DOSSIER_IMAGES + variante.image.fichier;
+    bloc.append(image);
+  } else {
+    const attente = document.createElement("div");
+    attente.className = "variante__attente mono";
+    attente.textContent = "Photo à venir";
+    bloc.append(attente);
+  }
+
+  const numero = document.createElement("p");
+  numero.className = "variante__numero mono";
+  numero.textContent = `N° ${variante.numero} sur ${total}`;
+  bloc.append(numero);
+
+  const etat = document.createElement("p");
+  etat.className = "variante__etat mono";
+
+  if (variante.vendue) {
+    etat.classList.add("variante__etat--vendue");
+    etat.textContent = "Vendue";
+  } else if (produit.prix != null && variante.lienStripe) {
+    const bouton = document.createElement("a");
+    bouton.className = "bouton";
+    bouton.href = variante.lienStripe;
+    bouton.rel = "noopener";
+    bouton.textContent = "Choisir";
+    /* Sept boutons « Choisir » identiques dans une grille : sans ce
+       complément, rien ne dit au lecteur d'écran lequel il active. */
+    bouton.setAttribute("aria-label", `Choisir la veilleuse n° ${variante.numero} sur ${total}`);
+    etat.append(bouton);
+  } else {
+    etat.textContent = "Disponible";
+  }
+
+  bloc.append(etat);
+  return bloc;
+}
+
+
+function construireSerie(produit) {
+  const bloc = document.createElement("div");
+  bloc.className = "produit__serie";
+
+  const intitule = document.createElement("h3");
+  intitule.className = "mono mono--etiquette produit__serie-titre";
+  intitule.textContent = "Choisir une pièce";
+  bloc.append(intitule);
+
+  const liste = document.createElement("ul");
+  liste.className = "serie";
+
+  for (const variante of produit.variantes) {
+    liste.append(construireVariante(produit, variante));
+  }
+
+  bloc.append(liste);
+  return bloc;
+}
+
+
+/* --------------------------------------------------------------------------
    Les mentions obligatoires
    Le §10 impose que chaque fiche affiche l'édition, ce qui est inclus, le
    délai de fabrication, les frais de port et les conditions de retour. Une
@@ -103,14 +200,32 @@ function construireMentions(produit) {
   ajouter("Dimensions", produit.dimensions);
 
   if (produit.edition?.numerotee) {
-    ajouter("Édition", produit.edition.total
-      ? `Numérotée, ${produit.edition.total} exemplaires`
-      : "Numérotée");
+    /* « 7 exemplaires » conviendrait à sept copies du même objet. Une série
+       de pièces uniques, c'est l'inverse : sept pièces différentes, qui se
+       trouvent porter un numéro. La phrase doit le dire, sinon l'acheteur
+       croit choisir entre des exemplaires interchangeables. */
+    if (estUneSerie(produit)) {
+      ajouter("Édition", `Série numérotée de ${produit.edition.total ?? produit.variantes.length}, pièces uniques`);
+    } else {
+      ajouter("Édition", produit.edition.total
+        ? `Numérotée, ${produit.edition.total} exemplaires`
+        : "Numérotée");
+    }
   }
 
   if (produit.inclus?.length) ajouter("Inclus", produit.inclus.join(" · "));
 
+  /* Deux réalités, un seul emplacement. Une pièce fabriquée à la commande
+     annonce un délai de fabrication ; une pièce déjà faite — les séries
+     uniques, terminées avant la mise en vente — annonce un délai
+     d'expédition. Une fiche porte l'un ou l'autre, jamais les deux, et
+     ajouter() saute la ligne dont la valeur manque.
+
+     Ce n'est pas cosmétique : la vente à distance oblige à indiquer une
+     date ou un délai de livraison avant le paiement. « Rien à fabriquer »
+     ne dispense pas d'annoncer sous combien de temps le colis part. */
   ajouter("Fabrication", produit.delaiFabrication);
+  ajouter("Expédition", produit.delaiExpedition);
   ajouter("Livraison", produit.fraisPort);
   ajouter("Retour", produit.retour);
 
@@ -121,6 +236,27 @@ function construireMentions(produit) {
 function construireAchat(produit) {
   const zone = document.createElement("p");
   zone.className = "produit__achat";
+
+  /* Une série se commande pièce par pièce : le bouton vit sur chaque
+     vignette, jamais ici. Cette zone ne porte que le prix, et le renvoi au
+     courriel tant qu'aucune pièce n'a son lien de paiement. */
+  if (estUneSerie(produit)) {
+    const prix = document.createElement("span");
+    prix.className = "produit__prix mono";
+    prix.textContent = produit.prix != null
+      ? `${formaterPrix(produit.prix, produit.devise)} la pièce`
+      : "Tarif à venir";
+    zone.append(prix);
+
+    if (produit.variantes.every((variante) => !variante.lienStripe)) {
+      const contact = document.createElement("a");
+      contact.href = "contact.html";
+      contact.textContent = produit.prix != null ? "Commander par courriel" : "Se renseigner";
+      zone.append(contact);
+    }
+
+    return zone;
+  }
 
   const achetable = produit.disponible && produit.prix != null && produit.lienStripe;
 
@@ -199,6 +335,12 @@ function construireProduit(produit) {
   texte.append(construireAchat(produit));
 
   article.append(texte);
+
+  /* La grille des pièces est posée sous les deux colonnes, pas dans la
+     colonne de texte : sept vignettes dans une colonne étroite seraient
+     illisibles. */
+  if (estUneSerie(produit)) article.append(construireSerie(produit));
+
   return article;
 }
 

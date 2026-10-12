@@ -1,9 +1,51 @@
 [
   {
+    "id": "basilique-1-200",
+    "titre": "Basilique Notre-Dame de Boulogne-sur-Mer",
+    "sousTitre": "Réplique au 1:200, éclairage intégré",
+    "technique": "Impression 3D PLA, peinture à la main",
+    "dimensions": "33 cm de haut, base carrée de 13,5 × 13,5 cm",
+    "prix": 250,
+    "devise": "EUR",
+    "edition": {
+      "numerotee": false,
+      "total": null
+    },
+    "inclus": [
+      "Certificat d'authenticité",
+      "Éclairage LED intégré"
+    ],
+    "delaiFabrication": "5 jours après commande",
+    "fraisPort": "",
+    "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
+    "lienStripe": "",
+    "disponible": true,
+    "images": [
+      {
+        "fichier": "basilique-1-200-01.webp",
+        "largeur": 1500,
+        "hauteur": 2000,
+        "alt": "La grande réplique allumée dans l'obscurité : les deux galeries de colonnes rayonnent en jaune chaud, le dôme sombre laisse passer des croix et des étoiles de lumière, et l'éclairage projette deux ailes de reflets sur le mur."
+      },
+      {
+        "fichier": "basilique-1-200-02.webp",
+        "largeur": 1470,
+        "hauteur": 2000,
+        "alt": "La même réplique allumée en pleine lumière : fenêtres dorées sous le dôme gris-bleu nervuré, colonnades, lanternon et statues du pourtour nettement visibles."
+      },
+      {
+        "fichier": "basilique-1-200-03.webp",
+        "largeur": 1500,
+        "hauteur": 2000,
+        "alt": "La réplique éteinte, en lumière du jour : pierre beige, dôme gris-bleu percé de croix et d'oculus, deux niveaux de colonnades et socle octogonal à statues."
+      }
+    ]
+  },
+  {
     "id": "basilique-1-300",
     "titre": "Basilique Notre-Dame de Boulogne-sur-Mer",
     "sousTitre": "Réplique au 1:300, éclairage intégré",
-    "technique": "Impression 3D, peinture à la main",
+    "technique": "Impression 3D PLA, peinture à la main",
     "dimensions": "22,5 cm de haut, base carrée de 9 × 9 cm",
     "prix": 125,
     "devise": "EUR",
@@ -23,40 +65,44 @@
     "images": [
       {
         "fichier": "basilique-1-300-01.webp",
-        "largeur": 1600,
-        "hauteur": 1602,
-        "alt": "La réplique allumée dans l'obscurité : le dôme bleu et le tambour à colonnades rayonnent par leurs fenêtres ajourées."
+        "largeur": 1500,
+        "hauteur": 2000,
+        "alt": "La réplique allumée dans l'obscurité : le dôme turquoise translucide laisse passer des croix et des étoiles de lumière, les deux niveaux de colonnades rayonnent en jaune chaud."
       },
       {
         "fichier": "basilique-1-300-02.webp",
-        "largeur": 1600,
-        "hauteur": 1602,
-        "alt": "La même réplique éclairée en pleine lumière : les fenêtres du tambour et de la coupole rayonnent, le dôme apparaît gris-bleu."
+        "largeur": 1500,
+        "hauteur": 2000,
+        "alt": "La même réplique allumée en pleine lumière : les fenêtres des deux galeries brillent sous le dôme turquoise, le lanternon et les statues du socle restent nets."
       },
       {
         "fichier": "basilique-1-300-03.webp",
-        "largeur": 1600,
-        "hauteur": 1602,
-        "alt": "La même réplique en lumière du jour : dôme vert-de-gris, colonnades et lanternon détaillés, sans éclairage."
+        "largeur": 1500,
+        "hauteur": 2000,
+        "alt": "La réplique éteinte, en lumière du jour : pierre beige, dôme turquoise à nervures, colonnades, lanternon et statues du socle."
       }
     ]
   },
   {
-    "id": "veilleuse-vitrail",
+    "id": "veilleuse-vitrail-serie-1",
     "titre": "Veilleuses vitrail",
-    "sousTitre": "Boîtes lumineuses à rosace",
+    "sousTitre": "Première série — sept pièces uniques, numérotées",
     "technique": "Bois découpé au laser, vitrail peint à la main, éclairage intégré",
-    "dimensions": "",
-    "prix": null,
+    "dimensions": "10 × 10 × 5 cm environ",
+    "prix": 80,
     "devise": "EUR",
     "edition": {
-      "numerotee": false,
-      "total": null
+      "numerotee": true,
+      "total": 7
     },
-    "inclus": [],
+    "inclus": [
+      "Certificat d'authenticité numéroté",
+      "Éclairage intégré"
+    ],
     "delaiFabrication": "",
+    "delaiExpedition": "Pièce déjà réalisée, postée sous 5 jours ouvrés",
     "fraisPort": "",
-    "retour": "",
+    "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
     "images": [
@@ -66,6 +112,15 @@
         "hauteur": 1300,
         "alt": "Trois veilleuses en bois découpé, chacune portant une rosace de vitrail peinte et allumée, en bleus, violets, verts et orangés."
       }
+    ],
+    "variantes": [
+      { "numero": 1, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 2, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 3, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 4, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 5, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 6, "vendue": false, "lienStripe": "", "image": null },
+      { "numero": 7, "vendue": false, "lienStripe": "", "image": null }
     ]
   },
   {
