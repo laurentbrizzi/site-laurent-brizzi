@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Œuvres — Laurent Brizzi, artiste plasticien</title>
+  <meta name="description" content="Peintures, sculptures, bas-reliefs et street art de Laurent Brizzi, artiste plasticien à Boulogne-sur-Mer. Portfolio filtrable par discipline.">
+
+  <!-- Open Graph. Les partages Facebook sont le canal principal (§8).
+       À COMPLÉTER : og:url une fois le nom de domaine retenu, et og:image
+       dès qu'une photographie d'œuvre est disponible — une vignette de
+       1200 × 630 px. Sans image, Facebook affiche un bandeau gris. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="Œuvres — Laurent Brizzi, artiste plasticien">
+  <meta property="og:description" content="Peintures, sculptures, bas-reliefs et street art. Portfolio filtrable par discipline.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- EN-TÊTE — balisage commun aux huit pages. Recopié à l'identique ;
+     seul aria-current="page" change de lien. -->
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html" aria-current="page">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section">
+    <div class="bande flux">
+
+      <h1>Œuvres</h1>
+
+      <!-- À COMPLÉTER : deux ou trois phrases de Laurent en tête de
+           portfolio. Ce qui traverse le travail d'une discipline à
+           l'autre. Pas de jargon curatorial (§9). -->
+
+      <nav aria-label="Filtrer par discipline" data-filtres>
+        <!-- Les filtres sont construits à partir des disciplines réellement
+             présentes dans oeuvres.json. Rien à maintenir ici. -->
+      </nav>
+
+      <!-- Annonce le nombre de résultats aux lecteurs d'écran après chaque
+           filtrage. Invisible à l'œil : le compte est déjà lisible dans les
+           libellés des filtres. -->
+      <p class="visuellement-cache" role="status" aria-live="polite" data-compteur></p>
+
+      <div class="grille-oeuvres" data-grille-oeuvres>
+        <p class="message">
+          <strong>Chargement des œuvres…</strong><br>
+          Si ce message reste affiché, c'est que le script n'a pas pu
+          s'exécuter : soit JavaScript est désactivé dans votre navigateur,
+          soit la page a été ouverte directement depuis le disque. Dans ce
+          second cas, lancez « node scripts/serveur.mjs » puis ouvrez
+          http://localhost:8000/oeuvres.html
+        </p>
+      </div>
+
+      <noscript>
+        <p class="message">
+          <strong>Le portfolio a besoin de JavaScript pour s'afficher.</strong><br>
+          Les œuvres sont chargées depuis un fichier de données afin que
+          Laurent puisse les mettre à jour lui-même. Écrivez-lui depuis la
+          <a href="contact.html">page contact</a> : il vous enverra le
+          dossier artistique en PDF.
+        </p>
+      </noscript>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- PIED DE PAGE — balisage commun aux huit pages. -->
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics (§12). -->
+      <p class="mono">Courriel et téléphone à compléter</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <!-- À COMPLÉTER : lien ArtMajeur et page Facebook (§8). -->
+      </ul>
+    </nav>
+
+    <!-- À COMPLÉTER : statut artiste-auteur, SIRET, hébergeur (§8). -->
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Statut artiste-auteur, SIRET et hébergeur à compléter
+    </p>
+
+  </div>
+</footer>
+
+<script type="module" src="assets/js/portfolio.js"></script>
+
+</body>
+</html>

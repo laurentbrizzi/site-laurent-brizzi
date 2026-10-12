@@ -1,0 +1,4 @@
+# Fins de ligne normalisees : le depot garde du LF, Windows voit du CRLF
+* text=auto
+*.webp binary
+*.woff2 binary

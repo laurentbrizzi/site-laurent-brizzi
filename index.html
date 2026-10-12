@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laurent Brizzi — artiste plasticien à Boulogne-sur-Mer</title>
+  <meta name="description" content="Peinture, sculpture, bas-reliefs monumentaux, street art, effets spéciaux et impression 3D. Vingt ans de pratique à Boulogne-sur-Mer. Œuvres, ateliers et pièces éditées.">
+
+  <!-- À COMPLÉTER : og:url une fois le domaine retenu, et og:image en
+       1200 × 630 px. Sans image, un partage Facebook affiche un bandeau
+       gris — or c'est le canal principal (§8). -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="Laurent Brizzi — artiste plasticien à Boulogne-sur-Mer">
+  <meta property="og:description" content="Peinture, sculpture, bas-reliefs monumentaux, street art. Vingt ans de pratique à Boulogne-sur-Mer.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- EN-TÊTE — balisage commun aux huit pages. Sur l'accueil, aucun lien ne
+     porte aria-current : c'est la marque elle-même qui y renvoie. -->
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- L'œuvre à la une. Remplie depuis oeuvres.json : la première entrée
+       marquée "aLaUne" qui possède une image. Changer la mise en avant se
+       fait dans le JSON, pas ici. -->
+  <section class="une" data-une>
+    <div class="bande">
+      <p class="message">
+        <strong>Chargement de l'œuvre à la une…</strong><br>
+        Si ce message reste affiché, le script n'a pas pu s'exécuter : soit
+        JavaScript est désactivé, soit la page a été ouverte directement
+        depuis le disque. Dans ce second cas, lancez
+        « node scripts/serveur.mjs » puis ouvrez http://localhost:8000/
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h1>Laurent Brizzi, artiste plasticien</h1>
+
+      <!-- À COMPLÉTER : trois ou quatre phrases de Laurent. Ce qui traverse
+           le travail d'une discipline à l'autre, en vocabulaire concret.
+           Pas de jargon curatorial (§9). C'est le premier texte que lira
+           une DRAC ou un programmateur : il compte plus que le reste. -->
+
+      <p class="mono mono--etiquette">Disciplines</p>
+      <p class="mono">
+        Peinture · Sculpture · Bas-relief · Street art ·
+        Effets spéciaux · Impression 3D · Scénographie · Musique
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Œuvres</h2>
+
+      <!-- La sélection vient de oeuvres.json : toutes les entrées marquées
+           "aLaUne", moins celle déjà montrée en tête de page. Pas de
+           filtres ici, c'est la page Œuvres qui les porte. -->
+      <div class="grille-oeuvres" data-grille-oeuvres data-a-la-une>
+        <p class="message">
+          <strong>Chargement des œuvres…</strong><br>
+          Si ce message reste affiché, le script n'a pas pu s'exécuter.
+        </p>
+      </div>
+
+      <p><a href="oeuvres.html">Voir toutes les œuvres</a></p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <!-- Section craie : la respiration du §6. Une seule dans la page. -->
+  <section class="section" data-fond="clair">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Trois façons d'entrer</h2>
+
+      <div class="acces">
+
+        <a class="acces__porte" href="oeuvres.html">
+          <span class="acces__titre">Voir les œuvres</span>
+          <span class="acces__texte">
+            Peintures, sculptures, bas-reliefs et interventions dans
+            l'espace public, filtrables par discipline.
+          </span>
+        </a>
+
+        <a class="acces__porte" href="ateliers.html">
+          <span class="acces__titre">Faire venir un atelier</span>
+          <span class="acces__texte">
+            Interventions tous publics : accessoires, marionnettes,
+            technologies médiévales pour les enfants.
+          </span>
+        </a>
+
+        <a class="acces__porte" href="boutique.html">
+          <span class="acces__titre">Acquérir une pièce</span>
+          <span class="acces__texte">
+            Répliques de la Basilique Notre-Dame de Boulogne-sur-Mer,
+            imprimées en 3D et peintes à la main, en édition numérotée.
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Ils ont accompagné le travail</h2>
+
+      <ul class="references mono">
+        <li>DRAC Hauts-de-France — résidence « Artiste Rencontre Territoire »</li>
+        <li>Projet européen MY-MA</li>
+        <li>Festival Street Art de Boulogne-sur-Mer</li>
+        <li>Ville de Boulogne-sur-Mer</li>
+        <li>Cirq'O Vent</li>
+        <li>Pas de Traverses</li>
+        <li>Galerie Kromozon</li>
+        <li>ArtMajeur</li>
+      </ul>
+
+      <!-- À COMPLÉTER : vérifier avec Laurent que cette liste est exacte et
+           qu'elle peut être publiée telle quelle. Une référence
+           institutionnelle mal formulée se retourne contre le dossier. -->
+
+      <p><a href="a-propos.html">Parcours et démarche</a></p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+
+      <h2 class="titre-section">Écrire</h2>
+
+      <p>
+        Pour une exposition, une commande, une résidence ou un atelier.
+      </p>
+
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics (§12). -->
+      <p><a href="contact.html">Prendre contact</a></p>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- PIED DE PAGE — balisage commun aux huit pages. -->
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics (§12). -->
+      <p class="mono">Courriel et téléphone à compléter</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <!-- À COMPLÉTER : lien ArtMajeur et page Facebook (§8). -->
+      </ul>
+    </nav>
+
+    <!-- À COMPLÉTER : statut artiste-auteur, SIRET, hébergeur (§8). -->
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Statut artiste-auteur, SIRET et hébergeur à compléter
+    </p>
+
+  </div>
+</footer>
+
+<script type="module" src="assets/js/portfolio.js"></script>
+
+</body>
+</html>

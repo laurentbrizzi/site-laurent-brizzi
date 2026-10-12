@@ -1,0 +1,124 @@
+/* ==========================================================================
+   layout.css — l'ossature : bandes, sections, grilles.
+   Uniquement du placement. Aucune couleur, aucun composant : si une règle
+   d'ici parle de bordure ou de fond, elle est au mauvais endroit.
+   Se charge après base.css et avant composants.css.
+   ========================================================================== */
+
+
+/* --- La bande --------------------------------------------------------------
+   Le seul conteneur horizontal du site. Il centre le contenu et pose les
+   marges latérales. Toute zone de contenu en est enveloppée, y compris à
+   l'intérieur de l'en-tête et du pied de page.
+
+   Pourquoi ce conteneur plutôt qu'une largeur maximale posée sur <main> :
+   le site est en encre et certaines sections passent en craie sur toute la
+   largeur de l'écran. Avec une largeur sur <main>, il faudrait l'annuler à
+   coups de marges négatives à chaque fois. Ici, la <section> occupe
+   naturellement toute la largeur et porte son fond ; sa bande intérieure
+   garde le texte aligné sur le reste de la page. Aucune marge négative
+   nulle part.                                                                */
+
+.bande {
+  max-width: var(--largeur-contenu);
+  margin-inline: auto;
+  padding-inline: var(--marge-page);
+}
+
+/* Pour les pages de texte suivi — démarche, biographie, mentions légales.
+   Une colonne de 62ch se lit ; une colonne de 1296px, non.
+
+   C'est le CONTENU qui est rétréci, pas la bande. Rétrécir la bande la
+   recentrerait, et sa colonne ne serait plus alignée sur celle du reste du
+   site — tout le site est calé à gauche, une section centrée s'en détache
+   immédiatement.                                                           */
+.bande--etroite > * {
+  max-width: var(--mesure);
+}
+
+/* CONVENTION : une bande qui contient du contenu porte AUSSI la classe
+   .flux (définie dans base.css). C'est elle qui espace les enfants entre
+   eux — titre, paragraphes, grille. Sans elle, le reset ayant mis toutes
+   les marges à zéro, deux paragraphes se touchent et un titre colle à son
+   texte.
+
+     <div class="bande flux"> … </div>
+
+   Les seules bandes SANS .flux sont celles qui pilotent elles-mêmes leur
+   disposition : l'intérieur de l'en-tête et celui du pied de page, qui
+   sont des flex et des grid. */
+
+
+/* --- Les sections ----------------------------------------------------------
+   Le rythme vertical du site tient dans une seule variable. Ne pas ajouter
+   de marge sur les titres pour « aérer » : c'est ici que ça se règle.      */
+
+.section {
+  padding-block: var(--espace-section);
+}
+
+.section--serree {
+  padding-block: var(--espace-xl);
+}
+
+/* L'espace sous un titre de section appartient à la mise en page, pas au
+   titre. On ne met pas de margin sur les h2 dans base.css : le même titre
+   n'a pas le même dégagement dans une grille et dans un texte suivi. */
+.titre-section {
+  margin-block-end: var(--espace-l);
+}
+
+/* Deux sections de même fond qui se suivent ont besoin d'une séparation.
+   Deux sections de fonds différents, non : le changement de fond suffit. */
+.section--filet + .section--filet {
+  padding-block-start: 0;
+}
+
+.section--filet + .section--filet > .bande {
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+  padding-block-start: var(--espace-section);
+}
+
+
+/* --- La grille des œuvres --------------------------------------------------
+   Régulière : colonnes de largeur égale, aucun décalage vertical (§6). Le
+   désalignement vient des proportions réelles des œuvres, rien d'autre.
+
+   align-items: start est ce qui permet ce désalignement. Sans lui, chaque
+   vignette s'étirerait à la hauteur de la plus haute de sa rangée et tous
+   les cartels retomberaient sur une même ligne.
+
+   Ne pas ajouter de margin-block-start sur les enfants pour « casser » la
+   grille : c'est exactement ce qui a été retiré après relecture des
+   captures, parce que le résultat n'était pas un déséquilibre mais des
+   trous de plusieurs centaines de pixels.                                   */
+
+.grille-oeuvres {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-xl) var(--gouttiere);
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+
+  .grille-oeuvres {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+
+  .grille-oeuvres {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Variante à deux colonnes pour la page d'accueil, où l'on montre moins
+   d'œuvres mais plus grandes. */
+@media (min-width: 960px) {
+
+  .grille-oeuvres--large {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

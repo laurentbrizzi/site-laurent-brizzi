@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Témoin de direction artistique — laurentbrizzi.fr</title>
+  <meta name="description" content="Page de contrôle interne : palette, typographie, cartel, en-tête et pied de page. Ne fait pas partie du site public.">
+
+  <!-- Les deux polices visibles dès le haut de page. Le crossorigin est
+       obligatoire pour les polices, même servies depuis le même domaine. -->
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- L'ordre compte : tokens définit les variables, base les consomme,
+       layout place, composants habille. temoin.css n'existe que pour cette
+       page et disparaîtra avec elle. -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+  <link rel="stylesheet" href="assets/css/temoin.css">
+</head>
+<body>
+
+<!--
+  PAGE TEMPORAIRE — ne fait pas partie du site.
+  Elle sert à valider les composants réels avant de construire les pages.
+  L'en-tête et le pied de page ci-dessous sont le BALISAGE DE RÉFÉRENCE :
+  c'est celui-là qu'il faudra recopier tel quel dans les huit pages, en
+  déplaçant seulement l'attribut aria-current="page" sur le bon lien.
+  À supprimer, avec assets/css/temoin.css et assets/js/temoin.js, avant la
+  mise en ligne.
+-->
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- Les cibles de la navigation n'existent pas encore : ces liens
+     renverront un 404 jusqu'à l'étape 4. Les chemins sont ceux du §5, ils
+     ne sont pas inventés. -->
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<!-- Bascule de contrôle : fait passer tout le <body> en fond craie, sans
+     changer une seule autre ligne. Ce n'est pas un « mode clair » du site,
+     seulement un outil de comparaison sur cette page témoin. -->
+<div class="temoin-barre">
+  <div class="bande">
+    <button type="button" class="temoin-bouton"
+            data-bascule-fond aria-pressed="false">Voir en fond craie</button>
+  </div>
+</div>
+
+<main id="contenu">
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <p class="mono mono--etiquette">Contrôle interne · étapes 1 et 2</p>
+      <h1>Direction artistique</h1>
+      <p>
+        Cette page n'est pas une page du site. Elle montre côte à côte les
+        couleurs, les tailles de texte, le cartel, l'en-tête et le pied de
+        page, pour qu'on valide le parti pris avant de construire les huit
+        pages. Rien de ce qui suit n'est du contenu réel : les visuels et
+        les textes viendront de vous.
+      </p>
+      <p>
+        L'en-tête en haut et le pied en bas sont les vrais composants, pas
+        des imitations : ils utilisent les mêmes classes que celles qui
+        seront recopiées dans les pages du site.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Palette</h2>
+
+      <p>
+        Le fond général est l'encre. La craie devient la surface d'exception.
+        Les rapports de contraste indiqués sont mesurés sur le fond où chaque
+        couleur sert réellement : le plancher AA est de 4,5:1 pour du texte.
+      </p>
+
+      <ul class="temoin-nuancier">
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--encre"></span>
+          <span class="mono temoin-nuance__intitule">--encre · #15171B<br>fond général du site</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--ardoise"></span>
+          <span class="mono temoin-nuance__intitule">--ardoise · #1C1F25<br>emplacement d'image en attente</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--craie"></span>
+          <span class="mono temoin-nuance__intitule">--craie · #E9E7E1<br>texte principal · 14,5:1</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--os"></span>
+          <span class="mono temoin-nuance__intitule">--os · #CFC7B8<br>texte secondaire · 10,7:1</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--vert-clair"></span>
+          <span class="mono temoin-nuance__intitule">--vert-de-gris-clair · #7FA79D<br>accent par défaut · 6,8:1</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--graphite"></span>
+          <span class="mono temoin-nuance__intitule">--graphite · #5B6068<br>filets sur l'encre · 2,8:1 · jamais de texte</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--vert"></span>
+          <span class="mono temoin-nuance__intitule">--vert-de-gris · #4A6A63<br>accent des sections craie · 4,8:1</span>
+        </li>
+        <li class="temoin-nuance">
+          <span class="temoin-nuance__aplat temoin-nuance__aplat--papier"></span>
+          <span class="mono temoin-nuance__intitule">--papier · #F6F5F2<br>surfaces des sections craie</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Typographie</h2>
+
+      <div class="temoin-specimen">
+        <span class="mono mono--etiquette temoin-specimen__etiquette">Display 1 · Bricolage Grotesque · titre de page</span>
+        <p class="temoin-display-1">Soleils Boulonnais</p>
+      </div>
+
+      <div class="temoin-specimen">
+        <span class="mono mono--etiquette temoin-specimen__etiquette">Display 2 · titre de section</span>
+        <p class="temoin-display-2">Bas-reliefs et sculptures</p>
+      </div>
+
+      <div class="temoin-specimen">
+        <span class="mono mono--etiquette temoin-specimen__etiquette">Texte · Newsreader · corps et démarche</span>
+        <p>
+          Dix bas-reliefs monumentaux installés dans les rues de
+          Boulogne-sur-Mer entre 2019 et 2022, dans le cadre du Festival
+          Street Art. Résine, pigments, structure acier. Chaque pièce est
+          moulée puis peinte à la main sur place, une fois la structure
+          fixée au mur. Le format circulaire répond aux rosaces des façades
+          du quartier.
+        </p>
+        <p>
+          <em>Italique</em> pour les titres d'œuvres cités dans un texte,
+          <strong>graisse moyenne</strong> pour les noms propres et les
+          matériaux qu'on veut retenir. Un nom qui sort du latin de base,
+          Zdzisław Beksiński, pour vérifier le sous-ensemble latin-ext. Et un
+          <a href="#contenu">lien de texte</a>, souligné en vert-de-gris.
+        </p>
+      </div>
+
+      <div class="temoin-specimen">
+        <span class="mono mono--etiquette temoin-specimen__etiquette">Mono · IBM Plex Mono · données techniques uniquement</span>
+        <p class="mono">
+          2021<br>
+          Résine, pigments, structure acier<br>
+          180 × 180 × 22 cm<br>
+          Édition 12 / 50 — 340 €
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Le cartel</h2>
+
+      <p>
+        Le seul geste graphique du site. L'image, un filet de 1px, puis les
+        données en mono sur des lignes serrées. La grille, elle, est
+        régulière : c'est la proportion des œuvres qui désaligne les
+        cartels, rien d'autre.
+      </p>
+
+      <!-- À COMPLÉTER : photographies d'œuvres en WebP dans /assets/img.
+           En attendant, chaque emplacement simule une proportion différente,
+           puisque le site n'impose aucun format.
+           Aucune image de banque, aucune donnée inventée : seule la première
+           vignette porte des données réelles, celles de l'exemple du §5. -->
+
+      <div class="grille-oeuvres">
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--carre mono">Visuel à fournir<br>soleil-03-01.webp<br>carré 1 / 1</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Soleil Boulonnais III</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>2021</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Résine, pigments, structure acier</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>180 × 180 × 22 cm</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--portrait mono">Visuel à fournir<br>portrait 2 / 3</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>Année</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Matériaux</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>Dimensions</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--paysage mono">Visuel à fournir<br>paysage 3 / 2</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>Année</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Matériaux</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>Dimensions</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Rangée d'épreuve : carré, portrait, panoramique</h2>
+
+      <p>
+        Le cas limite de la décision « aucun format imposé ». Trois colonnes
+        de largeur égale, trois hauteurs qui n'ont rien à voir : un carré,
+        une toile en hauteur, et un bas-relief en situ au format
+        panoramique 21 / 9.
+      </p>
+
+      <p>
+        Le vide sous les vignettes les moins hautes est inévitable : la
+        hauteur d'une rangée est celle de son élément le plus grand. Ce
+        n'est plus additionné à des décalages CSS, donc il reste lisible.
+        S'il gêne malgré tout, la réponse est dans l'ordre des œuvres au
+        sein de <span class="mono">oeuvres.json</span>, pas dans la feuille
+        de style.
+      </p>
+
+      <div class="grille-oeuvres">
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--carre mono">Carré<br>1 / 1</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Soleil Boulonnais III</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>2021</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Résine, pigments, structure acier</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>180 × 180 × 22 cm</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--portrait mono">Portrait<br>2 / 3</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>Année</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Matériaux</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>Dimensions</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+        <figure class="cartel">
+          <span class="cartel__visuel">
+            <span class="temoin-absent temoin-absent--panoramique mono">Panoramique<br>21 / 9</span>
+          </span>
+          <figcaption class="cartel__legende">
+            <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+            <dl class="cartel__donnees">
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Année</dt>
+                <dd>Année</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Matériaux</dt>
+                <dd>Matériaux</dd>
+              </div>
+              <div class="cartel__champ">
+                <dt class="visuellement-cache">Dimensions</dt>
+                <dd>Dimensions</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Le cartel sur les deux fonds</h2>
+
+      <p>
+        Les deux cas côte à côte, sans avoir à basculer : à gauche l'encre,
+        à droite la craie. Chaque volet porte son propre
+        <span class="mono">data-fond</span>, ce qui vérifie aussi le
+        mécanisme en imbriqué.
+      </p>
+
+      <div class="temoin-duo">
+
+        <div class="temoin-duo__volet" data-fond="sombre">
+          <span class="mono mono--etiquette temoin-duo__intitule">Fond encre — par défaut</span>
+
+          <div class="temoin-paire">
+
+            <figure class="cartel">
+              <span class="cartel__visuel">
+                <span class="temoin-absent temoin-absent--carre mono">Carré<br>1 / 1</span>
+              </span>
+              <figcaption class="cartel__legende">
+                <a class="cartel__lien" href="#contenu">Soleil Boulonnais III</a>
+                <dl class="cartel__donnees">
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Année</dt>
+                    <dd>2021</dd>
+                  </div>
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Matériaux</dt>
+                    <dd>Résine, pigments, structure acier</dd>
+                  </div>
+                </dl>
+              </figcaption>
+            </figure>
+
+            <figure class="cartel">
+              <span class="cartel__visuel">
+                <span class="temoin-absent temoin-absent--portrait mono">Portrait<br>2 / 3</span>
+              </span>
+              <figcaption class="cartel__legende">
+                <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+                <dl class="cartel__donnees">
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Année</dt>
+                    <dd>Année</dd>
+                  </div>
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Matériaux</dt>
+                    <dd>Matériaux</dd>
+                  </div>
+                </dl>
+              </figcaption>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="temoin-duo__volet" data-fond="clair">
+          <span class="mono mono--etiquette temoin-duo__intitule">Fond craie — section d'exception</span>
+
+          <div class="temoin-paire">
+
+            <figure class="cartel">
+              <span class="cartel__visuel">
+                <span class="temoin-absent temoin-absent--carre mono">Carré<br>1 / 1</span>
+              </span>
+              <figcaption class="cartel__legende">
+                <a class="cartel__lien" href="#contenu">Soleil Boulonnais III</a>
+                <dl class="cartel__donnees">
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Année</dt>
+                    <dd>2021</dd>
+                  </div>
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Matériaux</dt>
+                    <dd>Résine, pigments, structure acier</dd>
+                  </div>
+                </dl>
+              </figcaption>
+            </figure>
+
+            <figure class="cartel">
+              <span class="cartel__visuel">
+                <span class="temoin-absent temoin-absent--portrait mono">Portrait<br>2 / 3</span>
+              </span>
+              <figcaption class="cartel__legende">
+                <a class="cartel__lien" href="#contenu">Titre à renseigner</a>
+                <dl class="cartel__donnees">
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Année</dt>
+                    <dd>Année</dd>
+                  </div>
+                  <div class="cartel__champ">
+                    <dt class="visuellement-cache">Matériaux</dt>
+                    <dd>Matériaux</dd>
+                  </div>
+                </dl>
+              </figcaption>
+            </figure>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <!-- Section pleine largeur en craie : aucune marge négative, la <section>
+       occupe naturellement toute la largeur et sa bande garde le texte
+       aligné sur le reste de la page. -->
+  <section class="section" data-fond="clair">
+    <div class="bande flux">
+      <h2 class="titre-section">Une section craie en pleine largeur</h2>
+
+      <p>
+        Le site est en encre. La craie devient la surface d'exception : une
+        respiration, une ou deux fois dans une page, jamais en alternance
+        systématique. Cette section porte l'attribut
+        <span class="mono">data-fond="clair"</span> en propre — elle reste
+        craie même quand le reste de la page est en encre. Aucune règle n'a
+        été réécrite pour elle : l'attribut suffit, et l'accent reprend
+        automatiquement sa version nominale, plus sombre, pour rester
+        lisible.
+      </p>
+
+      <p>
+        C'est le motif que prendront la démarche sur la page à propos, ou le
+        bloc de références institutionnelles sur l'accueil.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">États et filets</h2>
+
+      <p>
+        Parcourez cette section à la touche <span class="mono">Tab</span> :
+        chaque élément atteignable doit afficher un contour vert-de-gris de
+        2px, nettement détaché. Commencez tout en haut de la page — le
+        premier <span class="mono">Tab</span> doit faire apparaître le lien
+        d'évitement, puis passer dans les cinq liens de navigation.
+      </p>
+
+      <div class="temoin-etats">
+        <a class="temoin-bouton" href="#contenu">Voir les œuvres</a>
+        <a class="temoin-bouton" href="#contenu">Télécharger le CV</a>
+        <a href="#contenu">Lien de texte</a>
+        <button type="button" class="temoin-bouton">Filtrer</button>
+      </div>
+
+      <hr>
+
+      <p class="mono">
+        Filet horizontal ci-dessus : 1px, en --graphite sur l'encre, en --os
+        dans les sections craie. C'est la seule séparation employée sur le
+        site. Pas d'ombre portée, pas d'arrondi, pas de carte flottante.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande flux">
+      <h2 class="titre-section">Ce qu'il reste à vérifier avec vous</h2>
+
+      <ul class="flux flux--serre">
+        <li><strong>L'en-tête.</strong> Le nom en Display et les cinq entrées en mono capitales : assez sobre, ou trop discret pour une institution qui cherche un contact ?</li>
+        <li><strong>La navigation à 390 px.</strong> Les cinq entrées passent sur deux lignes, sans menu repliable. À valider en réduisant la fenêtre.</li>
+        <li>Le filet du cartel en graphite sur l'encre : lu en capture, il tient. À confirmer sur votre écran.</li>
+        <li>La taille des titres display sur grand écran — 104px au maximum, à réduire si c'est trop.</li>
+        <li>La graisse du texte courant. Un texte clair sur fond sombre paraît toujours plus gras qu'il ne l'est.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics à afficher (§12). -->
+      <p class="mono">Courriel et téléphone à compléter</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <!-- À COMPLÉTER : lien vers la page ArtMajeur et la page Facebook,
+             qui est le canal principal (§8). -->
+      </ul>
+    </nav>
+
+    <!-- À COMPLÉTER : statut artiste-auteur, numéro SIRET, nom de
+         l'hébergeur — obligatoires (§8). -->
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Statut artiste-auteur, SIRET et hébergeur à compléter
+    </p>
+
+  </div>
+</footer>
+
+<script defer src="assets/js/temoin.js"></script>
+
+</body>
+</html>

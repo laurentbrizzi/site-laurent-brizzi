@@ -1,0 +1,175 @@
+[
+  {
+    "id": "mains-et-oeil",
+    "titre": "Sans titre — mains et œil",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "mains-et-oeil-01.webp",
+        "largeur": 1600,
+        "hauteur": 790,
+        "alt": "Peinture panoramique : deux mains ouvertes encadrent un œil inscrit dans une forme organique, sur un fond ocre et rouille."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "twin",
+    "titre": "Twin",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique sur toile",
+    "dimensions": "100 × 100 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "twin-01.webp",
+        "largeur": 1600,
+        "hauteur": 1603,
+        "alt": "Composition organique rose et violette : des formes internes entrelacées, veines et cavités, autour de deux silhouettes symétriques."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "masque-a-gaz",
+    "titre": "Sans titre — masque à gaz",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "masque-a-gaz-01.webp",
+        "largeur": 1600,
+        "hauteur": 1933,
+        "alt": "Figure encapuchonnée portant un masque à gaz aux filtres rouges, sur un fond rouge sombre traversé d'un disque noir."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "cite-nuages",
+    "titre": "Sans titre — cité dans les nuages",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "cite-nuages-01.webp",
+        "largeur": 1600,
+        "hauteur": 1037,
+        "alt": "Cité biomécanique aux tours imbriquées, flottant dans une brume claire, en camaïeu de gris et de blancs."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "l-ile-des-morts",
+    "titre": "L'Île des morts",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Encre sur papier",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "l-ile-des-morts-01.webp",
+        "largeur": 1600,
+        "hauteur": 1238,
+        "alt": "Masse rocheuse sombre hérissée de pointes, dressée au-dessus d'une eau calme où se tiennent deux silhouettes."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "cerca-trova-2",
+    "titre": "Cerca Trova II",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique sur bois",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "cerca-trova-2-01.webp",
+        "largeur": 1600,
+        "hauteur": 3251,
+        "alt": "Panneau vertical portant le titre peint « Cerca Trova II » ; sous lui, une main ouverte inscrite dans un cercle, sur un fond bleu nuit constellé."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "visage-structure",
+    "titre": "Sans titre — visage et structure",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "visage-structure-01.webp",
+        "largeur": 1457,
+        "hauteur": 2048,
+        "alt": "Visage aux yeux clos pris dans une structure sombre de tubes et de nervures, fortement contrasté."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "visage-biomecanique",
+    "titre": "Sans titre — visage biomécanique",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "100 × 70 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "visage-biomecanique-01.webp",
+        "largeur": 960,
+        "hauteur": 540,
+        "alt": "Visage biomécanique symétrique, tons vert-de-gris, encadré de volutes tubulaires qui se referment sur lui."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "soleil-boulonnais-03",
+    "titre": "Soleil Boulonnais III",
+    "annee": 2021,
+    "discipline": "bas-relief",
+    "materiaux": "Résine, pigments, structure acier",
+    "dimensions": "180 × 180 × 22 cm",
+    "lieu": "Boulogne-sur-Mer, Festival Street Art",
+    "statut": "collection publique",
+    "texte": "",
+    "images": [],
+    "aLaUne": false
+  }
+]

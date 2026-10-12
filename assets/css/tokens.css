@@ -1,0 +1,210 @@
+/* ==========================================================================
+   tokens.css — source unique des couleurs, tailles et durées du site.
+   Aucune valeur brute (couleur, taille, durée) ne doit apparaître ailleurs.
+   Si vous devez écrire un #hexa ou un px dans un autre fichier, c'est un bug :
+   la valeur manque ici.
+   ========================================================================== */
+
+:root {
+
+  /* --- Palette ------------------------------------------------------------
+     Le site est en encre. La craie n'est plus le fond général mais la
+     surface d'exception, réservée aux sections qu'on veut détacher.
+
+     Six couleurs nommées, un seul accent. Deux valeurs dérivées s'y sont
+     ajoutées — --vert-de-gris-clair et --ardoise — parce que le passage au
+     fond sombre les rend nécessaires ; chacune est justifiée sur place.
+     Ce ne sont pas de nouvelles couleurs : ce sont deux teintes existantes
+     à un autre niveau de clarté. Aucune neuvième valeur sans discussion. */
+
+  --craie:         #E9E7E1;  /* texte principal ; fond des sections claires */
+  --papier:        #F6F5F2;  /* surfaces surélevées dans les sections claires */
+  --encre:         #15171B;  /* fond général du site — l'encre */
+  --graphite:      #5B6068;  /* filets sur l'encre ; texte sur la craie */
+  --vert-de-gris:  #4A6A63;  /* accent unique — le cuivre du dôme */
+  --os:            #CFC7B8;  /* texte secondaire sur l'encre ; filets sur la craie */
+
+  /* Le même accent, éclairci pour rester lisible sur l'encre. Contraste
+     6,8:1, quand le vert-de-gris nominal n'y atteint que 3,0:1 et
+     échouerait l'AA. C'est donc lui l'accent par défaut depuis que le fond
+     est sombre. Ne jamais l'employer sur fond clair : il n'y passe pas. */
+  --vert-de-gris-clair: #7FA79D;
+
+  /* L'encre relevée de quelques points vers la craie. Sert uniquement à
+     marquer l'emplacement d'une image avant son chargement, ou le vide
+     laissé par une image qui ne remplit pas son cadre. Sans elle, ces
+     zones disparaissent complètement dans le fond. Jamais employée comme
+     fond de carte : le site n'a pas de carte flottante (§6). */
+  --ardoise:       #1C1F25;
+
+
+  /* --- Rôles contextuels --------------------------------------------------
+     Le reste du CSS n'appelle QUE ces variables, jamais les couleurs brutes.
+     Un composant écrit avec elles est automatiquement lisible sur les deux
+     fonds, sans une seule règle supplémentaire.
+
+     Par défaut : l'encre. Poser data-fond="clair" sur une section la fait
+     basculer en craie, data-fond="sombre" la ramène à l'encre — utile pour
+     réintroduire une zone sombre à l'intérieur d'une section claire.
+
+     Contrastes vérifiés (WCAG AA, seuil 4,5:1 pour le texte) :
+
+       sur l'encre (par défaut)          sur la craie (data-fond="clair")
+         craie ................ 14,5:1     encre ................ 14,5:1
+         os ................... 10,7:1     graphite .............. 5,1:1
+         vert-de-gris-clair .... 6,8:1     vert-de-gris .......... 4,8:1
+         graphite .............. 2,8:1     os .................... 1,4:1
+           ↑ filets uniquement, jamais de texte  ↑ idem                   */
+
+  --fond:             var(--encre);
+  --fond-souleve:     var(--ardoise);
+  --texte:            var(--craie);
+  --texte-secondaire: var(--os);
+  --accent:           var(--vert-de-gris-clair);
+  --filet-couleur:    var(--graphite);
+
+
+  /* --- Familles -----------------------------------------------------------
+     Les trois familles sont auto-hébergées (voir base.css et le LISEZ-MOI
+     de /assets/fonts). Les substituts qui suivent ne servent que le temps
+     du chargement, ou si un woff2 venait à manquer sur le serveur : ils
+     sont choisis pour des largeurs de caractères proches, afin que la
+     bascule ne déplace pas la mise en page. */
+
+  --police-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --police-texte:   "Newsreader", Georgia, "Times New Roman", serif;
+  --police-mono:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+
+  /* --- Échelle typographique ----------------------------------------------
+     Display : deux tailles maximum par page (§6). La troisième est réservée
+     aux titres d'œuvres dans les grilles, jamais à un titre de page.         */
+
+  --taille-display-1: clamp(2.5rem, 1rem + 7vw, 6.5rem);
+  --taille-display-2: clamp(1.75rem, 1.1rem + 2.6vw, 3.25rem);
+  --taille-display-3: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+
+  --taille-texte-l:   clamp(1.1875rem, 1.125rem + 0.3vw, 1.375rem);
+  --taille-texte:     1.0625rem;
+  --taille-texte-s:   0.9375rem;
+
+  /* 14 px et 12 px. Le cartel était à 13 px : trop petit pour du texte
+     secondaire qu'on demande aux gens de lire vraiment (matériaux,
+     dimensions). On agit sur la taille et non sur la couleur, parce que le
+     seul contexte où le cartel manque de contraste est la section craie,
+     où il est en --graphite à 5,1:1 — l'éclaircir l'en rapprocherait et le
+     ferait passer sous le seuil AA. Sur l'encre, il est en --os à 10,7:1
+     et n'a jamais eu de problème de contraste, seulement de taille. */
+  --taille-mono:      0.875rem;
+  --taille-mono-s:    0.75rem;
+
+  --graisse-display:  600;
+  --graisse-texte:    400;
+  --graisse-accent:   500;
+
+  --interligne-display: 1.02;
+  --interligne-titre:   1.15;
+  --interligne-texte:   1.6;
+  --interligne-cartel:  1.45;
+
+  --interlettre-display: -0.025em;
+  --interlettre-mono:     0.08em;
+
+  /* Longueur de ligne confortable — au-delà, la lecture décroche. */
+  --mesure:         62ch;
+  --mesure-etroite: 46ch;
+
+
+  /* --- Espacements --------------------------------------------------------
+     Échelle non linéaire : les grands écarts font le silence de la page.    */
+
+  --espace-3xs: 0.25rem;
+  --espace-2xs: 0.5rem;
+  --espace-xs:  0.75rem;
+  --espace-s:   1rem;
+  --espace-m:   1.5rem;
+  --espace-l:   2.25rem;
+  --espace-xl:  3.5rem;
+  --espace-2xl: 5.5rem;
+  --espace-3xl: 8.5rem;
+
+  --espace-section: clamp(4rem, 10vw, 9rem);
+
+
+  /* --- Mise en page -------------------------------------------------------
+     Points de rupture (mobile-first, à recopier dans les media queries —
+     une variable CSS ne peut pas être utilisée dans une @media) :
+       640px  ·  960px  ·  1280px                                            */
+
+  --largeur-contenu: 1440px;
+  --marge-page:      clamp(1.25rem, 5vw, 4.5rem);
+  --gouttiere:       clamp(1rem, 2.5vw, 2rem);
+
+  /* Proportion de l'emplacement réservé, affiché quand une œuvre est déjà
+     décrite dans oeuvres.json mais n'a pas encore de photographie. C'est
+     la SEULE proportion du site : les vraies images gardent la leur, donnée
+     par leurs attributs width et height (voir composants.css). */
+  --proportion-attente: 4 / 5;
+
+  /* Proportions de référence — PAGE TÉMOIN UNIQUEMENT, à supprimer avec
+     elle. Elles ne servent qu'à simuler des œuvres de rapports différents
+     tant qu'aucune photographie n'est disponible. */
+  --proportion-carre:       1 / 1;
+  --proportion-portrait:    2 / 3;
+  --proportion-paysage:     3 / 2;
+  --proportion-panoramique: 21 / 9;
+
+
+  /* --- Filets et bords ----------------------------------------------------
+     Le filet de 1px sous l'image est l'unique ornement autorisé.            */
+
+  --filet-epaisseur: 1px;
+  --rayon:           0;      /* jamais autre chose que 0 (§6) */
+
+  --epaisseur-focus: 2px;
+  --decalage-focus:  3px;
+
+
+  /* --- Mouvement ----------------------------------------------------------
+     Tout est désactivé par prefers-reduced-motion dans base.css.            */
+
+  --duree-court:      180ms;
+  --duree-revelation: 400ms;
+  --courbe:           cubic-bezier(0.16, 1, 0.3, 1);
+  --translation-revelation: 12px;
+
+
+  /* --- Plans de superposition --------------------------------------------- */
+
+  --plan-entete:   10;
+  --plan-lightbox: 100;
+}
+
+
+/* --- Sections claires ------------------------------------------------------
+   L'exception, à employer avec parcimonie : une ou deux respirations dans
+   une page, pas une alternance systématique. Poser data-fond="clair" sur
+   une <section> suffit, les composants suivent.                            */
+
+[data-fond="clair"] {
+  --fond:             var(--craie);
+  --fond-souleve:     var(--papier);
+  --texte:            var(--encre);
+  --texte-secondaire: var(--graphite);
+  --accent:           var(--vert-de-gris);
+  --filet-couleur:    var(--os);
+}
+
+
+/* --- Retour à l'encre ------------------------------------------------------
+   Identique à :root. Ne sert qu'à réintroduire une zone sombre imbriquée
+   dans une section claire — sans cela, elle hériterait des rôles clairs.  */
+
+[data-fond="sombre"] {
+  --fond:             var(--encre);
+  --fond-souleve:     var(--ardoise);
+  --texte:            var(--craie);
+  --texte-secondaire: var(--os);
+  --accent:           var(--vert-de-gris-clair);
+  --filet-couleur:    var(--graphite);
+}

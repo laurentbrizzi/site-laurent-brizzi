@@ -1,0 +1,406 @@
+/* ==========================================================================
+   base.css — remise à zéro, polices, typographie, rythme vertical.
+   Ne contient aucun composant et aucune valeur brute : tout vient de
+   tokens.css, qui doit être chargé AVANT ce fichier.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Polices
+   Auto-hébergées en woff2 dans /assets/fonts, sous licence OFL (les fichiers
+   OFL-*.txt y sont joints, la licence l'exige). Aucun appel à un CDN.
+
+   Chaque style existe en DEUX sous-ensembles :
+
+     latin      U+0000-00FF et quelques signes — couvre tout le français,
+                y compris œ, les accents et les guillemets « ».
+     latin-ext  U+0100 et au-delà — nécessaire dès qu'un nom polonais,
+                tchèque ou hongrois apparaît : Zdzisław Beksiński, les
+                ateliers du projet MY-MA, Kraków…
+
+   Le navigateur ne télécharge latin-ext que si un caractère de cette plage
+   est réellement présent sur la page. C'est le rôle de unicode-range :
+   ne pas le retirer, ce serait imposer 250 Ko de plus à chaque visite.
+
+   Les valeurs de unicode-range sont recopiées telles quelles depuis les
+   sous-ensembles officiels. Elles ne se paramètrent pas : une variable CSS
+   n'est pas admise dans un unicode-range.
+   -------------------------------------------------------------------------- */
+
+/* --- Bricolage Grotesque — variable (wght 200..800, wdth 75..100) --------- */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/BricolageGrotesque-Variable-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/BricolageGrotesque-Variable-latin-ext.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+
+/* --- Newsreader — variable (wght 200..800), romain et italique ------------ */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader-Variable-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader-Variable-latin-ext.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader-Italic-Variable-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader-Italic-Variable-latin-ext.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+
+/* --- IBM Plex Mono — statique, deux graisses ------------------------------ */
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/IBMPlexMono-Regular-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/IBMPlexMono-Regular-latin-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/IBMPlexMono-Medium-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/IBMPlexMono-Medium-latin-ext.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Remise à zéro
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* On ne touche pas à la taille de base : elle appartient à l'internaute. */
+  font-size: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3, h4,
+p,
+figure, figcaption,
+blockquote,
+dl, dd,
+ul, ol {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Largeur/hauteur toujours déclarées dans le HTML : ces règles empêchent
+   la déformation sans annuler le calcul anti-décalage du navigateur. */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--rayon);
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  border-radius: var(--rayon);
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Empêche un mot très long (nom de matériau, URL) de faire déborder. */
+p, h1, h2, h3, h4, li, dd, figcaption {
+  overflow-wrap: break-word;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Corps de page
+   -------------------------------------------------------------------------- */
+
+body {
+  background-color: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: var(--taille-texte);
+  font-weight: var(--graisse-texte);
+  line-height: var(--interligne-texte);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Toute zone qui rebascule les rôles de couleur repeint son fond, sinon
+   son texte se poserait sur la couleur de la section parente. Une seule
+   règle couvre les deux sens : data-fond="clair" comme data-fond="sombre". */
+[data-fond] {
+  background-color: var(--fond);
+  color: var(--texte);
+}
+
+/* Le texte sélectionné reprend la couleur du fond en cours : lisible sur
+   l'accent clair comme sur l'accent nominal, sans règle conditionnelle. */
+::selection {
+  background-color: var(--accent);
+  color: var(--fond);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Titres et texte
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--police-display);
+  font-weight: var(--graisse-display);
+  line-height: var(--interligne-titre);
+  letter-spacing: var(--interlettre-display);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--taille-display-1);
+  line-height: var(--interligne-display);
+}
+
+h2 {
+  font-size: var(--taille-display-2);
+}
+
+h3 {
+  font-size: var(--taille-display-3);
+}
+
+h4 {
+  font-size: var(--taille-texte-l);
+  letter-spacing: normal;
+}
+
+p {
+  max-width: var(--mesure);
+  text-wrap: pretty;
+}
+
+strong {
+  font-weight: var(--graisse-accent);
+}
+
+/* Le lien de texte : souligné, jamais coloré en bleu, jamais dépouillé. */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: var(--filet-epaisseur);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--duree-court) var(--courbe);
+}
+
+a:hover {
+  text-decoration-color: var(--texte);
+}
+
+hr {
+  height: 0;
+  margin-block: var(--espace-l);
+  margin-inline: 0;
+  border: 0;
+  border-top: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Focus clavier
+   Contour --accent de 2px, visible sur fond clair comme sur fond sombre
+   grâce aux rôles contextuels. Non négociable (§8).
+   -------------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: var(--epaisseur-focus) solid var(--accent);
+  outline-offset: var(--decalage-focus);
+}
+
+/* On ne retire le contour à la souris que parce que :focus-visible le rend
+   au clavier. Ne jamais écrire outline: none sans cette contrepartie. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Rythme vertical
+   .flux espace les enfants directs entre eux, jamais au-dessus du premier
+   ni sous le dernier : le bloc reste maîtrisé par son parent.
+   -------------------------------------------------------------------------- */
+
+.flux > * + * {
+  margin-block-start: var(--espace-m);
+}
+
+.flux--serre > * + * {
+  margin-block-start: var(--espace-2xs);
+}
+
+.flux--large > * + * {
+  margin-block-start: var(--espace-l);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Utilitaires
+   -------------------------------------------------------------------------- */
+
+/* Données techniques uniquement : année, matériaux, dimensions, prix,
+   numéro d'édition. Jamais un titre, jamais un paragraphe. */
+.mono {
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  font-weight: var(--graisse-texte);
+  letter-spacing: var(--interlettre-mono);
+  line-height: var(--interligne-cartel);
+  font-variant-numeric: tabular-nums;
+}
+
+.mono--etiquette {
+  font-size: var(--taille-mono-s);
+  font-weight: var(--graisse-accent);
+  text-transform: uppercase;
+  color: var(--texte-secondaire);
+}
+
+/* Lu par les lecteurs d'écran, invisible à l'œil. */
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+/* Premier lien de chaque page : apparaît au premier Tab. */
+.lien-evitement {
+  position: absolute;
+  inset-block-start: var(--espace-2xs);
+  inset-inline-start: var(--espace-2xs);
+  z-index: var(--plan-lightbox);
+  padding: var(--espace-2xs) var(--espace-s);
+  background-color: var(--encre);
+  color: var(--craie);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.lien-evitement:focus {
+  transform: translateY(0);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Mouvement réduit
+   Réglage système respecté sans condition (§6). Les animations ne sont pas
+   ralenties, elles sont supprimées.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-duration: 1ms;
+    scroll-behavior: auto;
+  }
+}

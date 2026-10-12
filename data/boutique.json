@@ -1,0 +1,98 @@
+[
+  {
+    "id": "basilique-1-300",
+    "titre": "Basilique Notre-Dame de Boulogne-sur-Mer",
+    "sousTitre": "Réplique au 1:300, éclairage intégré",
+    "technique": "Impression 3D, peinture à la main",
+    "dimensions": "",
+    "prix": null,
+    "devise": "EUR",
+    "edition": {
+      "numerotee": true,
+      "total": null
+    },
+    "inclus": [
+      "Certificat d'authenticité",
+      "Éclairage LED intégré"
+    ],
+    "delaiFabrication": "",
+    "fraisPort": "",
+    "retour": "",
+    "lienStripe": "",
+    "disponible": true,
+    "images": [
+      {
+        "fichier": "basilique-1-300-01.webp",
+        "largeur": 1600,
+        "hauteur": 1602,
+        "alt": "La réplique allumée dans l'obscurité : le dôme bleu et le tambour à colonnades rayonnent par leurs fenêtres ajourées."
+      },
+      {
+        "fichier": "basilique-1-300-02.webp",
+        "largeur": 1600,
+        "hauteur": 1602,
+        "alt": "La même réplique éclairée en pleine lumière : les fenêtres du tambour et de la coupole rayonnent, le dôme apparaît gris-bleu."
+      },
+      {
+        "fichier": "basilique-1-300-03.webp",
+        "largeur": 1600,
+        "hauteur": 1602,
+        "alt": "La même réplique en lumière du jour : dôme vert-de-gris, colonnades et lanternon détaillés, sans éclairage."
+      }
+    ]
+  },
+  {
+    "id": "veilleuse-vitrail",
+    "titre": "Veilleuses vitrail",
+    "sousTitre": "Boîtes lumineuses à rosace",
+    "technique": "Bois découpé au laser, vitrail peint à la main, éclairage intégré",
+    "dimensions": "",
+    "prix": null,
+    "devise": "EUR",
+    "edition": {
+      "numerotee": false,
+      "total": null
+    },
+    "inclus": [],
+    "delaiFabrication": "",
+    "fraisPort": "",
+    "retour": "",
+    "lienStripe": "",
+    "disponible": true,
+    "images": [
+      {
+        "fichier": "veilleuse-vitrail-01.webp",
+        "largeur": 1600,
+        "hauteur": 1300,
+        "alt": "Trois veilleuses en bois découpé, chacune portant une rosace de vitrail peinte et allumée, en bleus, violets, verts et orangés."
+      }
+    ]
+  },
+  {
+    "id": "basilique-kit",
+    "titre": "La Basilique en kit",
+    "sousTitre": "À monter soi-même",
+    "technique": "Découpe et gravure laser",
+    "dimensions": "",
+    "prix": null,
+    "devise": "EUR",
+    "edition": {
+      "numerotee": false,
+      "total": null
+    },
+    "inclus": [],
+    "delaiFabrication": "",
+    "fraisPort": "",
+    "retour": "",
+    "lienStripe": "",
+    "disponible": true,
+    "images": [
+      {
+        "fichier": "basilique-kit-01.webp",
+        "largeur": 802,
+        "hauteur": 2000,
+        "alt": "Le dôme de la basilique monté en kit, en panneaux de bois découpés au laser : tambour à deux niveaux de fenêtres, coupole nervurée et lanternon."
+      }
+    ]
+  }
+]

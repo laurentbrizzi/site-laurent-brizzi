@@ -1,0 +1,95 @@
+LES FICHIERS DE CONTENU
+=======================
+
+Tout le contenu du site vit ici, en JSON. Vous pouvez ajouter une œuvre
+sans toucher à une seule ligne de HTML. Ouvrez le fichier avec le Bloc-notes,
+ou mieux avec un éditeur de texte qui colore la syntaxe.
+
+
+ÉTAT ACTUEL — À LIRE AVANT LA MISE EN LIGNE
+-------------------------------------------
+
+oeuvres.json contient huit entrées, dont SEPT SONT DES EMPLACEMENTS VIDES
+intitulés « Œuvre à renseigner ». Elles ne servent qu'à faire fonctionner
+les filtres tant qu'il n'y a pas de vrai contenu. Elles sont à remplacer ou
+à supprimer avant la mise en ligne.
+
+La huitième, « Soleil Boulonnais III », reprend les valeurs de l'exemple du
+§5 du CLAUDE.md : année 2021, résine et pigments sur structure acier,
+180 × 180 × 22 cm. CES VALEURS SONT À CONFIRMER. Elles ont été écrites comme
+illustration du format, pas relevées sur l'œuvre. Il s'agit d'une pièce en
+collection publique : les dimensions et les matériaux annoncés doivent être
+exacts.
+
+Aucune œuvre n'a encore d'image : le tableau « images » est vide partout, et
+le site affiche un emplacement réservé. C'est prévu, ce n'est pas une panne.
+
+
+AJOUTER UNE ŒUVRE
+-----------------
+
+Copiez un bloc existant entre accolades, collez-le, et modifiez les valeurs.
+Attention à la virgule qui sépare deux blocs — et à l'absence de virgule
+après le dernier. C'est l'erreur la plus fréquente ; le site vous le dira
+en clair si elle se produit.
+
+  "id"          identifiant unique, en minuscules avec des tirets. Il
+                apparaît dans l'adresse de la fiche, alors autant qu'il soit
+                lisible : « soleil-boulonnais-03 ».
+  "titre"       le titre de l'œuvre.
+  "annee"       un nombre, sans guillemets. Laissez null si inconnue.
+  "discipline"  UNE valeur parmi cette liste, exactement :
+                  peinture · sculpture · bas-relief · street-art
+                  sfx · 3d · scenographie · musique
+                Une valeur en dehors de cette liste ne sera pas filtrable.
+                Pour en ajouter une, il faut d'abord la déclarer dans
+                assets/js/utils.js.
+  "materiaux"   nommés précisément, c'est ce qui donne la crédibilité.
+  "dimensions"  hauteur × largeur × profondeur, avec l'unité.
+  "lieu"        où l'œuvre a été montrée ou installée.
+  "statut"      « collection publique », « collection privée », « disponible »…
+  "texte"       deux phrases maximum. Ce qui a été cherché, pas ce qu'on voit.
+  "aLaUne"      true pour que l'œuvre apparaisse sur la page d'accueil.
+
+
+AJOUTER LES IMAGES D'UNE ŒUVRE
+------------------------------
+
+Les fichiers vont dans /assets/img, en WebP, jamais au-delà de 1600 px de
+large. Puis on remplit le tableau « images » :
+
+  "images": [
+    {
+      "fichier": "soleil-03-01.webp",
+      "largeur": 1400,
+      "hauteur": 1400,
+      "alt": "Bas-relief circulaire aux nervures métalliques, lumière rasante."
+    }
+  ]
+
+  "largeur" et "hauteur" sont OBLIGATOIRES. Ce sont les dimensions en pixels
+  du fichier, pas celles de l'œuvre. On les lit dans les propriétés du
+  fichier, ou en survolant l'image dans l'explorateur Windows. Sans elles, la
+  page saute au chargement : le site n'impose aucun format de vignette, ce
+  sont ces deux nombres qui donnent sa proportion à chaque image.
+
+  "alt" décrit l'image pour les personnes qui ne la voient pas, et pour les
+  moteurs de recherche. Une phrase, jamais « image1 ».
+
+L'ORDRE COMPTE :
+
+  la 1re image  est celle de la vignette et du haut de la fiche.
+  la 2e image   est le détail montré au survol de la vignette. Son "alt"
+                reste vide : elle montre la même œuvre que la première.
+                Une œuvre sans 2e image ne fait rien au survol, c'est prévu.
+  les suivantes n'apparaissent que sur la fiche, chacune avec son propre alt.
+
+
+SI QUELQUE CHOSE NE S'AFFICHE PAS
+---------------------------------
+
+Le site n'affiche jamais un écran vide : il explique ce qui manque. Les deux
+causes les plus fréquentes sont une virgule mal placée dans le JSON, et une
+page ouverte par double-clic au lieu de passer par le serveur local. Dans ce
+second cas, lancez « node scripts/serveur.mjs » puis ouvrez
+http://localhost:8000/

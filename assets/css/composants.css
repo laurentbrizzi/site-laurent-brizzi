@@ -1,0 +1,901 @@
+/* ==========================================================================
+   composants.css
+   Le cartel, l'en-tête, le pied de page. Le reste (filtres du portfolio,
+   lightbox, fiche produit) arrive aux étapes suivantes, dans ce fichier.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   L'en-tête
+   Même balisage sur les huit pages, recopié à l'identique. C'est le coût du
+   « sans étape de build » : ajouter une entrée de menu, c'est modifier huit
+   fichiers. L'alternative — injecter l'en-tête en JavaScript — casserait le
+   référencement et la navigation sans JS. La duplication est le bon choix
+   ici, mais il faut la faire sciemment.
+
+   PAS DE MENU HAMBURGER. Cinq entrées en mono capitales tiennent sur deux
+   lignes à 390 px. Un menu repliable demanderait du JavaScript pour rien,
+   et un menu qui ne s'ouvre pas est un site sans navigation.
+
+   Sur la page courante, le lien porte aria-current="page" : c'est lui qui
+   déclenche le soulignement, pas une classe. L'information est ainsi vraie
+   pour les lecteurs d'écran autant que pour l'œil.
+   -------------------------------------------------------------------------- */
+
+.entete {
+  padding-block: var(--espace-m);
+}
+
+.entete__interieur {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-s);
+  padding-block-end: var(--espace-s);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 640px) {
+
+  .entete__interieur {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--espace-l);
+  }
+}
+
+
+/* --- La marque ------------------------------------------------------------ */
+
+.entete__marque {
+  text-decoration: none;
+  color: var(--texte);
+}
+
+.entete__nom {
+  display: block;
+  font-family: var(--police-display);
+  font-size: var(--taille-display-3);
+  font-weight: var(--graisse-display);
+  letter-spacing: var(--interlettre-display);
+  line-height: var(--interligne-titre);
+}
+
+.entete__qualite {
+  display: block;
+  margin-block-start: var(--espace-3xs);
+}
+
+
+/* --- La navigation --------------------------------------------------------- */
+
+.nav-principale {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs) var(--espace-m);
+}
+
+.nav-principale a {
+  display: inline-block;
+  padding-block: var(--espace-3xs);
+  color: var(--texte-secondaire);
+  text-decoration: none;
+  border-block-end: var(--filet-epaisseur) solid transparent;
+  transition: color var(--duree-court) var(--courbe),
+              border-color var(--duree-court) var(--courbe);
+}
+
+.nav-principale a:hover {
+  color: var(--texte);
+  border-block-end-color: var(--filet-couleur);
+}
+
+.nav-principale a[aria-current="page"] {
+  color: var(--texte);
+  border-block-end-color: var(--accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   Le pied de page
+   Il porte ce qu'une institution cherche en dernier recours : qui, où,
+   comment joindre. Et le lien vers les mentions légales, obligatoire (§8).
+   -------------------------------------------------------------------------- */
+
+.pied {
+  padding-block: var(--espace-2xl) var(--espace-xl);
+}
+
+.pied__interieur {
+  display: grid;
+  gap: var(--espace-l);
+  padding-block-start: var(--espace-l);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 640px) {
+
+  .pied__interieur {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: var(--espace-xl);
+  }
+}
+
+.pied__bloc > * + * {
+  margin-block-start: var(--espace-2xs);
+}
+
+.pied__liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs) var(--espace-m);
+}
+
+/* --------------------------------------------------------------------------
+   L'œuvre à la une
+   Ouvre la page d'accueil. L'image occupe toute la largeur de l'écran, son
+   cartel revient dans la bande. Rien n'est posé SUR l'image : ni titre, ni
+   voile, ni dégradé — le §6 interdit la carte flottante, et un texte sur
+   une peinture ne sert ni l'un ni l'autre.
+   -------------------------------------------------------------------------- */
+
+.une__lien {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.une__visuel {
+  display: block;
+  background-color: var(--fond-souleve);
+}
+
+/* max-height empêche une œuvre en hauteur d'occuper trois écrans. object-fit
+   contain plutôt que cover : on ne recadre pas une œuvre. Le vide éventuel
+   se remplit d'ardoise, c'est exactement son rôle. */
+.une__image {
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: contain;
+}
+
+.une__legende {
+  display: block;
+  margin-block-start: var(--espace-m);
+  padding-block-start: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.une__titre {
+  display: block;
+  font-family: var(--police-display);
+  font-size: var(--taille-display-3);
+  font-weight: var(--graisse-display);
+  letter-spacing: var(--interlettre-display);
+  line-height: var(--interligne-titre);
+}
+
+.une__lien:hover .une__titre {
+  color: var(--accent);
+}
+
+.une__donnees {
+  display: block;
+  margin-block-start: var(--espace-3xs);
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  letter-spacing: var(--interlettre-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   Les trois accès
+   Le §3 fixe trois publics et trois parcours. Ce bloc leur donne une porte
+   chacun, au même niveau : aucune n'est mise en avant par la couleur ou la
+   taille, c'est au visiteur de savoir pourquoi il est venu.
+   -------------------------------------------------------------------------- */
+
+.acces {
+  display: grid;
+  gap: var(--espace-l);
+}
+
+@media (min-width: 640px) {
+
+  .acces {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gouttiere);
+  }
+}
+
+.acces__porte {
+  display: block;
+  padding-block-start: var(--espace-s);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+  color: inherit;
+  text-decoration: none;
+}
+
+.acces__porte:hover {
+  border-block-start-color: var(--accent);
+}
+
+.acces__titre {
+  display: block;
+  font-family: var(--police-display);
+  font-size: var(--taille-display-3);
+  font-weight: var(--graisse-display);
+  letter-spacing: var(--interlettre-display);
+  line-height: var(--interligne-titre);
+}
+
+.acces__porte:hover .acces__titre {
+  color: var(--accent);
+}
+
+.acces__texte {
+  display: block;
+  margin-block-start: var(--espace-2xs);
+  max-width: 34ch;
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   Les références
+   Ce que cherche le public n° 1 du §3 : la preuve que le travail a déjà été
+   porté par des institutions. En mono, sans logos — un mur de logos ferait
+   agence, pas atelier.
+   -------------------------------------------------------------------------- */
+
+.references {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs) var(--espace-m);
+  margin-block-start: var(--espace-m);
+}
+
+.references li {
+  padding-inline-end: var(--espace-m);
+  border-inline-end: var(--filet-epaisseur) solid var(--filet-couleur);
+  color: var(--texte-secondaire);
+}
+
+.references li:last-child {
+  padding-inline-end: 0;
+  border-inline-end: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   La fiche d'une œuvre
+   C'est la seule page où le titre d'une œuvre passe en Display : il y devient
+   le titre de la page (§6). Display 2 et non 1 — un titre d'œuvre peut être
+   long, et 104px le feraient déborder sur trois lignes.
+   -------------------------------------------------------------------------- */
+
+.fiche__retour {
+  margin-block-end: var(--espace-m);
+}
+
+.fiche__titre {
+  font-size: var(--taille-display-2);
+}
+
+.fiche__cartel {
+  margin-block-start: var(--espace-m);
+  max-width: var(--mesure);
+}
+
+.fiche__champ {
+  display: grid;
+  gap: var(--espace-3xs);
+  padding-block: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 480px) {
+
+  .fiche__champ {
+    grid-template-columns: 8rem 1fr;
+    gap: var(--espace-s);
+  }
+}
+
+.fiche__champ dt {
+  color: var(--texte-secondaire);
+}
+
+.fiche__champ dd {
+  margin: 0;
+}
+
+.fiche__texte {
+  font-size: var(--taille-texte-l);
+}
+
+
+/* --- Les visuels ----------------------------------------------------------
+   La première image occupe toute la bande, les suivantes se rangent à deux
+   par ligne. Aucune proportion imposée : ce sont les attributs width et
+   height qui décident, comme partout ailleurs.                              */
+
+.fiche__visuels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gouttiere);
+}
+
+@media (min-width: 640px) {
+
+  .fiche__visuels {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fiche__visuel {
+    grid-column: 1 / -1;
+  }
+
+  .fiche__visuel--secondaire {
+    grid-column: span 1;
+  }
+}
+
+/* Un bouton, pour que la vue agrandie soit atteignable au clavier. On lui
+   retire toute apparence de bouton : c'est l'image qui est l'interface.
+
+   width: fit-content — le cadre épouse l'image au lieu de l'encadrer. Avec
+   une largeur de 100 %, une œuvre carrée ou en hauteur se retrouvait centrée
+   entre deux bandes d'ardoise, alors que tout le site est calé à gauche. */
+.fiche__visuel {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  cursor: zoom-in;
+  background-color: var(--fond-souleve);
+}
+
+/* La hauteur est plafonnée pour que l'œuvre tienne dans l'écran : on la
+   voit entière avant de faire défiler quoi que ce soit. */
+.fiche__visuel img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 84vh;
+  transition: opacity var(--duree-court) var(--courbe);
+}
+
+.fiche__visuel--secondaire {
+  width: 100%;
+}
+
+.fiche__visuel--secondaire img {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+}
+
+.fiche__visuel:hover img {
+  opacity: 0.88;
+}
+
+
+/* --- Les voisines ---------------------------------------------------------- */
+
+.fiche__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espace-m);
+}
+
+.fiche__lien {
+  color: var(--texte-secondaire);
+  text-decoration: none;
+  border-block-end: var(--filet-epaisseur) solid transparent;
+}
+
+.fiche__lien:hover {
+  color: var(--texte);
+  border-block-end-color: var(--accent);
+}
+
+/* Seule sur sa ligne, la suivante se cale à droite : on garde la lecture
+   « précédente à gauche, suivante à droite » même sans voisine avant. */
+.fiche__lien--suivant:only-child {
+  margin-inline-start: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   La vue agrandie
+   Un <dialog> natif : Échap, piège à focus, retour du focus et inertie de
+   l'arrière-plan sont gérés par le navigateur (§8).
+
+   Le display n'est posé que sur [open] : sans cela, la règle d'auteur
+   écraserait le « display: none » du navigateur et la vue resterait
+   affichée en permanence.
+   -------------------------------------------------------------------------- */
+
+.loupe {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: var(--encre);
+  color: var(--craie);
+}
+
+.loupe[open] {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.loupe::backdrop {
+  background-color: var(--encre);
+}
+
+.loupe__cadre {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: var(--espace-m);
+}
+
+.loupe__image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.loupe__barre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espace-m);
+  padding-block: var(--espace-s);
+  border-block-start: var(--filet-epaisseur) solid var(--graphite);
+}
+
+.loupe__legende {
+  color: var(--os);
+}
+
+.loupe__commandes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs);
+}
+
+.loupe__bouton {
+  padding: var(--espace-2xs) var(--espace-m);
+  border: var(--filet-epaisseur) solid var(--graphite);
+  color: var(--craie);
+  font-size: var(--taille-mono);
+  letter-spacing: var(--interlettre-mono);
+  text-transform: uppercase;
+  transition: border-color var(--duree-court) var(--courbe),
+              color var(--duree-court) var(--courbe);
+}
+
+.loupe__bouton:hover {
+  border-color: var(--vert-de-gris-clair);
+  color: var(--vert-de-gris-clair);
+}
+
+
+/* --------------------------------------------------------------------------
+   Le bouton
+   Le seul aplat de couleur du site. Réservé à l'action qui engage : passer
+   commande. Partout ailleurs, un lien souligné suffit.
+   -------------------------------------------------------------------------- */
+
+.bouton {
+  display: inline-block;
+  padding: var(--espace-2xs) var(--espace-m);
+  background-color: var(--accent);
+  color: var(--fond);
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  letter-spacing: var(--interlettre-mono);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: var(--filet-epaisseur) solid var(--accent);
+  transition: background-color var(--duree-court) var(--courbe),
+              color var(--duree-court) var(--courbe);
+}
+
+.bouton:hover {
+  background-color: transparent;
+  color: var(--accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   La fiche produit
+   Pas de carte, pas d'ombre : les mêmes règles que le cartel. Les visuels à
+   gauche, les mentions obligatoires du §10 à droite, et l'achat en bas.
+   -------------------------------------------------------------------------- */
+
+.produit {
+  display: grid;
+  gap: var(--espace-l);
+}
+
+@media (min-width: 960px) {
+
+  .produit {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--espace-xl);
+    align-items: start;
+  }
+}
+
+/* Deux pièces qui se suivent sont séparées par un filet et du vide, jamais
+   par un encadrement. */
+.produit + .produit {
+  margin-block-start: var(--espace-2xl);
+  padding-block-start: var(--espace-2xl);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+
+/* --- Les visuels ----------------------------------------------------------
+   La première image occupe toute la largeur, les suivantes se rangent en
+   dessous. Aucune proportion imposée, comme pour les œuvres : ce sont les
+   attributs width et height qui décident.                                   */
+
+.produit__visuels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espace-2xs);
+  align-items: start;
+}
+
+/* max-height : la pièce en kit est photographiée en très haut format et
+   occupait deux écrans à elle seule. object-fit: contain plutôt que cover,
+   parce qu'on ne recadre pas une pièce ; le vide se remplit d'ardoise. */
+.produit__image {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  object-fit: contain;
+  background-color: var(--fond-souleve);
+}
+
+/* Les vues secondaires occupent un tiers de la largeur chacune : assez
+   grandes pour être lisibles, assez petites pour rester secondaires. */
+.produit__image--secondaire {
+  grid-column: span 1;
+  max-height: none;
+}
+
+
+/* --- Le texte -------------------------------------------------------------- */
+
+.produit__titre {
+  font-size: var(--taille-display-3);
+}
+
+.produit__sous-titre {
+  margin-block-start: var(--espace-3xs);
+  color: var(--texte-secondaire);
+}
+
+.produit__mentions {
+  margin-block-start: var(--espace-m);
+}
+
+.produit__mention {
+  display: grid;
+  gap: var(--espace-3xs);
+  padding-block: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+@media (min-width: 480px) {
+
+  .produit__mention {
+    grid-template-columns: 9rem 1fr;
+    gap: var(--espace-s);
+  }
+}
+
+.produit__mention dt {
+  color: var(--texte-secondaire);
+}
+
+.produit__mention dd {
+  margin: 0;
+}
+
+
+/* --- L'achat --------------------------------------------------------------- */
+
+.produit__achat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--espace-m);
+  margin-block-start: var(--espace-l);
+}
+
+.produit__prix {
+  font-size: var(--taille-texte-l);
+  font-weight: var(--graisse-accent);
+  font-variant-numeric: tabular-nums;
+  color: var(--texte);
+}
+
+
+/* --------------------------------------------------------------------------
+   Les filtres du portfolio
+   Même traitement que la navigation principale : ce sont des liens, pas des
+   boutons, parce que « ?discipline=bas-relief » doit pouvoir se copier et
+   se partager. Le clic est intercepté en JavaScript pour éviter un
+   rechargement, mais l'URL reste juste dans tous les cas.
+   -------------------------------------------------------------------------- */
+
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs) var(--espace-m);
+}
+
+.filtres__lien {
+  display: inline-block;
+  padding-block: var(--espace-3xs);
+  color: var(--texte-secondaire);
+  text-decoration: none;
+  border-block-end: var(--filet-epaisseur) solid transparent;
+  transition: color var(--duree-court) var(--courbe),
+              border-color var(--duree-court) var(--courbe);
+}
+
+.filtres__lien:hover {
+  color: var(--texte);
+  border-block-end-color: var(--filet-couleur);
+}
+
+.filtres__lien[aria-current="true"] {
+  color: var(--texte);
+  border-block-end-color: var(--accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   L'emplacement réservé
+   Une œuvre peut être décrite dans oeuvres.json avant d'être photographiée.
+   On réserve sa place au lieu d'afficher une image cassée. C'est le seul
+   usage de --ardoise, et la seule proportion imposée du site.
+   -------------------------------------------------------------------------- */
+
+.cartel__attente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: var(--proportion-attente);
+  padding: var(--espace-s);
+  background-color: var(--fond-souleve);
+  border: var(--filet-epaisseur) solid var(--filet-couleur);
+  color: var(--texte-secondaire);
+  text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   Les messages
+   Un chargement qui échoue doit dire quoi faire, jamais laisser un écran
+   vide (§7). Ce bloc sert aussi à l'état « aucun résultat ».
+   -------------------------------------------------------------------------- */
+
+.message {
+  grid-column: 1 / -1;
+  max-width: var(--mesure);
+  padding: var(--espace-m);
+  border-inline-start: var(--epaisseur-focus) solid var(--accent);
+  background-color: var(--fond-souleve);
+  color: var(--texte-secondaire);
+}
+
+.message strong {
+  color: var(--texte);
+}
+
+
+/* --------------------------------------------------------------------------
+   Révélation au défilement
+   La classe .reveler n'est posée par JavaScript qu'au moment d'observer
+   l'élément. Elle n'existe jamais dans le HTML livré : si le script ne
+   tournait pas, rien ne resterait invisible.
+   -------------------------------------------------------------------------- */
+
+.reveler {
+  opacity: 0;
+  transform: translateY(var(--translation-revelation));
+  transition: opacity var(--duree-revelation) var(--courbe),
+              transform var(--duree-revelation) var(--courbe);
+}
+
+.reveler--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Filet de sécurité. base.css neutralise déjà les transitions, mais sans
+   ceci un élément resterait à opacity: 0 pour toujours. */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveler {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+.pied__mention {
+  /* Toute la largeur, sous les deux colonnes. */
+  grid-column: 1 / -1;
+  margin-block-start: var(--espace-l);
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   Le cartel
+   L'élément signature du site (§6). Un accrochage, pas une carte de site
+   marchand : image, filet de 1px, puis les données en mono sur des lignes
+   serrées alignées à gauche. Pas d'ombre, pas d'arrondi, pas de fond.
+
+   Balisage attendu :
+
+     <figure class="cartel">
+       <span class="cartel__visuel">
+         <img class="cartel__image"  src="…" alt="…" width="…" height="…">
+         <img class="cartel__detail" src="…" alt=""  width="…" height="…">
+       </span>
+       <figcaption class="cartel__legende">
+         <a class="cartel__lien" href="oeuvre.html?id=…">Soleil Boulonnais III</a>
+         <dl class="cartel__donnees">
+           <div class="cartel__champ">
+             <dt class="visuellement-cache">Année</dt>
+             <dd>2021</dd>
+           </div>
+           …
+         </dl>
+       </figcaption>
+     </figure>
+
+   Deux partis pris à connaître avant de modifier ce composant :
+
+   1. Un seul lien, posé sur le titre, puis étendu à toute la vignette par
+      un ::after. Le clic marche partout, mais le clavier ne s'arrête qu'une
+      fois par œuvre et le lecteur d'écran annonce le titre, pas « lien ».
+      Ne pas ajouter de second lien sur l'image : la carte en aurait deux.
+
+   2. Les <dt> sont masqués à l'œil : un cartel de musée n'écrit pas
+      « Matériaux : ». Les lecteurs d'écran, eux, les annoncent.
+
+   3. Le titre est en mono ICI, dans la vignette, parce qu'il fait partie du
+      bloc de données. Il ne passe en Display que sur la fiche de l'œuvre,
+      où il devient le titre de la page. C'est l'arbitrage entre les deux
+      règles du §6 qui se contredisaient.
+   -------------------------------------------------------------------------- */
+
+.cartel {
+  position: relative;
+}
+
+
+/* --- Le visuel ------------------------------------------------------------
+   AUCUN FORMAT IMPOSÉ. Chaque œuvre garde sa proportion réelle : un Soleil
+   Boulonnais est carré, une toile est en hauteur, un bas-relief en situ est
+   souvent en largeur. Rien n'est recadré, rien n'est aligné sur une hauteur
+   commune — c'est exactement le désalignement que demande le §6.
+
+   Conséquence directe, à ne pas contourner : chaque <img> DOIT porter ses
+   attributs width et height (§8). Ce sont eux, et eux seuls, qui réservent
+   la bonne hauteur avant le chargement. Sans eux, la grille sautera à
+   chaque image reçue. Ces dimensions viennent de oeuvres.json.
+
+   Le fond --fond-souleve n'est visible que pendant ce laps de temps : il
+   marque l'emplacement réservé. C'est le seul rôle de --ardoise.          */
+
+.cartel__visuel {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--fond-souleve);
+}
+
+/* La hauteur vient de l'image elle-même, via son ratio width/height. */
+.cartel__image {
+  width: 100%;
+  height: auto;
+}
+
+/* Le détail, lui, se cale sur le cadre défini par l'image principale : il
+   est recadré par nature, object-fit: cover est ici volontaire. */
+.cartel__detail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Au survol : passage à un détail recadré de l'œuvre. Jamais un zoom,
+   jamais un filtre (§6).
+
+   Par convention, le détail est images[1] dans oeuvres.json — pas de champ
+   dédié. Une œuvre qui n'a qu'une image ne fait simplement rien au survol :
+   c'est un comportement prévu, pas une panne.
+
+   L'image de détail est décorative : elle montre la même œuvre que
+   l'image principale, qui porte déjà l'alt. Son alt reste donc vide. */
+.cartel__detail {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duree-court) var(--courbe);
+}
+
+.cartel:hover .cartel__detail,
+.cartel:focus-within .cartel__detail {
+  opacity: 1;
+}
+
+
+/* --- La légende ----------------------------------------------------------- */
+
+.cartel__legende {
+  /* Le filet : l'unique ornement du site. */
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+  padding-block-start: var(--espace-2xs);
+  margin-block-start: var(--espace-xs);
+}
+
+.cartel__lien {
+  display: block;
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  font-weight: var(--graisse-accent);
+  letter-spacing: var(--interlettre-mono);
+  line-height: var(--interligne-cartel);
+  color: var(--texte);
+  text-decoration: none;
+}
+
+/* Étend la zone cliquable à toute la vignette sans ajouter de lien. */
+.cartel__lien::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.cartel__lien:hover {
+  color: var(--accent);
+}
+
+.cartel__donnees {
+  margin-block-start: var(--espace-3xs);
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  line-height: var(--interligne-cartel);
+  letter-spacing: var(--interlettre-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-secondaire);
+}
+
+.cartel__champ > dd {
+  margin: 0;
+}

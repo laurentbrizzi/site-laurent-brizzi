@@ -1,0 +1,74 @@
+POLICES DU SITE — état : installées
+====================================
+
+Les trois familles sont auto-hébergées ici. Aucun appel à Google Fonts au
+chargement du site (RGPD + performance), conformément au §6 du CLAUDE.md.
+
+Licence : SIL Open Font License 1.1 pour les trois. L'auto-hébergement et
+l'usage commercial sont autorisés. Les textes de licence sont joints dans
+ce dossier — l'OFL l'exige, ne pas les supprimer.
+
+
+FICHIERS PRÉSENTS
+-----------------
+
+  Bricolage Grotesque — variable, axes wght 200..800 et wdth 75..100
+    BricolageGrotesque-Variable-latin.woff2 .............. 128,5 Ko
+    BricolageGrotesque-Variable-latin-ext.woff2 ..........  52,3 Ko
+
+  Newsreader — variable, axe wght 200..800, romain et italique
+    Newsreader-Variable-latin.woff2 ...................... 128,9 Ko
+    Newsreader-Variable-latin-ext.woff2 ..................  84,6 Ko
+    Newsreader-Italic-Variable-latin.woff2 ............... 143,4 Ko
+    Newsreader-Italic-Variable-latin-ext.woff2 ...........  93,3 Ko
+
+  IBM Plex Mono — statique, deux graisses
+    IBMPlexMono-Regular-latin.woff2 ......................  14,4 Ko
+    IBMPlexMono-Regular-latin-ext.woff2 ..................  13,0 Ko
+    IBMPlexMono-Medium-latin.woff2 .......................  14,5 Ko
+    IBMPlexMono-Medium-latin-ext.woff2 ...................  13,1 Ko
+
+  Licences
+    OFL-BricolageGrotesque.txt
+    OFL-Newsreader.txt
+    OFL-IBMPlexMono.txt
+
+
+POURQUOI DEUX FICHIERS PAR STYLE
+--------------------------------
+
+  latin      U+0000-00FF et quelques signes. Couvre tout le français :
+             accents, ç, œ, guillemets « », € .
+  latin-ext  U+0100 et au-delà. Indispensable dès qu'un nom polonais ou
+             d'Europe centrale apparaît — Zdzisław Beksiński, les ateliers
+             MY-MA, Kraków. Sans lui, ces lettres basculeraient sur la
+             police de secours en plein milieu d'un mot.
+
+La déclaration unicode-range dans base.css fait que latin-ext n'est
+téléchargé QUE si un caractère de cette plage est présent sur la page.
+Ne pas retirer ces unicode-range : ce serait imposer environ 250 Ko
+supplémentaires à chaque visite, pour rien la plupart du temps.
+
+
+POIDS RÉEL AU CHARGEMENT
+------------------------
+
+Une page en français courant ne charge que trois fichiers :
+
+  Bricolage latin + Newsreader latin + Plex Mono Regular latin ≈ 272 Ko
+
+L'italique, la graisse 500 et les latin-ext ne partent que si la page les
+emploie. Budget de la page d'accueil : 1 Mo (§8) — il reste donc environ
+730 Ko pour les images.
+
+
+PROVENANCE
+----------
+
+Fichiers récupérés le 13 août 2026 depuis l'API Google Fonts
+(fonts.gstatic.com), qui sert les sous-ensembles officiels déjà optimisés.
+Les dépôts amont, si vous devez un jour reprendre les sources complètes :
+
+  Bricolage Grotesque   github.com/ateliertriay/bricolage
+  Newsreader            github.com/productiontype/Newsreader
+  IBM Plex Mono         github.com/IBM/plex

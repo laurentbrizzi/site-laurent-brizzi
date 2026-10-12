@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Le titre et la description sont réécrits par portfolio.js une fois
+       l'œuvre chargée. Ceux-ci servent de repli, et s'affichent si l'identifiant
+       de l'URL ne correspond à aucune œuvre.
+
+       LIMITE CONNUE, arbitrée à l'étape 0 : cette page étant construite à
+       partir de ?id=, ses balises Open Graph ne peuvent pas être
+       personnalisées par œuvre. Facebook ne lit pas le JavaScript : un
+       partage de fiche affichera toujours la vignette générique du site.
+       C'est le prix du « sans étape de build », et il a été accepté. -->
+  <title>Œuvre — Laurent Brizzi, artiste plasticien</title>
+  <meta name="description" content="Fiche d'une œuvre de Laurent Brizzi, artiste plasticien à Boulogne-sur-Mer.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="Œuvre — Laurent Brizzi, artiste plasticien">
+  <meta property="og:description" content="Peinture, sculpture, bas-reliefs et street art.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- EN-TÊTE — balisage commun aux huit pages. Sur une fiche, c'est « Œuvres »
+     qui reste la page courante : on est dans cette section du site. -->
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html" aria-current="page">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <article data-fiche>
+    <div class="section">
+      <div class="bande">
+        <p class="message">
+          <strong>Chargement de l'œuvre…</strong><br>
+          Si ce message reste affiché, le script n'a pas pu s'exécuter : soit
+          JavaScript est désactivé, soit la page a été ouverte directement
+          depuis le disque. Dans ce second cas, lancez
+          « node scripts/serveur.mjs » puis ouvrez http://localhost:8000/
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <noscript>
+    <div class="section">
+      <div class="bande">
+        <p class="message">
+          <strong>Cette fiche a besoin de JavaScript pour s'afficher.</strong><br>
+          Les œuvres sont chargées depuis un fichier de données afin que
+          Laurent puisse les mettre à jour lui-même.
+          <a href="oeuvres.html">Revenir aux œuvres</a>.
+        </p>
+      </div>
+    </div>
+  </noscript>
+
+</main>
+
+<!-- PIED DE PAGE — balisage commun aux huit pages. -->
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics (§12). -->
+      <p class="mono">Courriel et téléphone à compléter</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <!-- À COMPLÉTER : statut artiste-auteur, SIRET, hébergeur (§8). -->
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Statut artiste-auteur, SIRET et hébergeur à compléter
+    </p>
+
+  </div>
+</footer>
+
+<!-- La vue agrandie. On emploie <dialog> et non un <div> : la fermeture par
+     Échap, le piège à focus, le retour du focus sur l'élément d'origine et
+     l'inertie de l'arrière-plan sont alors assurés par le navigateur, et non
+     par du code à maintenir. C'est ce que demande le §8, sans le réécrire. -->
+<dialog class="loupe" data-loupe aria-label="Vue agrandie de l'œuvre">
+
+  <!-- Un conteneur vide, et non un <img> sans src : une image sans source
+       est une image cassée dans le document, même à l'intérieur d'un
+       dialogue fermé. C'est le script qui la crée, avec sa source, ses
+       dimensions et son alt posés d'un seul coup. -->
+  <div class="loupe__cadre" data-loupe-cadre></div>
+
+  <div class="loupe__barre bande">
+    <p class="loupe__legende mono" data-loupe-legende></p>
+
+    <div class="loupe__commandes">
+      <button type="button" class="loupe__bouton mono" data-loupe-precedent>Précédente</button>
+      <button type="button" class="loupe__bouton mono" data-loupe-suivant>Suivante</button>
+      <button type="button" class="loupe__bouton mono" data-loupe-fermer>Fermer</button>
+    </div>
+  </div>
+
+</dialog>
+
+<script type="module" src="assets/js/portfolio.js"></script>
+
+</body>
+</html>

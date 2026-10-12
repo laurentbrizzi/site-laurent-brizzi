@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boutique — Laurent Brizzi, artiste plasticien</title>
+  <meta name="description" content="Pièces éditées de Laurent Brizzi : répliques de la Basilique Notre-Dame de Boulogne-sur-Mer imprimées en 3D et peintes à la main, veilleuses vitrail, kit à monter soi-même.">
+
+  <!-- À COMPLÉTER : og:url une fois le domaine retenu, og:image en 1200 × 630. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Laurent Brizzi">
+  <meta property="og:title" content="Boutique — Laurent Brizzi, artiste plasticien">
+  <meta property="og:description" content="Répliques de la Basilique Notre-Dame de Boulogne-sur-Mer, veilleuses vitrail, kit à monter soi-même.">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/composants.css">
+</head>
+<body>
+
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- EN-TÊTE — balisage commun aux huit pages. -->
+<header class="entete">
+  <div class="bande entete__interieur">
+
+    <a class="entete__marque" href="index.html">
+      <span class="entete__nom">Laurent Brizzi</span>
+      <span class="mono mono--etiquette entete__qualite">Artiste plasticien · Boulogne-sur-Mer</span>
+    </a>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav-principale mono mono--etiquette">
+        <li><a href="oeuvres.html">Œuvres</a></li>
+        <li><a href="ateliers.html">Ateliers</a></li>
+        <li><a href="boutique.html" aria-current="page">Boutique</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section">
+    <div class="bande flux">
+
+      <h1>Boutique</h1>
+
+      <!-- À COMPLÉTER : deux ou trois phrases de Laurent. D'où vient le
+           projet de la Basilique, pourquoi ce bâtiment-là. Les gestes et
+           les matériaux nommés précisément (§9). -->
+
+      <p class="mono mono--etiquette">
+        Pièces fabriquées à l'atelier, à Boulogne-sur-Mer
+      </p>
+
+      <div data-boutique>
+        <p class="message">
+          <strong>Chargement de la boutique…</strong><br>
+          Si ce message reste affiché, le script n'a pas pu s'exécuter : soit
+          JavaScript est désactivé, soit la page a été ouverte directement
+          depuis le disque. Dans ce second cas, lancez
+          « node scripts/serveur.mjs » puis ouvrez http://localhost:8000/
+        </p>
+      </div>
+
+      <noscript>
+        <p class="message">
+          <strong>La boutique a besoin de JavaScript pour s'afficher.</strong><br>
+          Écrivez depuis la <a href="contact.html">page contact</a> :
+          Laurent vous répondra avec les tarifs et les délais.
+        </p>
+      </noscript>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section" data-fond="clair">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">Comment se passe une commande</h2>
+
+      <!-- À COMPLÉTER : ce bloc doit dire, en clair et avant l'achat, le
+           délai de fabrication, les frais de port, le droit de rétractation
+           de quatorze jours et l'adresse de retour. Ce sont des mentions
+           obligatoires pour une vente à distance, pas du confort (§8, §10).
+           Tant qu'elles ne sont pas renseignées, aucun bouton de paiement
+           ne doit être activé. -->
+
+      <p>
+        Le paiement se fait par lien sécurisé Stripe. Aucune donnée bancaire
+        ne transite par ce site.
+      </p>
+
+      <p>
+        <a href="contact.html">Une question avant de commander</a>
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- PIED DE PAGE — balisage commun aux huit pages. -->
+<footer class="pied">
+  <div class="bande pied__interieur">
+
+    <div class="pied__bloc">
+      <p class="mono mono--etiquette">Laurent Brizzi</p>
+      <p class="mono">Artiste plasticien · Boulogne-sur-Mer (62)</p>
+      <!-- À COMPLÉTER : adresse de courriel et téléphone publics (§12). -->
+      <p class="mono">Courriel et téléphone à compléter</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Navigation secondaire">
+      <ul class="pied__liens mono">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <!-- À COMPLÉTER : statut artiste-auteur, SIRET, hébergeur (§8). -->
+    <p class="mono pied__mention">
+      © 2026 Laurent Brizzi · Statut artiste-auteur, SIRET et hébergeur à compléter
+    </p>
+
+  </div>
+</footer>
+
+<script type="module" src="assets/js/boutique.js"></script>
+
+</body>
+</html>
