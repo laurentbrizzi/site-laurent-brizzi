@@ -102,12 +102,33 @@ export function afficherMessage(conteneur, titre, detail) {
 
 
 /* --------------------------------------------------------------------------
-   Révélation au défilement
-   Fondu et translation de 12px sur 400 ms (§6). Le réglage système
-   « mouvement réduit » désactive tout : on n'ajoute alors même pas la
-   classe, pour qu'aucun élément ne puisse rester invisible si le script
-   s'interrompait ensuite.
+   Révélation au défilement, en cascade
+   Fondu et translation de 12px sur 400 ms (§6). Les éléments qui entrent à
+   l'écran ensemble — typiquement une rangée de la grille — ne s'allument pas
+   d'un bloc : chacun part un cran après son voisin de gauche.
+
+   Le réglage système « mouvement réduit » désactive tout : on n'ajoute alors
+   même pas la classe, pour qu'aucun élément ne puisse rester invisible si le
+   script s'interrompait ensuite.
    -------------------------------------------------------------------------- */
+
+/* Deux vignettes d'une même rangée ne commencent presque jamais exactement
+   à la même hauteur : leurs images n'ont pas la même proportion et la grille
+   les aligne par le haut à quelques pixels près. En deçà de cette tolérance,
+   on considère qu'on est sur la même rangée et on cascade de gauche à
+   droite ; au-delà, c'est une rangée suivante et on repart du haut. */
+const TOLERANCE_RANGEE = 24;
+
+function ordreDeLecture(a, b) {
+  const boiteA = a.boundingClientRect;
+  const boiteB = b.boundingClientRect;
+
+  if (Math.abs(boiteA.top - boiteB.top) > TOLERANCE_RANGEE) {
+    return boiteA.top - boiteB.top;
+  }
+
+  return boiteA.left - boiteB.left;
+}
 
 export function revelerAuScroll(elements) {
   const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -116,11 +137,34 @@ export function revelerAuScroll(elements) {
 
   const observateur = new IntersectionObserver(
     (entrees, obs) => {
-      for (const entree of entrees) {
-        if (!entree.isIntersecting) continue;
-        entree.target.classList.add("reveler--visible");
-        obs.unobserve(entree.target);
-      }
+
+      /* L'observateur livre ses entrées dans un ordre qui n'est pas garanti.
+         Les remettre dans l'ordre de lecture est ce qui fait la différence
+         entre une cascade et un clignotement désordonné. */
+      const apparues = entrees
+        .filter((entree) => entree.isIntersecting)
+        .sort(ordreDeLecture);
+
+      apparues.forEach((entree, rang) => {
+        const element = entree.target;
+
+        /* Le retard lui-même est calculé en CSS, à partir de ce rang et des
+           réglages de tokens.css. On ne pose ici qu'un numéro d'ordre : la
+           durée du pas et son plafond n'ont pas à vivre dans le JavaScript. */
+        element.style.setProperty("--rang-cascade", rang);
+
+        /* Et on le retire dès l'apparition finie : laissé en place, ce
+           retard s'appliquerait à toutes les transitions ultérieures de
+           l'élément, qui paraîtraient alors molles sans raison visible. */
+        element.addEventListener(
+          "transitionend",
+          () => element.style.removeProperty("--rang-cascade"),
+          { once: true }
+        );
+
+        element.classList.add("reveler--visible");
+        obs.unobserve(element);
+      });
     },
     { rootMargin: "0px 0px -8% 0px" }
   );

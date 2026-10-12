@@ -540,10 +540,17 @@ function afficherOeuvres(oeuvres, discipline) {
       : `${retenues.length} œuvres affichées${intitule}.`;
   }
 
-  /* On ne révèle pas les vignettes prioritaires : elles sont déjà à
-     l'écran, les faire apparaître en fondu ne ferait que retarder
-     l'affichage de ce que le visiteur regarde déjà. */
-  revelerAuScroll([...grille.children].slice(VIGNETTES_PRIORITAIRES));
+  /* Toutes les vignettes sont révélées, y compris celles du haut. On en
+     exceptait les deux premières, pour ne pas retarder ce que le visiteur
+     regarde déjà — mais la grille fait trois colonnes sur grand écran : la
+     première rangée arrivait alors en deux temps, deux vignettes d'un bloc
+     et la troisième en fondu. La cascade n'a de sens que si la rangée est
+     traitée comme une rangée.
+
+     VIGNETTES_PRIORITAIRES continue de décider du chargement des images,
+     qui est une tout autre question : ces deux-là se chargent toujours
+     immédiatement. */
+  revelerAuScroll([...grille.children]);
 }
 
 

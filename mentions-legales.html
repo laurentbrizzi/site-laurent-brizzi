@@ -180,22 +180,93 @@
 
       <h2 class="titre-section">Vente à distance</h2>
 
-      <!-- À COMPLÉTER — OBLIGATOIRE AVANT TOUTE VENTE : délai de fabrication,
-           frais de port, droit de rétractation de quatorze jours, adresse de
-           retour et modalités de remboursement. Tant que ces mentions
-           manquent, aucun bouton de paiement ne doit être actif, et
-           boutique.js est écrit pour qu'aucun ne s'affiche (§10). -->
+      <!-- Les règles communes aux trois pièces vivent ici. Ce qui change
+           d'une pièce à l'autre — prix, délai, frais de port — vit dans
+           data/boutique.json et s'affiche sur la fiche du produit. Ne pas
+           recopier de chiffre ici : il finirait par contredire la fiche. -->
 
       <p>
-        Les conditions de vente des pièces éditées sont à compléter avant
-        toute mise en vente. Aucun paiement n'est possible sur ce site en
-        l'état.
+        Les pièces proposées à la vente sont fabriquées à l'atelier, à la
+        commande. Le prix, le délai de fabrication et les frais de port
+        propres à chaque pièce sont indiqués sur sa fiche, dans la
+        <a href="boutique.html">boutique</a>, avant tout paiement.
       </p>
 
       <p>
-        Le paiement, lorsqu'il sera ouvert, se fera par lien sécurisé Stripe.
-        Aucune donnée bancaire ne transite par ce site.
+        Les prix sont indiqués en euros, nets de taxe.
+        <strong>TVA non applicable, article 293 B du code général des
+        impôts</strong> — Laurent Brizzi relève du régime de la franchise en
+        base.
       </p>
+
+      <p>
+        Le paiement se fait par lien sécurisé Stripe, hors de ce site. Aucune
+        donnée bancaire ne transite par laurentbrizzi.fr et aucune n'y est
+        conservée.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">Droit de rétractation</h2>
+
+      <p>
+        Conformément aux articles L221-18 et suivants du code de la
+        consommation, l'acheteur dispose de <strong>quatorze jours</strong> à
+        compter de la réception de la pièce pour se rétracter, sans avoir à
+        se justifier ni à payer de pénalité.
+      </p>
+
+      <p>
+        La rétractation s'exerce par un courriel adressé à
+        <a href="mailto:atelierlaurentbrizzi@gmail.com">atelierlaurentbrizzi@gmail.com</a>.
+        La pièce est renvoyée dans son emballage d'origine, complète et en
+        état d'être revendue, à l'adresse de l'atelier indiquée en haut de
+        cette page.
+      </p>
+
+      <p>
+        <strong>Les frais de retour sont à la charge de l'acheteur.</strong>
+        Le remboursement intervient dans les quatorze jours suivant la
+        réception de la pièce retournée, par le même moyen de paiement que
+        celui employé lors de l'achat.
+      </p>
+
+      <p>
+        Une pièce fabriquée sur mesure à la demande de l'acheteur, c'est-à-dire
+        adaptée à sa demande et non reproductible en l'état, est exclue du
+        droit de rétractation (article L221-28 du code de la consommation).
+        Les pièces de la boutique, qui sont des éditions d'atelier, n'entrent
+        pas dans ce cas : le délai de quatorze jours s'y applique.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================== -->
+  <section class="section section--filet">
+    <div class="bande bande--etroite flux">
+
+      <h2 class="titre-section">Garanties</h2>
+
+      <p>
+        L'acheteur bénéficie de la garantie légale de conformité et de la
+        garantie contre les vices cachés, dans les conditions prévues par les
+        articles L217-3 et suivants du code de la consommation et 1641 et
+        suivants du code civil.
+      </p>
+
+      <!-- Régime de TVA confirmé par Laurent le 12 octobre 2026 : franchise
+           en base. La mention « TVA non applicable, art. 293 B du CGI » est
+           portée plus haut, dans la section Vente à distance, et sur la page
+           boutique. Si le seuil de la franchise est dépassé un jour, ce sont
+           ces deux endroits qu'il faut corriger — plus les factures. -->
 
     </div>
   </section>
@@ -220,7 +291,9 @@
     </nav>
 
     <p class="mono pied__mention">
-      © 2026 Laurent Brizzi · Artiste-auteur · SIRET 433&nbsp;596&nbsp;517&nbsp;00022
+      <span class="pied__ligne">© 2026 Laurent Brizzi</span>
+      <span class="pied__ligne">Artiste-auteur</span>
+      <span class="pied__ligne">SIRET 433&nbsp;596&nbsp;517&nbsp;00022</span>
     </p>
 
   </div>

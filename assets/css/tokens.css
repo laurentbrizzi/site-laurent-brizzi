@@ -173,6 +173,16 @@
   --courbe:           cubic-bezier(0.16, 1, 0.3, 1);
   --translation-revelation: 12px;
 
+  /* Cascade. Les vignettes d'une même rangée n'apparaissent pas ensemble :
+     chacune part un cran après sa voisine de gauche. Le plafond existe
+     parce qu'une rangée large rendrait la dernière vignette franchement
+     en retard — au-delà, ce n'est plus un rythme, c'est une attente. */
+  --pas-cascade:      90ms;
+  --cascade-plafond: 450ms;
+
+  /* Passage d'une page à l'autre. Court : c'est une liaison, pas un effet. */
+  --duree-transition-page: 260ms;
+
 
   /* --- Plans de superposition --------------------------------------------- */
 

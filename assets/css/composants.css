@@ -850,6 +850,15 @@
   transform: translateY(var(--translation-revelation));
   transition: opacity var(--duree-revelation) var(--courbe),
               transform var(--duree-revelation) var(--courbe);
+
+  /* Le rang dans la cascade est posé par utils.js au moment où l'élément
+     entre à l'écran, et retiré dès que l'apparition est finie. Sans valeur,
+     la variable vaut 0 : un élément révélé sans JavaScript de cascade
+     apparaît simplement sans retard. */
+  transition-delay: min(
+    calc(var(--rang-cascade, 0) * var(--pas-cascade)),
+    var(--cascade-plafond)
+  );
 }
 
 .reveler--visible {
@@ -864,6 +873,7 @@
   .reveler {
     opacity: 1;
     transform: none;
+    transition-delay: 0s;
   }
 }
 
@@ -873,6 +883,16 @@
   grid-column: 1 / -1;
   margin-block-start: var(--espace-l);
   color: var(--texte-secondaire);
+}
+
+/* Les trois mentions du bas de page tiennent chacune leur ligne. Mises bout
+   à bout et séparées par des points, elles se cassaient n'importe où selon
+   la largeur de l'écran — au milieu de « Artiste-auteur », au milieu du
+   SIRET — et le point de séparation restait seul en fin de ligne. Trois
+   lignes courtes, aucune ponctuation à faire tenir. Les espaces du numéro
+   de SIRET sont insécables dans le HTML : il ne se coupe jamais. */
+.pied__ligne {
+  display: block;
 }
 
 

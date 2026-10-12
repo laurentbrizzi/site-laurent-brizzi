@@ -384,12 +384,38 @@ hr {
 
 
 /* --------------------------------------------------------------------------
-   8. Mouvement réduit
+   8. Passage d'une page à l'autre
+   Sans cela, chaque clic provoque un éclair blanc : le navigateur efface la
+   page avant de peindre la suivante, et sur un site à fond encre ce blanc
+   d'une fraction de seconde est le défaut le plus visible de la navigation.
+
+   Le navigateur fait tout le travail, il n'y a pas une ligne de JavaScript
+   derrière. Les navigateurs qui ne connaissent pas encore cette règle
+   l'ignorent et naviguent comme avant : rien ne casse, le fondu manque.
+   -------------------------------------------------------------------------- */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--duree-transition-page);
+  animation-timing-function: var(--courbe);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Mouvement réduit
    Réglage système respecté sans condition (§6). Les animations ne sont pas
    ralenties, elles sont supprimées.
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
+
+  @view-transition {
+    navigation: none;
+  }
 
   html {
     scroll-behavior: auto;
@@ -401,6 +427,7 @@ hr {
     animation-duration: 1ms;
     animation-iteration-count: 1;
     transition-duration: 1ms;
+    transition-delay: 0s;
     scroll-behavior: auto;
   }
 }

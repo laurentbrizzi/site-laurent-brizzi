@@ -139,16 +139,35 @@ function construireAchat(produit) {
     return zone;
   }
 
-  /* Pas encore de prix ou pas encore de lien de paiement : on le dit, et on
-     renvoie vers le contact plutôt que d'afficher un bouton qui ne mène
-     nulle part. */
+  /* Pas de bouton : soit la pièce est indisponible, soit il manque le prix,
+     soit il manque le lien de paiement. Ces trois cas ne se disent pas de la
+     même façon.
+
+     Le troisième est le plus facile à mal écrire : une pièce dont le prix
+     est fixé mais dont le lien Stripe n'est pas encore créé afficherait
+     « Tarif à venir » alors que le tarif, lui, est connu. On montre donc le
+     prix et on renvoie vers le courriel. L'acheteur sait ce que ça coûte et
+     par où passer ; c'est la règle du §10 — pas de bouton sans lien réel —
+     sans mentir sur le prix. */
+
+  const prixConnu = produit.prix != null;
+
   const mention = document.createElement("span");
   mention.className = "produit__prix mono";
-  mention.textContent = produit.disponible ? "Tarif à venir" : "Indisponible";
+
+  if (!produit.disponible) {
+    mention.textContent = "Indisponible";
+  } else if (prixConnu) {
+    mention.textContent = formaterPrix(produit.prix, produit.devise);
+  } else {
+    mention.textContent = "Tarif à venir";
+  }
 
   const contact = document.createElement("a");
   contact.href = "contact.html";
-  contact.textContent = "Se renseigner";
+  contact.textContent = produit.disponible && prixConnu
+    ? "Commander par courriel"
+    : "Se renseigner";
 
   zone.append(mention, contact);
   return zone;

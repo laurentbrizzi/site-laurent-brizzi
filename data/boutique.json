@@ -4,20 +4,20 @@
     "titre": "Basilique Notre-Dame de Boulogne-sur-Mer",
     "sousTitre": "Réplique au 1:300, éclairage intégré",
     "technique": "Impression 3D, peinture à la main",
-    "dimensions": "",
-    "prix": null,
+    "dimensions": "22,5 cm de haut, base carrée de 9 × 9 cm",
+    "prix": 125,
     "devise": "EUR",
     "edition": {
-      "numerotee": true,
+      "numerotee": false,
       "total": null
     },
     "inclus": [
       "Certificat d'authenticité",
       "Éclairage LED intégré"
     ],
-    "delaiFabrication": "",
-    "fraisPort": "",
-    "retour": "",
+    "delaiFabrication": "5 jours après commande",
+    "fraisPort": "12 € en Colissimo avec signature, France métropolitaine",
+    "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
     "images": [
