@@ -1,0 +1,78 @@
+[
+  {
+    "media": "Ville de Boulogne-sur-Mer · Festival Street Art",
+    "date": "",
+    "titre": "Laurent Brizzi, artiste boulonnais",
+    "signature": "",
+    "citation": "Ces têtes qui sortent du mur présentent une critique du transhumanisme, fusion entre la technologie et l'humain.",
+    "lien": "https://streetart.boulogne-sur-mer.fr/laurent-brizzi/",
+    "libelleLien": "Lire la page de la Ville",
+    "scan": null
+  },
+  {
+    "media": "Le Journal de Montreuil",
+    "date": "10 septembre 2025",
+    "titre": "Quand les habitants deviennent des artistes",
+    "signature": "Caroline Fauquembert",
+    "citation": "J'aborde différentes techniques avec diverses matières comme le modelage, la résine UV, le papier mâché, pour créer les marionnettes portées.",
+    "lien": "",
+    "scan": {
+      "fichier": "presse-01.webp",
+      "largeur": 1058,
+      "hauteur": 1280,
+      "alt": "Page de journal titrée « Quand les habitants deviennent des artistes », avec une photo de groupe tenant quatre marionnettes à taille humaine."
+    }
+  },
+  {
+    "media": "L'Écho du Pas-de-Calais",
+    "date": "novembre 2023",
+    "titre": "Laurent Brizzi, follement gothique",
+    "signature": "Marie-Pierre Griffon",
+    "citation": "Le masque est ancestral. Sur scène, il permet de convoquer les esprits, de les incarner et de les ramener dans la réalité.",
+    "lien": "",
+    "scan": {
+      "fichier": "presse-02.webp",
+      "largeur": 1600,
+      "hauteur": 2848,
+      "alt": "Pleine page de journal titrée « Laurent Brizzi, follement gothique », avec une photo de l'artiste assis, un masque de vieillard devant le visage, devant ses toiles."
+    }
+  },
+  {
+    "media": "La Voix du Nord",
+    "date": "",
+    "titre": "Général Tom Pouce",
+    "signature": "",
+    "citation": "Le plasticien Laurent Brizzi a créé d'extraordinaires masques et accessoires.",
+    "lien": "",
+    "scan": {
+      "fichier": "presse-03.webp",
+      "largeur": 750,
+      "hauteur": 1334,
+      "alt": "Article en ligne de La Voix du Nord : Laurent Brizzi maquille un comédien en coulisses, prothèses posées autour de l'œil."
+    }
+  },
+  {
+    "media": "",
+    "date": "9 septembre 2020",
+    "titre": "L'univers fascinant de Laurent Brizzi",
+    "signature": "M.C.",
+    "citation": "Mon but serait d'essayer de ramener de l'esthétisme dans des choses qui ne le sont pas vraiment.",
+    "lien": "",
+    "scan": {
+      "fichier": "presse-04.webp",
+      "largeur": 1600,
+      "hauteur": 2447,
+      "alt": "Page Loisirs d'un journal titrée « L'univers fascinant de Laurent Brizzi », illustrée d'un visage biomécanique aux yeux clos."
+    }
+  },
+  {
+    "media": "Street Art Cities",
+    "date": "",
+    "titre": "Soleils Boulonnais",
+    "signature": "",
+    "citation": "",
+    "lien": "https://streetartcities.com/markers/c31cd447-f168-4ef9-9536-8a59d6139c45",
+    "libelleLien": "Voir la fiche",
+    "scan": null
+  }
+]

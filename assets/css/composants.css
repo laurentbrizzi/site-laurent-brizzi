@@ -669,6 +669,83 @@
 
 
 /* --------------------------------------------------------------------------
+   La presse
+   Le scan à gauche, la référence à droite. Même forme que le cartel : une
+   image, puis des données alignées à gauche. Le scan est volontairement
+   petit — c'est une preuve qu'on peut ouvrir, pas une lecture.
+   -------------------------------------------------------------------------- */
+
+.coupure + .coupure {
+  margin-block-start: var(--espace-l);
+  padding-block-start: var(--espace-l);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.coupure {
+  display: grid;
+  gap: var(--espace-m);
+}
+
+@media (min-width: 640px) {
+
+  .coupure {
+    grid-template-columns: 10rem 1fr;
+    gap: var(--espace-l);
+    align-items: start;
+  }
+
+  /* Une référence en ligne, sans coupure scannée, reprend toute la largeur
+     plutôt que de laisser une colonne vide à sa gauche. */
+  .coupure--sans-scan {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Le filet apparaît au survol : il signale que la coupure s'ouvre, sans
+   poser d'encadrement permanent autour d'une image de journal. */
+.coupure__scan {
+  display: block;
+  border: var(--filet-epaisseur) solid transparent;
+  transition: border-color var(--duree-court) var(--courbe);
+}
+
+.coupure__scan:hover,
+.coupure__scan:focus-visible {
+  border-color: var(--accent);
+}
+
+.coupure__scan img {
+  width: 100%;
+  height: auto;
+  background-color: var(--fond-souleve);
+}
+
+.coupure__source {
+  color: var(--texte-secondaire);
+}
+
+.coupure__titre {
+  margin-block-start: var(--espace-3xs);
+  font-size: var(--taille-display-3);
+}
+
+/* La citation revient à la mesure de lecture. Laissée à la largeur de la
+   bande, elle faisait une ligne de plus de cent caractères : l'œil perd le
+   début de la ligne suivante. */
+.coupure__citation {
+  max-width: var(--mesure);
+  margin-block-start: var(--espace-s);
+  padding-inline-start: var(--espace-s);
+  border-inline-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.coupure__signature {
+  margin-block-start: var(--espace-2xs);
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
    Le parcours
    La période à gauche en mono, l'intitulé à droite. C'est la forme d'un CV
    d'artiste, et c'est ce que cherche le premier public du §3.

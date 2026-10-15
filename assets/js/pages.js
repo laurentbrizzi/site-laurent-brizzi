@@ -16,6 +16,7 @@ import { chargerJson, afficherMessage, revelerAuScroll } from "./utils.js";
 
 const zoneAteliers = document.querySelector("[data-ateliers]");
 const zoneParcours = document.querySelector("[data-parcours]");
+const zonePresse = document.querySelector("[data-presse]");
 
 
 const DOSSIER_IMAGES = "assets/img/";
@@ -92,6 +93,16 @@ function construireGalerie(atelier) {
     lecteur.playsInline = true;
     lecteur.preload = "none";
     lecteur.hidden = true;
+
+    /* Garde-fou : si le navigateur ignore le marqueur de fin posé dans
+       l'adresse, on arrête nous-mêmes au temps demandé. Le fichier n'est
+       pas retouché, seule la lecture est bornée. */
+    let finDemandee = 0;
+    lecteur.arreterA = (secondes) => { finDemandee = Number(secondes) || 0; };
+    lecteur.addEventListener("timeupdate", () => {
+      if (finDemandee > 0 && lecteur.currentTime >= finDemandee) lecteur.pause();
+    });
+
     scene.append(lecteur);
   }
 
@@ -117,7 +128,16 @@ function construireGalerie(atelier) {
     bouton.setAttribute("aria-current", "true");
 
     if (image.video && lecteur) {
-      if (!lecteur.src) lecteur.src = DOSSIER_VIDEOS + image.video;
+      if (!lecteur.src) {
+        /* Le champ « duree » coupe le clip sans retoucher le fichier.
+           Le marqueur #t=0,5 est compris par le navigateur, et le garde-fou
+           plus bas arrête la lecture de toute façon : on ne dépend pas
+           d'une fonction que tous ne gèrent pas de la même manière. */
+        const fin = Number(image.duree);
+        const marqueur = Number.isFinite(fin) && fin > 0 ? `#t=0,${fin}` : "";
+        lecteur.src = DOSSIER_VIDEOS + image.video + marqueur;
+      }
+      lecteur.arreterA(image.duree);
       lecteur.setAttribute("aria-label", image.alt ?? "");
       principale.hidden = true;
       lecteur.hidden = false;
@@ -193,6 +213,123 @@ function construireGalerie(atelier) {
 
   galerie.append(rangee);
   return galerie;
+}
+
+
+/* --------------------------------------------------------------------------
+   La presse
+   Une référence, pas une reproduction. Le nom du journal, la date, le titre
+   et la signature valent plus qu'un scan illisible : c'est ce qu'une
+   institution vérifie. La citation retenue est, chaque fois que possible,
+   une phrase de Laurent lui-même — ce sont ses mots, et ce sont les plus
+   intéressantes.
+
+   Le scan est accessible en grand par un lien, pas affiché en pleine page :
+   une page de journal au format écran ne se lit pas, et un article reste la
+   propriété de son journal.
+
+   Les champs vides ne s'affichent pas. Plusieurs dates et deux titres de
+   journaux manquent encore : mieux vaut une référence courte qu'un nom
+   inventé.
+   -------------------------------------------------------------------------- */
+
+function construireCoupure(article) {
+  const bloc = document.createElement("article");
+  bloc.className = "coupure";
+
+  /* Une référence en ligne n'a pas de scan. Sans ce modificateur, son texte
+     irait se tasser dans la colonne étroite réservée à l'image. */
+  if (!article.scan?.fichier) bloc.classList.add("coupure--sans-scan");
+
+  if (article.scan?.fichier) {
+    const lien = document.createElement("a");
+    lien.className = "coupure__scan";
+    lien.href = DOSSIER_IMAGES + article.scan.fichier;
+    lien.target = "_blank";
+    lien.rel = "noopener";
+
+    const vignette = document.createElement("img");
+    if (article.scan.largeur) vignette.width = article.scan.largeur;
+    if (article.scan.hauteur) vignette.height = article.scan.hauteur;
+    vignette.alt = article.scan.alt ?? "";
+    vignette.decoding = "async";
+    vignette.loading = "lazy";
+    vignette.src = DOSSIER_IMAGES + article.scan.fichier;
+
+    lien.append(vignette);
+    bloc.append(lien);
+  }
+
+  const texte = document.createElement("div");
+  texte.className = "coupure__texte";
+
+  const source = [article.media, article.date].filter(Boolean).join(" · ");
+  if (source) {
+    const ligne = document.createElement("p");
+    ligne.className = "mono mono--etiquette coupure__source";
+    ligne.textContent = source;
+    texte.append(ligne);
+  }
+
+  const titre = document.createElement("h3");
+  titre.className = "coupure__titre";
+  titre.textContent = article.titre;
+  texte.append(titre);
+
+  if (article.citation) {
+    const citation = document.createElement("blockquote");
+    citation.className = "coupure__citation";
+    citation.textContent = `« ${article.citation} »`;
+    texte.append(citation);
+  }
+
+  if (article.signature) {
+    const ligne = document.createElement("p");
+    ligne.className = "mono coupure__signature";
+    ligne.textContent = article.signature;
+    texte.append(ligne);
+  }
+
+  if (article.lien) {
+    const ligne = document.createElement("p");
+    const lien = document.createElement("a");
+    lien.href = article.lien;
+    lien.target = "_blank";
+    lien.rel = "noopener";
+    lien.textContent = article.libelleLien ?? "Lire l'article";
+    ligne.append(lien);
+    texte.append(ligne);
+  }
+
+  bloc.append(texte);
+  return bloc;
+}
+
+
+async function afficherPresse() {
+  let articles;
+
+  try {
+    articles = await chargerJson("data/presse.json");
+  } catch (erreur) {
+    afficherMessage(zonePresse, "La revue de presse n'a pas pu être chargée.", erreur.message);
+    return;
+  }
+
+  if (!Array.isArray(articles) || articles.length === 0) {
+    afficherMessage(
+      zonePresse,
+      "Aucun article n'est encore référencé.",
+      "Les articles s'ajoutent dans data/presse.json."
+    );
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  for (const article of articles) fragment.append(construireCoupure(article));
+  zonePresse.replaceChildren(fragment);
+
+  revelerAuScroll([...zonePresse.children].slice(1));
 }
 
 
@@ -383,4 +520,5 @@ async function afficherParcours() {
 
 
 if (zoneAteliers) afficherAteliers();
+if (zonePresse) afficherPresse();
 if (zoneParcours) afficherParcours();

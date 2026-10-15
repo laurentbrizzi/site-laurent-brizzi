@@ -57,6 +57,7 @@
       },
       {
         "video": "marionnette-portee.mp4",
+        "duree": 5,
         "affiche": "atelier-marionnettes-video.webp",
         "largeur": 480,
         "hauteur": 848,
