@@ -318,22 +318,29 @@
 
       <h2 class="titre-section">Dossier et CV</h2>
 
-      <!-- Le poids et la date accompagnent le lien : on ne fait pas cliquer
-           quelqu'un sur un fichier sans lui dire ce qu'il télécharge, et une
-           date dit tout de suite si le document est à jour.
-           À COMPLÉTER : le dossier artistique, qui n'existe pas encore. Son
-           lien ne sera écrit qu'une fois le fichier déposé — le §3 veut
-           qu'une institution trouve ces documents en moins de trente
-           secondes, un lien mort serait pire que rien. -->
+      <!-- Le poids et la date accompagnent chaque lien : on ne fait pas
+           cliquer quelqu'un sur un fichier sans lui dire ce qu'il
+           télécharge, et une date dit tout de suite si le document est à
+           jour.
+
+           Les deux noms de fichier ne portent PAS de date. Une nouvelle
+           version écrase la précédente et tous les liens tiennent ; seule
+           la mention à côté du lien est à reprendre. Un dossier déposé en
+           2026 sous le nom « dossier-2026.pdf » laisserait derrière lui un
+           lien mort à chaque mise à jour.
+
+           Le dossier est produit par dossier.html, qui le refabrique à
+           partir des fiches du site. Quand il est régénéré, c'est ici que
+           le poids et la date se corrigent. -->
+
+      <p>
+        <a href="docs/dossier-laurent-brizzi.pdf">Télécharger le dossier artistique</a>
+        <span class="mono lien-fichier">PDF, 3,5&nbsp;Mo — octobre 2026</span>
+      </p>
 
       <p>
         <a href="docs/cv-laurent-brizzi.pdf">Télécharger le CV</a>
         <span class="mono lien-fichier">PDF, 224&nbsp;Ko — octobre 2026</span>
-      </p>
-
-      <p>
-        Le dossier artistique est disponible sur demande, à la
-        <a href="contact.html">page contact</a>.
       </p>
 
     </div>

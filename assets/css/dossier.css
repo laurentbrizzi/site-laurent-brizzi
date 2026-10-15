@@ -578,3 +578,10 @@
     text-decoration: none;
   }
 }
+
+/* Le bouton pendant la préparation des images. */
+.bouton:disabled {
+  background-color: var(--fond-souleve);
+  color: var(--texte-secondaire);
+  cursor: default;
+}

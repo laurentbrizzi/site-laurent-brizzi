@@ -81,6 +81,14 @@ const serveur = createServer(async (requete, reponse) => {
    l'option --ouvrir, que le raccourci « Ouvrir le site » passe. On ne le
    fait pas par défaut : les contrôles automatisés lancent ce serveur eux
    aussi, et n'ont aucune raison de faire surgir une fenêtre. */
+/* Sur quelle page. Vide par défaut, donc l'accueil. Le raccourci « Ouvrir
+   le dossier » passe --page=dossier.html, parce que cette page-là n'est
+   reliée à aucune autre : c'est un document, pas une étape du site. */
+const pageDemandee = () => {
+  const option = process.argv.find((argument) => argument.startsWith("--page="));
+  return option ? option.slice("--page=".length) : "";
+};
+
 const ouvrirNavigateur = (adresse) => {
   const commandes = {
     win32: ["cmd", ["/c", "start", "", adresse]],
@@ -105,7 +113,7 @@ serveur.on("error", (erreur) => {
   const adresse = "http://localhost:" + port + "/";
   console.log("Le site tourne déjà sur " + adresse);
   console.log("(une autre fenêtre est sans doute restée ouverte)");
-  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse);
+  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse + pageDemandee());
   process.exit(0);
 });
 
@@ -114,5 +122,5 @@ serveur.listen(port, () => {
   console.log("Site servi depuis " + racine);
   console.log("→ " + adresse);
   console.log("Ctrl+C pour arrêter.");
-  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse);
+  if (process.argv.includes("--ouvrir")) ouvrirNavigateur(adresse + pageDemandee());
 });

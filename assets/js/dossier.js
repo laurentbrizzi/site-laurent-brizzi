@@ -66,7 +66,7 @@ function titreDeSection(texte) {
   return bloc;
 }
 
-function imageDe(image, classe) {
+function imageDe(image, classe, pleinePage = false) {
   const img = element("img", classe);
   img.src = DOSSIER_IMAGES + image.fichier;
   img.alt = image.alt || "";
@@ -75,7 +75,80 @@ function imageDe(image, classe) {
   /* Pas de loading="lazy" ici, contrairement au reste du site : une image
      non chargée ne s'imprime pas. Le navigateur doit toutes les avoir en
      main au moment où Laurent lance l'impression. */
+  if (pleinePage) img.dataset.pleinePage = "oui";
   return img;
+}
+
+
+/* --------------------------------------------------------------------------
+   Alléger le PDF
+
+   Le premier dossier produit pesait 54 Mo, pour trente pages. Un portail
+   de candidature en refuse la plupart au-delà de dix.
+
+   La cause n'est pas le nombre d'images, c'est leur format. Le PDF sait
+   transporter du JPEG tel quel, sans le retoucher ; il ne connaît pas le
+   WebP. Le navigateur doit donc décompresser chaque WebP et le réenregistrer
+   sans perte — une photo de 180 Ko en ressort à trois mégaoctets.
+
+   On repasse donc chaque image en JPEG avant l'impression, à la taille où
+   elle sera réellement imprimée. Le travail se fait dans la page, au
+   chargement : pas d'outil à installer, pas de deuxième jeu de fichiers à
+   tenir à jour, et une photo ajoutée demain sera traitée comme les autres.
+
+   À l'écran, rien ne change : les images sont déjà réduites par la mise en
+   page, et on ne ré-agrandit jamais une image plus petite que la cible.
+   -------------------------------------------------------------------------- */
+
+/* 300 points par pouce est la définition d'impression courante. À cette
+   densité, une œuvre occupant 85 mm de large sur la page en demande un
+   millier. La couverture, qui monte à 150 mm, en demande davantage. */
+const LARGEUR_IMPRESSION = 1100;
+const LARGEUR_IMPRESSION_COUVERTURE = 1600;
+const QUALITE_JPEG = 0.85;
+
+async function alleger(img) {
+  const plafond = img.dataset.pleinePage
+    ? LARGEUR_IMPRESSION_COUVERTURE
+    : LARGEUR_IMPRESSION;
+
+  try {
+    if (!img.complete) await img.decode();
+  } catch {
+    return; /* Image introuvable : rien à alléger, et le trou se voit. */
+  }
+
+  const source = img.naturalWidth;
+  if (!source) return;
+
+  /* Jamais d'agrandissement : une photo de 840 px réenregistrée à 1100
+     serait plus lourde ET plus floue. C'est le piège déjà rencontré avec
+     l'option -resize de cwebp (§4). */
+  const facteur = Math.min(1, plafond / source);
+
+  const toile = document.createElement("canvas");
+  toile.width = Math.round(img.naturalWidth * facteur);
+  toile.height = Math.round(img.naturalHeight * facteur);
+
+  const pinceau = toile.getContext("2d");
+  if (!pinceau) return;
+
+  /* Le JPEG ignore la transparence et la rend noire. Un fond blanc posé
+     d'abord évite qu'une image détourée vire au deuil. */
+  pinceau.fillStyle = "#FFFFFF";
+  pinceau.fillRect(0, 0, toile.width, toile.height);
+  pinceau.imageSmoothingQuality = "high";
+  pinceau.drawImage(img, 0, 0, toile.width, toile.height);
+
+  const jpeg = toile.toDataURL("image/jpeg", QUALITE_JPEG);
+  if (jpeg.startsWith("data:image/jpeg")) img.src = jpeg;
+}
+
+async function allegerLesImages(racine) {
+  const images = [...racine.querySelectorAll("img")];
+  /* En série et non en parallèle : dix-huit toiles ouvertes en même temps
+     font sursauter la page sur une machine modeste, et rien ne presse. */
+  for (const img of images) await alleger(img);
 }
 
 
@@ -137,7 +210,7 @@ function construireCouverture(oeuvres) {
 
   if (une?.images?.[0]) {
     const cadre = element("div", "couverture__image");
-    cadre.append(imageDe(une.images[0], "couverture__visuel"));
+    cadre.append(imageDe(une.images[0], "couverture__visuel", true));
     page.append(cadre);
   }
 
@@ -499,16 +572,35 @@ async function construireLeDossier() {
   ];
 
   document_.replaceChildren(...pages);
+
+  /* Et seulement maintenant, une fois tout en place : l'allègement. Il
+     touche aux images déjà posées, il ne peut donc pas précéder la page. */
+  await allegerLesImages(document_);
+}
+
+const bouton = document.getElementById("imprimer");
+
+/* Le bouton reste inerte tant que les images ne sont pas prêtes. Imprimer
+   au milieu de l'opération donnerait un PDF à moitié lourd et à moitié
+   léger, sans que rien ne l'indique. */
+if (bouton) {
+  bouton.disabled = true;
+  bouton.textContent = "Préparation…";
 }
 
 try {
   await construireLeDossier();
+
+  if (bouton) {
+    bouton.disabled = false;
+    bouton.textContent = "Imprimer le dossier";
+    bouton.addEventListener("click", () => window.print());
+  }
 } catch (erreur) {
   afficherMessage(
     document_,
     "Le dossier n'a pas pu être assemblé.",
     erreur.message
   );
+  if (bouton) bouton.remove();
 }
-
-document.getElementById("imprimer")?.addEventListener("click", () => window.print());
