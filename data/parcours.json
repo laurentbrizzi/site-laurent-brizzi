@@ -3,14 +3,23 @@
     "categorie": "residence",
     "periode": "oct. 2026 – fév. 2027",
     "intitule": "Artiste Rencontre Territoire",
-    "lieu": "Hauts-de-France",
-    "partenaire": "DRAC Hauts-de-France"
+    "lieu": "Desvres-Samer et Pays de Lumbres",
+    "partenaire": "DRAC Hauts-de-France",
+    "description": "Résidence collective de douze semaines avec Cirq'O Vent. Conception de l'installation participative « Machine à créer du lien »."
+  },
+  {
+    "categorie": "residence",
+    "periode": "2026–2027",
+    "intitule": "Arts de la Scène au Collège",
+    "lieu": "Collège de Beaurainville",
+    "partenaire": "Cirq'O Vent · Département du Pas-de-Calais · Ligue de l'enseignement",
+    "description": "Artiste plasticien et scénographe. Atelier hebdomadaire de fabrication de masques autour du spectacle « Mirage »."
   },
   {
     "categorie": "projet",
     "periode": "2024–2025",
     "intitule": "Recherche autour du masque",
-    "lieu": "Pologne, Italie",
+    "lieu": "Ruda Śląska, avec la compagnie Proscenium · Ascoli Piceno, avec la Compagnia dei Folli",
     "partenaire": "Projet européen MY-MA"
   },
   {
@@ -29,37 +38,51 @@
   },
   {
     "categorie": "exposition",
-    "periode": "",
-    "intitule": "Galerie Kromozon",
-    "lieu": "",
+    "periode": "2021",
+    "intitule": "La Boutique",
+    "lieu": "Lumbres",
     "partenaire": ""
   },
   {
     "categorie": "exposition",
-    "periode": "",
+    "periode": "2021",
     "intitule": "La Maison",
-    "lieu": "",
+    "lieu": "Boulogne-sur-Mer",
     "partenaire": ""
   },
   {
     "categorie": "exposition",
-    "periode": "",
-    "intitule": "La Boutique Lumbres",
-    "lieu": "",
+    "periode": "2020",
+    "intitule": "Le Bouillon",
+    "lieu": "Boulogne-sur-Mer",
+    "partenaire": ""
+  },
+  {
+    "categorie": "exposition",
+    "periode": "2020",
+    "intitule": "Kawa Coffee House",
+    "lieu": "Boulogne-sur-Mer",
+    "partenaire": ""
+  },
+  {
+    "categorie": "exposition",
+    "periode": "2019",
+    "intitule": "Galerie Kromozon",
+    "lieu": "Boulogne-sur-Mer",
     "partenaire": ""
   },
   {
     "categorie": "collaboration",
     "periode": "",
     "intitule": "Cirq'O Vent",
-    "lieu": "",
+    "lieu": "Montreuil-sur-Mer",
     "partenaire": ""
   },
   {
     "categorie": "collaboration",
     "periode": "",
     "intitule": "Pas de Traverses",
-    "lieu": "",
+    "lieu": "Écault",
     "partenaire": ""
   },
   {
@@ -67,6 +90,20 @@
     "periode": "",
     "intitule": "Ville de Boulogne-sur-Mer",
     "lieu": "",
+    "partenaire": ""
+  },
+  {
+    "categorie": "collaboration",
+    "periode": "",
+    "intitule": "Compagnia dei Folli",
+    "lieu": "Ascoli Piceno, Italie",
+    "partenaire": ""
+  },
+  {
+    "categorie": "collaboration",
+    "periode": "",
+    "intitule": "Compagnie Proscenium",
+    "lieu": "Ruda Śląska, Pologne",
     "partenaire": ""
   },
   {

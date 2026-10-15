@@ -459,6 +459,18 @@ function construireEntree(entree) {
     detail.append(secondaire);
   }
 
+  /* Une ligne de plus, en prose, pour les entrées qui ont quelque chose à
+     dire : ce qui a été mené, avec qui, pendant combien de temps. Une
+     résidence réduite à son intitulé n'apprend rien à la structure qui lit
+     le dossier. Le champ reste facultatif, la plupart des entrées s'en
+     passent très bien. */
+  if (entree.description) {
+    const texte = document.createElement("span");
+    texte.className = "parcours__description";
+    texte.textContent = entree.description;
+    detail.append(texte);
+  }
+
   ligne.append(detail);
   return ligne;
 }

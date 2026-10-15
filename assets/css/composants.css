@@ -798,6 +798,15 @@
   color: var(--texte-secondaire);
 }
 
+/* En prose, et à la mesure de lecture : c'est la seule ligne du parcours
+   qui se lit comme une phrase et non comme une donnée. */
+.parcours__description {
+  display: block;
+  max-width: var(--mesure);
+  margin-block-start: var(--espace-2xs);
+  color: var(--texte-secondaire);
+}
+
 
 /* --------------------------------------------------------------------------
    Le bouton
