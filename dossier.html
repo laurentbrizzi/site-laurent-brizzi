@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dossier artistique — Laurent Brizzi</title>
+  <meta name="description" content="Dossier artistique de Laurent Brizzi, artiste plasticien à Boulogne-sur-Mer.">
+
+  <!-- Cette page n'est pas une page du site : c'est un document à imprimer.
+       Elle n'a ni en-tête, ni menu, ni pied de page, et personne n'y arrive
+       en naviguant. On la tient donc hors des moteurs de recherche — par
+       cette balise, et par une ligne dans robots.txt. Deux fois plutôt
+       qu'une : robots.txt demande à ne pas visiter, « noindex » demande à ne
+       pas publier, et ce n'est pas la même chose. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/dossier.css">
+</head>
+<body class="dossier" data-fond="sombre">
+
+<!-- La barre de pilotage. Elle existe à l'écran et disparaît à l'impression :
+     elle explique quoi faire, et elle est le seul endroit de la page qui
+     s'adresse à Laurent plutôt qu'au destinataire du dossier. -->
+<div class="pilotage">
+  <div class="pilotage__interieur">
+
+    <p class="pilotage__titre mono mono--etiquette">Dossier artistique</p>
+
+    <p class="pilotage__texte">
+      Cette page se fabrique à partir des fiches du site. Pour obtenir le
+      PDF&nbsp;: <strong>Imprimer</strong>, puis choisir
+      «&nbsp;Enregistrer au format PDF&nbsp;» comme destination.
+    </p>
+
+    <p class="pilotage__texte pilotage__texte--second">
+      Les mentions <span class="manque manque--exemple">en couleur</span>
+      signalent une donnée qui manque. Elles ne s'impriment pas.
+    </p>
+
+    <button type="button" class="bouton" id="imprimer">Imprimer le dossier</button>
+
+  </div>
+</div>
+
+<main id="dossier" class="document">
+  <p class="chargement">Préparation du dossier…</p>
+</main>
+
+<script type="module" src="assets/js/dossier.js"></script>
+
+</body>
+</html>

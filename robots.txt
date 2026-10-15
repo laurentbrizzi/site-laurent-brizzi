@@ -14,4 +14,12 @@ Allow: /
 # le portfolio, c'est la décision prise au §5.
 Disallow: /oeuvre.html
 
+# Le dossier artistique. Ce n'est pas une page du site mais un document à
+# imprimer : il reprend mot pour mot la biographie, la démarche et le
+# parcours de la page « À propos ». Indexé, il ferait doublon avec elle et
+# les deux se nuiraient. La page porte aussi une balise « noindex », qui
+# n'a pas le même rôle : celle-ci demande de ne pas venir, l'autre de ne
+# pas publier.
+Disallow: /dossier.html
+
 Sitemap: https://laurentbrizzi.fr/sitemap.xml

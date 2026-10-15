@@ -93,7 +93,11 @@
 <main id="contenu">
 
   <section class="section section--filet">
-    <div class="bande bande--etroite flux">
+    <!-- data-bloc : le dossier artistique (dossier.html) lit cette page et
+         reprend ces deux blocs tels quels. Les textes ne vivent donc qu'ici,
+         et le dossier ne peut pas se mettre à dire autre chose que le site.
+         Ne pas retirer ces attributs : le dossier afficherait un trou. -->
+    <div class="bande bande--etroite flux" data-bloc="biographie">
 
       <h1>Laurent Brizzi</h1>
 
@@ -146,7 +150,7 @@
 
   <!-- ================================================================== -->
   <section class="section" data-fond="clair">
-    <div class="bande bande--etroite flux">
+    <div class="bande bande--etroite flux" data-bloc="demarche">
 
       <h2 class="titre-section">La démarche</h2>
 

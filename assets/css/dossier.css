@@ -1,0 +1,580 @@
+/* ==========================================================================
+   dossier.css — mise en page du dossier artistique.
+
+   Cette feuille ne sert qu'à dossier.html. Elle a deux rendus : à l'écran,
+   des pages claires posées sur l'encre, pour que Laurent voie ce qu'il
+   obtiendra ; sur le papier, un document A4 ordinaire.
+
+   POURQUOI DES MILLIMÈTRES ICI, ET PAS DANS tokens.css
+   tokens.css est la source unique des valeurs du site, et la règle est
+   qu'aucune taille brute ne vit ailleurs. Le format d'une feuille A4 n'est
+   pas une valeur du site : c'est une donnée du monde physique, qui ne sert
+   qu'à ce document et que personne ne choisira jamais autrement. La mettre
+   dans tokens.css obligerait toutes les pages du site à transporter une
+   mesure d'imprimante. Elle vit donc ici, nommée et commentée.
+   ========================================================================== */
+
+.dossier {
+
+  /* A4 : 210 × 297 mm. Les marges sont celles d'un document administratif
+     français — assez larges pour qu'une reliure ou une agrafe ne morde pas
+     le texte, assez étroites pour ne pas gâcher la page. */
+  --page-largeur:  210mm;
+  --page-hauteur:  297mm;
+  --page-marge:     16mm;
+  --page-marge-bas: 18mm;
+
+  /* Hauteur maximale d'un visuel. C'est le réglage le plus sensible du
+     fichier : au-delà, une œuvre haute occupe la page entière et chasse son
+     cartel sur la suivante, ce qui sépare l'image de sa légende — la faute
+     capitale d'un dossier d'artiste. */
+  --visuel-hauteur:        105mm;
+  --visuel-hauteur-grande: 150mm;
+}
+
+
+/* --------------------------------------------------------------------------
+   La barre de pilotage
+   Écran seulement. Elle ne fait pas partie du document : c'est le mode
+   d'emploi, et il ne s'imprime pas.
+   -------------------------------------------------------------------------- */
+
+.pilotage {
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.pilotage__interieur {
+  max-width: var(--page-largeur);
+  margin-inline: auto;
+  padding: var(--espace-l) var(--espace-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-xs);
+  align-items: flex-start;
+}
+
+.pilotage__titre {
+  color: var(--accent);
+}
+
+.pilotage__texte {
+  max-width: var(--mesure);
+  font-size: var(--taille-texte-s);
+  color: var(--texte-secondaire);
+}
+
+.pilotage__texte--second {
+  margin-block-start: calc(var(--espace-xs) * -1 + var(--espace-3xs));
+}
+
+.bouton {
+  margin-block-start: var(--espace-2xs);
+  padding: var(--espace-2xs) var(--espace-m);
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  letter-spacing: var(--interlettre-mono);
+  color: var(--fond);
+  background-color: var(--accent);
+  border: none;
+  border-radius: var(--rayon);
+  cursor: pointer;
+}
+
+.bouton:hover {
+  background-color: var(--texte);
+}
+
+.chargement {
+  padding: var(--espace-2xl) var(--espace-m);
+  text-align: center;
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   Les données manquantes
+   Visibles à l'écran, muettes sur le papier. C'est la raison d'être de la
+   page : montrer les trous à Laurent sans les montrer au destinataire.
+   -------------------------------------------------------------------------- */
+
+.manque {
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono-s);
+  letter-spacing: var(--interlettre-mono);
+  color: var(--accent);
+  border-block-end: var(--filet-epaisseur) dotted var(--accent);
+}
+
+.manque--exemple {
+  border-block-end-color: currentColor;
+}
+
+
+/* --------------------------------------------------------------------------
+   La feuille
+   -------------------------------------------------------------------------- */
+
+.document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espace-l);
+  padding-block: var(--espace-l);
+}
+
+.feuille {
+  width: 100%;
+  max-width: var(--page-largeur);
+  min-height: var(--page-hauteur);
+  padding: var(--page-marge) var(--page-marge) var(--page-marge-bas);
+
+  /* Pas d'ombre portée : le site n'en a nulle part (§6). C'est le filet,
+     ici comme ailleurs, qui dit où s'arrête la surface. */
+  border: var(--filet-epaisseur) solid var(--filet-couleur);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.feuille__entete {
+  margin-block-end: var(--espace-l);
+  padding-block-end: var(--espace-xs);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.feuille__titre {
+  font-size: var(--taille-display-2);
+}
+
+.prose > p {
+  max-width: var(--mesure);
+}
+
+
+/* --------------------------------------------------------------------------
+   1. Couverture
+   Une image, un nom, de quoi joindre. Rien d'autre : une couverture
+   chargée donne l'impression qu'on a quelque chose à prouver.
+   -------------------------------------------------------------------------- */
+
+.feuille--couverture {
+  justify-content: space-between;
+  gap: var(--espace-l);
+}
+
+.couverture__image {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* max-width et max-height ensemble, jamais width: 100% avec object-fit :
+   une image carrée dans un cadre rectangulaire se retrouverait alors
+   encadrée de vide. L'erreur a été commise trois fois sur ce site. */
+.couverture__visuel {
+  max-width: 100%;
+  max-height: var(--page-hauteur);
+  width: auto;
+  height: auto;
+}
+
+.couverture__bas {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-2xs);
+  padding-block-start: var(--espace-m);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.couverture__sur-titre {
+  color: var(--accent);
+}
+
+.couverture__nom {
+  font-size: var(--taille-display-2);
+}
+
+.couverture__qualite {
+  font-size: var(--taille-texte-l);
+  color: var(--texte-secondaire);
+}
+
+.couverture__legende,
+.couverture__date {
+  font-size: var(--taille-mono-s);
+  color: var(--texte-secondaire);
+}
+
+.couverture__contact {
+  margin-block-start: var(--espace-s);
+  font-size: var(--taille-mono);
+  line-height: var(--interligne-cartel);
+}
+
+.couverture__date {
+  margin-block-start: var(--espace-2xs);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Textes
+   -------------------------------------------------------------------------- */
+
+.deux-colonnes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-l);
+}
+
+@media (min-width: 640px) {
+  .deux-colonnes {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.encadre {
+  padding: var(--espace-s);
+  background-color: var(--fond-souleve);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.encadre__titre {
+  margin-block-end: var(--espace-2xs);
+  color: var(--accent);
+}
+
+.encadre__corps {
+  font-size: var(--taille-mono-s);
+  line-height: var(--interligne-cartel);
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Les œuvres
+   Deux par rangée. Une seule ferait un dossier de vingt pages, quatre
+   réduiraient les visuels à des timbres.
+   -------------------------------------------------------------------------- */
+
+.grille-pieces {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-l) var(--gouttiere);
+}
+
+@media (min-width: 640px) {
+  .grille-pieces {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.piece {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-2xs);
+}
+
+.piece__image {
+  max-width: 100%;
+  max-height: var(--visuel-hauteur);
+  width: auto;
+  height: auto;
+  align-self: start;
+}
+
+.cartel {
+  padding-block-start: var(--espace-2xs);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.cartel__titre {
+  font-family: var(--police-mono);
+  font-size: var(--taille-mono);
+  font-weight: var(--graisse-accent);
+  letter-spacing: var(--interlettre-mono);
+  line-height: var(--interligne-cartel);
+}
+
+.cartel__ligne {
+  font-size: var(--taille-mono-s);
+  line-height: var(--interligne-cartel);
+  color: var(--texte-secondaire);
+}
+
+.cartel__ligne--secondaire {
+  color: var(--texte-secondaire);
+}
+
+.cartel__texte {
+  margin-block-start: var(--espace-3xs);
+  font-size: var(--taille-texte-s);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Le parcours
+   -------------------------------------------------------------------------- */
+
+.rubrique + .rubrique {
+  margin-block-start: var(--espace-l);
+}
+
+.rubrique__titre {
+  margin-block-end: var(--espace-xs);
+  padding-block-end: var(--espace-3xs);
+  color: var(--accent);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.rubrique__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-s);
+}
+
+.entree {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-3xs);
+}
+
+/* La colonne de dates est fixe, et c'est ce qui rend la liste lisible en
+   diagonale : l'œil suit un alignement, pas un texte. */
+@media (min-width: 640px) {
+  .entree {
+    grid-template-columns: 34mm minmax(0, 1fr);
+    gap: var(--espace-s);
+  }
+}
+
+.entree__periode {
+  font-size: var(--taille-mono-s);
+  line-height: var(--interligne-cartel);
+  color: var(--texte-secondaire);
+}
+
+.entree__intitule {
+  font-size: var(--taille-texte);
+}
+
+.entree__lieu {
+  font-size: var(--taille-mono-s);
+  line-height: var(--interligne-cartel);
+  color: var(--texte-secondaire);
+}
+
+.entree__description {
+  margin-block-start: var(--espace-3xs);
+  max-width: var(--mesure);
+  font-size: var(--taille-texte-s);
+  color: var(--texte-secondaire);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Les ateliers
+   -------------------------------------------------------------------------- */
+
+.atelier-fiche + .atelier-fiche {
+  margin-block-start: var(--espace-l);
+  padding-block-start: var(--espace-m);
+  border-block-start: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.atelier-fiche__titre {
+  font-size: var(--taille-display-3);
+}
+
+.atelier-fiche__donnees {
+  margin-block-start: var(--espace-3xs);
+  font-size: var(--taille-mono-s);
+  color: var(--texte-secondaire);
+}
+
+.atelier-fiche__texte {
+  margin-block-start: var(--espace-2xs);
+  max-width: var(--mesure);
+  font-size: var(--taille-texte-s);
+}
+
+.atelier-fiche__images {
+  margin-block-start: var(--espace-s);
+  display: flex;
+  gap: var(--gouttiere);
+  align-items: flex-start;
+}
+
+.atelier-fiche__image {
+  max-width: calc(50% - var(--gouttiere) / 2);
+  max-height: var(--visuel-hauteur);
+  width: auto;
+  height: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. La presse
+   -------------------------------------------------------------------------- */
+
+.coupure-dossier__source {
+  color: var(--accent);
+}
+
+.coupure-dossier__titre {
+  margin-block-start: var(--espace-3xs);
+  font-size: var(--taille-texte);
+}
+
+.coupure-dossier__citation {
+  margin-block-start: var(--espace-3xs);
+  max-width: var(--mesure);
+  font-size: var(--taille-texte-s);
+  font-style: italic;
+  color: var(--texte-secondaire);
+}
+
+.coupure-dossier__bas {
+  margin-block-start: var(--espace-3xs);
+  font-size: var(--taille-mono-s);
+  color: var(--texte-secondaire);
+  overflow-wrap: anywhere;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Contact
+   -------------------------------------------------------------------------- */
+
+.contact-dossier {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-2xs);
+}
+
+.contact-dossier__ligne {
+  display: grid;
+  grid-template-columns: 34mm minmax(0, 1fr);
+  gap: var(--espace-s);
+  padding-block-end: var(--espace-2xs);
+  border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);
+}
+
+.contact-dossier__intitule {
+  color: var(--texte-secondaire);
+}
+
+.contact-dossier__mention {
+  margin-block-start: var(--espace-l);
+  max-width: var(--mesure);
+  font-size: var(--taille-texte-s);
+  color: var(--texte-secondaire);
+}
+
+
+/* ==========================================================================
+   L'IMPRESSION
+
+   Tout ce qui précède décrit l'écran. Ci-dessous, le papier — et les deux
+   ne se ressemblent pas : il n'y a plus de fond encre, plus de barre, plus
+   de bordure autour des pages, et c'est @page qui tient les marges.
+   ========================================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 16mm 15mm 18mm;
+}
+
+@media print {
+
+  /* Le fond encre de l'écran n'a rien à faire sur une feuille : il
+     mangerait une cartouche entière et grisrait tout le document si le
+     lecteur a coché « graphiques d'arrière-plan ». */
+  .dossier {
+    background-color: transparent;
+    color: var(--encre);
+  }
+
+  .pilotage,
+  .manque,
+  .chargement {
+    display: none;
+  }
+
+  .document {
+    display: block;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Les marges sont désormais celles de @page. La feuille redevient un
+     simple bloc de contenu : ni largeur imposée, ni bordure, ni hauteur
+     minimale — une section courte ne doit pas forcer une page blanche. */
+  .feuille {
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    display: block;
+    break-after: page;
+  }
+
+  .feuille:last-child {
+    break-after: auto;
+  }
+
+  /* La couverture, elle, occupe sa page entière : c'est ce qui la fait
+     lire comme une couverture et non comme une première section. */
+  .feuille--couverture {
+    display: flex;
+    min-height: calc(var(--page-hauteur) - var(--page-marge) - var(--page-marge-bas));
+  }
+
+  /* Ce qu'on ne coupe jamais au milieu. Une œuvre séparée de son cartel,
+     une entrée de parcours dont la date est restée sur la page d'avant :
+     c'est ce qui distingue un dossier d'un listing. */
+  .piece,
+  .entree,
+  .atelier-fiche,
+  .coupure-dossier,
+  .contact-dossier__ligne,
+  .encadre {
+    break-inside: avoid;
+  }
+
+  /* Un titre en bas de page, son contenu sur la suivante. */
+  .feuille__entete,
+  .rubrique__titre,
+  .atelier-fiche__titre,
+  h2, h3 {
+    break-after: avoid;
+  }
+
+  /* Jamais une ligne seule, en haut ou en bas d'une page. */
+  p, blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Les visuels respirent moins sur le papier qu'à l'écran : la page est
+     plus courte que l'écran d'un portable, et trois œuvres par page valent
+     mieux que deux. */
+  .piece__image {
+    max-height: calc(var(--visuel-hauteur) * 0.8);
+  }
+
+  .couverture__visuel {
+    max-height: var(--visuel-hauteur-grande);
+  }
+
+  /* Les liens s'impriment en noir : un bleu souligné sur une feuille est
+     une promesse qu'on ne peut pas tenir. */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
