@@ -237,24 +237,26 @@ function construireCoupure(article) {
   const bloc = document.createElement("article");
   bloc.className = "coupure";
 
-  /* Une référence en ligne n'a pas de scan. Sans ce modificateur, son texte
-     irait se tasser dans la colonne étroite réservée à l'image. */
-  if (!article.scan?.fichier) bloc.classList.add("coupure--sans-scan");
+  /* Le visuel est une coupure scannée, ou une photo d'œuvre quand la
+     référence n'est pas un article de journal. Certaines entrées n'en ont
+     aucun : sans ce modificateur, leur texte irait se tasser dans la
+     colonne étroite réservée à l'image. */
+  if (!article.visuel?.fichier) bloc.classList.add("coupure--sans-visuel");
 
-  if (article.scan?.fichier) {
+  if (article.visuel?.fichier) {
     const lien = document.createElement("a");
-    lien.className = "coupure__scan";
-    lien.href = DOSSIER_IMAGES + article.scan.fichier;
+    lien.className = "coupure__visuel";
+    lien.href = DOSSIER_IMAGES + article.visuel.fichier;
     lien.target = "_blank";
     lien.rel = "noopener";
 
     const vignette = document.createElement("img");
-    if (article.scan.largeur) vignette.width = article.scan.largeur;
-    if (article.scan.hauteur) vignette.height = article.scan.hauteur;
-    vignette.alt = article.scan.alt ?? "";
+    if (article.visuel.largeur) vignette.width = article.visuel.largeur;
+    if (article.visuel.hauteur) vignette.height = article.visuel.hauteur;
+    vignette.alt = article.visuel.alt ?? "";
     vignette.decoding = "async";
     vignette.loading = "lazy";
-    vignette.src = DOSSIER_IMAGES + article.scan.fichier;
+    vignette.src = DOSSIER_IMAGES + article.visuel.fichier;
 
     lien.append(vignette);
     bloc.append(lien);

@@ -1,0 +1,17 @@
+# robots.txt — ce que les moteurs de recherche ont le droit de visiter.
+#
+# Par défaut tout est ouvert : un site vitrine n'a rien à cacher, et une
+# page bloquée ici est une page qui n'apparaîtra jamais dans les résultats.
+#
+# Les exceptions ci-dessous ne sont pas des secrets, seulement des pages
+# qui n'ont aucun sens dans une liste de résultats.
+
+User-agent: *
+Allow: /
+
+# Gabarit de la fiche œuvre. Sans son paramètre « ?id= » il n'affiche rien :
+# indexé seul, il promettrait une page vide. Les œuvres se découvrent par
+# le portfolio, c'est la décision prise au §5.
+Disallow: /oeuvre.html
+
+Sitemap: https://laurentbrizzi.fr/sitemap.xml

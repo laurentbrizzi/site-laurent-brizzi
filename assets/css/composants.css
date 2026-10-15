@@ -147,18 +147,26 @@
 }
 
 .une__visuel {
-  display: block;
-  background-color: var(--fond-souleve);
+  display: flex;
+  justify-content: center;
 }
 
-/* max-height empêche une œuvre en hauteur d'occuper trois écrans. object-fit
-   contain plutôt que cover : on ne recadre pas une œuvre. Le vide éventuel
-   se remplit d'ardoise, c'est exactement son rôle. */
+/* Deux plafonds, aucune proportion imposée : une œuvre panoramique occupe
+   toute la largeur, une œuvre carrée ou en hauteur se centre à sa taille.
+   max-height empêche une toile en hauteur d'occuper trois écrans.
+
+   L'image portait avant width: 100% et object-fit: contain, avec l'ardoise
+   en fond du conteneur. Sur un panoramique cela ne se voyait pas ; dès que
+   Twin, qui est carré, est passé en une, la toile s'est retrouvée enfermée
+   dans une boîte deux fois plus large qu'elle, entre deux aplats gris de
+   344 px. L'ardoise reste, mais sur l'image seule : elle ne marque plus
+   que l'attente de chargement. */
 .une__image {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   max-height: 82vh;
-  object-fit: contain;
+  width: auto;
+  height: auto;
+  background-color: var(--fond-souleve);
 }
 
 .une__legende {
@@ -696,25 +704,25 @@
 
   /* Une référence en ligne, sans coupure scannée, reprend toute la largeur
      plutôt que de laisser une colonne vide à sa gauche. */
-  .coupure--sans-scan {
+  .coupure--sans-visuel {
     grid-template-columns: 1fr;
   }
 }
 
 /* Le filet apparaît au survol : il signale que la coupure s'ouvre, sans
    poser d'encadrement permanent autour d'une image de journal. */
-.coupure__scan {
+.coupure__visuel {
   display: block;
   border: var(--filet-epaisseur) solid transparent;
   transition: border-color var(--duree-court) var(--courbe);
 }
 
-.coupure__scan:hover,
-.coupure__scan:focus-visible {
+.coupure__visuel:hover,
+.coupure__visuel:focus-visible {
   border-color: var(--accent);
 }
 
-.coupure__scan img {
+.coupure__visuel img {
   width: 100%;
   height: auto;
   background-color: var(--fond-souleve);

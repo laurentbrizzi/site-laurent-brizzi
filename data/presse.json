@@ -7,7 +7,12 @@
     "citation": "Ces têtes qui sortent du mur présentent une critique du transhumanisme, fusion entre la technologie et l'humain.",
     "lien": "https://streetart.boulogne-sur-mer.fr/laurent-brizzi/",
     "libelleLien": "Lire la page de la Ville",
-    "scan": null
+    "visuel": {
+      "fichier": "soleil-boulonnais.webp",
+      "largeur": 1439,
+      "hauteur": 1500,
+      "alt": "Un des Soleils Boulonnais : un visage aux yeux clos, en bas-relief, coiffé d'une couronne de lames turquoise, sur un panneau bleu nervuré."
+    }
   },
   {
     "media": "Le Journal de Montreuil",
@@ -16,7 +21,7 @@
     "signature": "Caroline Fauquembert",
     "citation": "J'aborde différentes techniques avec diverses matières comme le modelage, la résine UV, le papier mâché, pour créer les marionnettes portées.",
     "lien": "",
-    "scan": {
+    "visuel": {
       "fichier": "presse-01.webp",
       "largeur": 1058,
       "hauteur": 1280,
@@ -30,7 +35,7 @@
     "signature": "Marie-Pierre Griffon",
     "citation": "Le masque est ancestral. Sur scène, il permet de convoquer les esprits, de les incarner et de les ramener dans la réalité.",
     "lien": "",
-    "scan": {
+    "visuel": {
       "fichier": "presse-02.webp",
       "largeur": 1600,
       "hauteur": 2848,
@@ -44,7 +49,7 @@
     "signature": "",
     "citation": "Le plasticien Laurent Brizzi a créé d'extraordinaires masques et accessoires.",
     "lien": "",
-    "scan": {
+    "visuel": {
       "fichier": "presse-03.webp",
       "largeur": 750,
       "hauteur": 1334,
@@ -58,7 +63,7 @@
     "signature": "M.C.",
     "citation": "Mon but serait d'essayer de ramener de l'esthétisme dans des choses qui ne le sont pas vraiment.",
     "lien": "",
-    "scan": {
+    "visuel": {
       "fichier": "presse-04.webp",
       "largeur": 1600,
       "hauteur": 2447,
@@ -73,6 +78,6 @@
     "citation": "",
     "lien": "https://streetartcities.com/markers/c31cd447-f168-4ef9-9536-8a59d6139c45",
     "libelleLien": "Voir la fiche",
-    "scan": null
+    "visuel": null
   }
 ]

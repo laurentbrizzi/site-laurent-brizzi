@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Liste des pages du site, pour les moteurs de recherche.
+
+  Six pages seulement. N'y figurent pas :
+    - temoin.html         page de contrôle interne, à supprimer avant la mise en ligne
+    - oeuvre.html         gabarit vide sans son paramètre ?id=
+    - mentions-legales    déjà marquée « noindex » dans son en-tête
+    - 404.html            page d'erreur
+
+  Les adresses sont celles de laurentbrizzi.fr, le domaine prévu dans le
+  fichier CNAME. Si le domaine change, ce fichier et robots.txt sont les
+  deux endroits à corriger.
+
+  Les dates sont celles de la dernière modification réelle du contenu.
+  Les mettre à jour quand une page change vraiment : une date fausse ne
+  trompe personne et fait perdre la confiance du robot.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://laurentbrizzi.fr/</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://laurentbrizzi.fr/oeuvres.html</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://laurentbrizzi.fr/ateliers.html</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://laurentbrizzi.fr/boutique.html</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://laurentbrizzi.fr/a-propos.html</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://laurentbrizzi.fr/contact.html</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+
+</urlset>

@@ -12,7 +12,7 @@
        donc la typographie ne s'affiche pas correctement sans serveur.
 
    Lancement :   node scripts/serveur.mjs
-   Puis ouvrir : http://localhost:8000/temoin.html
+   Puis ouvrir : http://localhost:8000/
    Arrêt :       Ctrl+C
 
    Port différent : node scripts/serveur.mjs 3000
@@ -33,6 +33,7 @@ const typesMime = {
   ".js": "text/javascript; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
   ".woff2": "font/woff2",
   ".webp": "image/webp",
   ".mp4": "video/mp4",

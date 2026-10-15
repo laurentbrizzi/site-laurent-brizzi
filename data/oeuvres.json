@@ -1,25 +1,5 @@
 [
   {
-    "id": "mains-et-oeil",
-    "titre": "Sans titre — mains et œil",
-    "annee": null,
-    "discipline": "peinture",
-    "materiaux": "",
-    "dimensions": "",
-    "lieu": "",
-    "statut": "",
-    "texte": "",
-    "images": [
-      {
-        "fichier": "mains-et-oeil-01.webp",
-        "largeur": 1600,
-        "hauteur": 790,
-        "alt": "Peinture panoramique : deux mains ouvertes encadrent un œil inscrit dans une forme organique, sur un fond ocre et rouille."
-      }
-    ],
-    "aLaUne": true
-  },
-  {
     "id": "twin",
     "titre": "Twin",
     "annee": null,
@@ -35,6 +15,26 @@
         "largeur": 1600,
         "hauteur": 1603,
         "alt": "Composition organique rose et violette : des formes internes entrelacées, veines et cavités, autour de deux silhouettes symétriques."
+      }
+    ],
+    "aLaUne": true
+  },
+  {
+    "id": "mains-et-oeil",
+    "titre": "Sans titre — mains et œil",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "mains-et-oeil-01.webp",
+        "largeur": 1600,
+        "hauteur": 790,
+        "alt": "Peinture panoramique : deux mains ouvertes encadrent un œil inscrit dans une forme organique, sur un fond ocre et rouille."
       }
     ],
     "aLaUne": true
@@ -169,7 +169,14 @@
     "lieu": "Boulogne-sur-Mer, Festival Street Art",
     "statut": "collection publique",
     "texte": "",
-    "images": [],
+    "images": [
+      {
+        "fichier": "soleil-boulonnais-03-01.webp",
+        "largeur": 840,
+        "hauteur": 736,
+        "alt": "Bas-relief en éventail : un visage aux yeux clos au centre, entouré de rayons turquoise où alternent engrenages, nervures et tubes annelés."
+      }
+    ],
     "aLaUne": false
   }
 ]
