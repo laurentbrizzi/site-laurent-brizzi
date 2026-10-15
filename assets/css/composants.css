@@ -753,6 +753,16 @@
 }
 
 
+/* Le poids et la date d'un fichier à télécharger : des données, pas de la
+   prose. En retrait du lien, en texte secondaire, pour renseigner sans lui
+   disputer l'attention. On ne fait pas cliquer quelqu'un sur un fichier
+   sans lui dire ce qu'il reçoit. */
+.lien-fichier {
+  margin-inline-start: var(--espace-s);
+  color: var(--texte-secondaire);
+}
+
+
 /* --------------------------------------------------------------------------
    Le parcours
    La période à gauche en mono, l'intitulé à droite. C'est la forme d'un CV
