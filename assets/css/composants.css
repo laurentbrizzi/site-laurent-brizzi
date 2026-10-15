@@ -543,6 +543,102 @@
   }
 }
 
+/* Les visuels d'un atelier, posés au-dessus du titre. Même discipline que
+   la fiche produit : la proportion vient du fichier, les deux plafonds
+   bornent sans déformer ni recadrer.
+
+   Le plafond de hauteur n'est pas décoratif. Un gros plan de marionnette
+   fait ici plus de deux fois sa largeur en hauteur ; sans lui, il occupe
+   la fiche entière et écrase tout le reste. */
+
+.atelier__visuels {
+  display: grid;
+  justify-items: start;
+  gap: var(--espace-2xs);
+  margin-block-end: var(--espace-s);
+}
+
+/* Hauteur fixe. C'est elle qui permet la permutation au clic : une photo
+   verticale remplacée par une horizontale ne déplace plus la fiche, et les
+   vignettes ne fuient pas sous le curseur. */
+.atelier__scene {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 24rem;
+}
+
+.atelier__image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  background-color: var(--fond-souleve);
+}
+
+/* Toutes à la même hauteur, largeur libre : la rangée s'aligne et aucune
+   vue n'est recadrée. En colonnes de largeur égale, chacune gardait sa
+   propre hauteur et la rangée partait en escalier. */
+.atelier__secondaires {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2xs);
+}
+
+/* Le lecteur occupe la même place que la grande image et se range sous les
+   mêmes plafonds : la scène ne change pas de hauteur quand on passe de
+   l'une à l'autre. */
+.atelier__video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  background-color: var(--fond-souleve);
+}
+
+.atelier__vignette {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: var(--filet-epaisseur) solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: border-color var(--duree-court) var(--courbe),
+              opacity var(--duree-court) var(--courbe);
+}
+
+.atelier__vignette:hover {
+  opacity: 0.75;
+}
+
+/* La vue affichée en grand se signale par un filet, pas par un voile :
+   l'information doit rester lisible sur l'encre comme sur la craie. */
+.atelier__vignette[aria-current="true"] {
+  border-color: var(--accent);
+}
+
+.atelier__image--secondaire {
+  display: block;
+  width: auto;
+  height: 5.5rem;
+  background-color: var(--fond-souleve);
+}
+
+/* Un triangle, rien de plus : c'est le seul pictogramme du site, et il ne
+   sert qu'à distinguer une vidéo d'une photo dans la rangée. Dessiné en
+   bordures plutôt qu'importé, pour ne pas ajouter de fichier. */
+.atelier__lecture {
+  position: absolute;
+  inset-block-end: var(--espace-3xs);
+  inset-inline-start: var(--espace-3xs);
+  width: 0;
+  height: 0;
+  border-block: 0.5rem solid transparent;
+  border-inline-start: 0.8rem solid var(--craie);
+  border-inline-end: 0;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.6));
+}
+
 .atelier__titre {
   padding-block-end: var(--espace-2xs);
   border-block-end: var(--filet-epaisseur) solid var(--filet-couleur);

@@ -35,6 +35,8 @@ const typesMime = {
   ".json": "application/json; charset=utf-8",
   ".woff2": "font/woff2",
   ".webp": "image/webp",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
   ".jpg": "image/jpeg",
   ".png": "image/png",
   ".svg": "image/svg+xml",

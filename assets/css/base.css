@@ -172,6 +172,18 @@ video {
   border-radius: var(--rayon);
 }
 
+/* Le `display` ci-dessus vient d'une feuille d'auteur : il l'emporte donc
+   sur la règle `[hidden] { display: none }` du navigateur, quelle que soit
+   la spécificité. Sans cette ligne, poser l'attribut `hidden` sur une image
+   ou une vidéo ne la cache pas — c'est arrivé, la vidéo d'atelier restait
+   affichée à côté de la photo et débordait la page. */
+img[hidden],
+picture[hidden],
+svg[hidden],
+video[hidden] {
+  display: none;
+}
+
 input,
 button,
 textarea,

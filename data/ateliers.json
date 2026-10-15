@@ -7,7 +7,32 @@
     "effectif": "",
     "materiel": "",
     "description": "",
-    "images": []
+    "images": [
+      {
+        "fichier": "atelier-accessoires-02.webp",
+        "largeur": 1200,
+        "hauteur": 1600,
+        "alt": "Un grand crâne d'animal sculpté, monté en extérieur, ses deux cornes transformées en torches enflammées."
+      },
+      {
+        "fichier": "atelier-accessoires-04.webp",
+        "largeur": 1600,
+        "hauteur": 1600,
+        "alt": "La créature en représentation de nuit, portée sur échasses, entourée d'une gerbe d'étincelles devant une façade de pierre."
+      },
+      {
+        "fichier": "atelier-accessoires-03.webp",
+        "largeur": 1600,
+        "hauteur": 1600,
+        "alt": "La même créature devant un mur de pierre baigné de lumière rouge : crâne à longues cornes et échine de plaques."
+      },
+      {
+        "fichier": "atelier-accessoires-01.webp",
+        "largeur": 1600,
+        "hauteur": 2140,
+        "alt": "Le crâne en cours de fabrication, en plâtre blanc, posé sur la table de l'atelier."
+      }
+    ]
   },
   {
     "id": "marionnettes",
@@ -17,17 +42,63 @@
     "effectif": "",
     "materiel": "",
     "description": "",
-    "images": []
-  },
-  {
-    "id": "technologies-medievales",
-    "titre": "Technologies médiévales",
-    "public": "Enfants",
-    "duree": "",
-    "effectif": "",
-    "materiel": "",
-    "description": "",
-    "images": []
+    "images": [
+      {
+        "fichier": "atelier-marionnettes-05.webp",
+        "largeur": 1600,
+        "hauteur": 1197,
+        "alt": "Plusieurs têtes posées côte à côte : une grande tête mi-blanche mi-rose aux yeux bleus, deux crânes noirs ajourés et des masques blancs neutres, devant des planches d'expressions."
+      },
+      {
+        "fichier": "atelier-marionnettes-04.webp",
+        "largeur": 1600,
+        "hauteur": 1938,
+        "alt": "Une marionnette d'alien articulée, peinte en vert, grandes oreilles et grands yeux violets, debout sur fond clair."
+      },
+      {
+        "video": "marionnette-portee.mp4",
+        "affiche": "atelier-marionnettes-video.webp",
+        "largeur": 480,
+        "hauteur": 848,
+        "alt": "Vidéo : une tête de marionnette grise aux yeux de verre verts, coiffée d'une longue chevelure de raphia, présentée et tournée à la main."
+      },
+      {
+        "fichier": "atelier-marionnettes-01.webp",
+        "largeur": 1600,
+        "hauteur": 3465,
+        "alt": "Gros plan sur une tête de marionnette terminée : peau claire, cheveux roux, yeux de verre bleus et bouche peinte."
+      },
+      {
+        "fichier": "atelier-marionnettes-02.webp",
+        "largeur": 1200,
+        "hauteur": 1600,
+        "alt": "Une tête de marionnette en papier mâché gris, yeux de verre et cheveux de laine brune, posée sur une table."
+      },
+      {
+        "fichier": "atelier-marionnettes-07.webp",
+        "largeur": 1536,
+        "hauteur": 2048,
+        "alt": "Une participante penchée sur sa tête de marionnette, en train de fixer une chevelure de raphia."
+      },
+      {
+        "fichier": "atelier-marionnettes-06.webp",
+        "largeur": 1512,
+        "hauteur": 2016,
+        "alt": "Séance d'atelier autour d'une grande table : plusieurs participants modèlent et peignent leurs têtes de marionnettes."
+      },
+      {
+        "fichier": "atelier-marionnettes-03.webp",
+        "largeur": 1600,
+        "hauteur": 1197,
+        "alt": "Une grande tête de marionnette au premier plan, et quatre participantes qui travaillent la leur autour de la table."
+      },
+      {
+        "fichier": "atelier-marionnettes-08.webp",
+        "largeur": 1600,
+        "hauteur": 1197,
+        "alt": "Les participants au travail, têtes en papier mâché et masques en cours de séchage sur la table."
+      }
+    ]
   },
   {
     "id": "masque",
@@ -37,6 +108,108 @@
     "effectif": "",
     "materiel": "",
     "description": "",
-    "images": []
+    "images": [
+      {
+        "fichier": "atelier-masque-03.webp",
+        "largeur": 1600,
+        "hauteur": 900,
+        "alt": "Trois masques de théâtre gris posés côte à côte : un visage ridé, un visage mi-clair mi-sombre, et un masque à long nez."
+      },
+      {
+        "fichier": "atelier-masque-01.webp",
+        "largeur": 1600,
+        "hauteur": 2285,
+        "alt": "Masque de félin bleu aux longues moustaches et aux yeux de verre, présenté sur un socle, sur fond sombre."
+      },
+      {
+        "fichier": "atelier-masque-02.webp",
+        "largeur": 1600,
+        "hauteur": 2134,
+        "alt": "Masque grimaçant à la peau rougie, yeux jaunes et large sourire dentu, sur fond sombre."
+      },
+      {
+        "fichier": "atelier-masque-04.webp",
+        "largeur": 1600,
+        "hauteur": 1200,
+        "alt": "Trois personnes portant les masques gris sortis de l'atelier."
+      },
+      {
+        "fichier": "atelier-masque-05.webp",
+        "largeur": 1600,
+        "hauteur": 900,
+        "alt": "Un masque d'écorce aux motifs pointillés, porté, devant un grand décor peint aux couleurs vives."
+      },
+      {
+        "fichier": "atelier-masque-06.webp",
+        "largeur": 1600,
+        "hauteur": 1200,
+        "alt": "Une dizaine de masques décorés et éclairés, suspendus à des fils devant un mur clair, à la fin d'un atelier."
+      },
+      {
+        "fichier": "atelier-masque-11.webp",
+        "largeur": 1600,
+        "hauteur": 1200,
+        "alt": "Huit masques colorés accrochés au mur, chacun décoré différemment et éclairé de l'intérieur."
+      },
+      {
+        "fichier": "atelier-masque-09.webp",
+        "largeur": 1600,
+        "hauteur": 1202,
+        "alt": "Autour de la table, enfants et adultes peignent des masques blancs neutres, pinceaux et pots de peinture au centre."
+      },
+      {
+        "fichier": "atelier-masque-07.webp",
+        "largeur": 1200,
+        "hauteur": 1600,
+        "alt": "Vue de dessus d'une table d'atelier pour enfants : des masques en carton, l'un garni de corde et de raphia, et une main d'enfant qui peint le sien en rose."
+      },
+      {
+        "fichier": "atelier-masque-08.webp",
+        "largeur": 1200,
+        "hauteur": 1600,
+        "alt": "Un masque de carton couvert d'un visage dessiné aux craies grasses, cheveux de raphia, tenu à quatre mains au-dessus de la table."
+      },
+      {
+        "fichier": "atelier-masque-10.webp",
+        "largeur": 1200,
+        "hauteur": 1600,
+        "alt": "Un enfant peint son masque de carton à la table d'atelier, parmi les feutres, les palettes et les masques déjà décorés."
+      }
+    ]
+  },
+  {
+    "id": "sur-mesure",
+    "titre": "Atelier sur mesure",
+    "public": "Selon la demande",
+    "duree": "",
+    "effectif": "",
+    "materiel": "",
+    "description": "Trébuchets, portes de château, blasons gravés au nom de chaque enfant : celui-ci est né d'une demande précise.",
+    "images": [
+      {
+        "fichier": "atelier-sur-mesure-01.webp",
+        "largeur": 1600,
+        "hauteur": 1200,
+        "alt": "Une rangée de trébuchets et de catapultes en bois découpé au laser, montés et alignés contre un mur."
+      },
+      {
+        "fichier": "atelier-sur-mesure-02.webp",
+        "largeur": 1600,
+        "hauteur": 1200,
+        "alt": "Quatre portes de château en bois gravé, chacune portant un blason différent, posées à plat sur une table."
+      },
+      {
+        "fichier": "atelier-sur-mesure-03.webp",
+        "largeur": 1600,
+        "hauteur": 2134,
+        "alt": "Les mains d'une participante qui assemble son trébuchet, pistolet à colle et plan de montage posés sur la table."
+      },
+      {
+        "fichier": "atelier-sur-mesure-04.webp",
+        "largeur": 1600,
+        "hauteur": 2134,
+        "alt": "La table de travail couverte de pièces de bois découpées, d'étiquettes aux prénoms des participants et d'un trébuchet à demi monté."
+      }
+    ]
   }
 ]

@@ -18,6 +18,184 @@ const zoneAteliers = document.querySelector("[data-ateliers]");
 const zoneParcours = document.querySelector("[data-parcours]");
 
 
+const DOSSIER_IMAGES = "assets/img/";
+const DOSSIER_VIDEOS = "assets/video/";
+
+const mouvementReduit = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* La durée du fondu vient de tokens.css, comme toutes les durées du site.
+   On la lit au moment de s'en servir plutôt que de la recopier ici : une
+   valeur en double finit toujours par diverger. */
+function dureeDuFondu() {
+  const valeur = getComputedStyle(document.documentElement)
+    .getPropertyValue("--duree-court")
+    .trim();
+  const nombre = parseFloat(valeur);
+  if (!Number.isFinite(nombre)) return 180;
+  return valeur.endsWith("ms") ? nombre : nombre * 1000;
+}
+
+
+/* --------------------------------------------------------------------------
+   La galerie d'un atelier
+   Une grande vue, et dessous la série des autres. Cliquer sur une vignette
+   la fait passer en grand, en fondu.
+
+   Deux partis pris de mise en page, l'un et l'autre appris en regardant
+   l'écran :
+
+   - la grande vue vit dans une scène de hauteur fixe. Sans elle, permuter
+     une photo verticale et une photo horizontale déplaçait toute la fiche
+     à chaque clic, et les vignettes fuyaient sous le curseur ;
+   - les vignettes ont toutes la même hauteur et une largeur libre. En
+     colonnes de largeur égale, chacune gardait sa propre hauteur et la
+     rangée partait en escalier.
+
+   Les vignettes sont de vrais boutons : on y arrive au clavier, et un
+   lecteur d'écran annonce laquelle est affichée.
+   -------------------------------------------------------------------------- */
+
+function poserImage(element, image) {
+  if (image.largeur) element.width = image.largeur;
+  if (image.hauteur) element.height = image.hauteur;
+  element.alt = image.alt ?? "";
+  element.src = DOSSIER_IMAGES + image.fichier;
+}
+
+function construireGalerie(atelier) {
+  const galerie = document.createElement("div");
+  galerie.className = "atelier__visuels";
+
+  const scene = document.createElement("div");
+  scene.className = "atelier__scene";
+
+  const principale = document.createElement("img");
+  principale.className = "atelier__image";
+  principale.decoding = "async";
+  principale.loading = "lazy";
+  poserImage(principale, atelier.images[0]);
+  scene.append(principale);
+
+  /* Une vidéo ne se lance qu'au clic sur sa vignette. Pas de lecture
+     automatique : c'est la règle du §6, et sur un téléphone une vidéo qui
+     démarre seule consomme les données du visiteur sans qu'il ait rien
+     demandé. Le lecteur est muet et n'est créé que si l'atelier en a une. */
+  const aUneVideo = atelier.images.some((image) => image.video);
+  let lecteur = null;
+
+  if (aUneVideo) {
+    lecteur = document.createElement("video");
+    lecteur.className = "atelier__video";
+    lecteur.controls = true;
+    lecteur.muted = true;
+    lecteur.playsInline = true;
+    lecteur.preload = "none";
+    lecteur.hidden = true;
+    scene.append(lecteur);
+  }
+
+  const montrerImage = () => {
+    if (!lecteur) return;
+    lecteur.pause();
+    lecteur.hidden = true;
+    principale.hidden = false;
+  };
+
+  galerie.append(scene);
+
+  if (atelier.images.length < 2) return galerie;
+
+  const rangee = document.createElement("div");
+  rangee.className = "atelier__secondaires";
+  const boutons = [];
+
+  const montrer = async (image, bouton) => {
+    if (bouton.getAttribute("aria-current") === "true") return;
+
+    for (const autre of boutons) autre.setAttribute("aria-current", "false");
+    bouton.setAttribute("aria-current", "true");
+
+    if (image.video && lecteur) {
+      if (!lecteur.src) lecteur.src = DOSSIER_VIDEOS + image.video;
+      lecteur.setAttribute("aria-label", image.alt ?? "");
+      principale.hidden = true;
+      lecteur.hidden = false;
+      /* La lecture suit un clic du visiteur : le navigateur l'autorise, et
+         si jamais il la refuse, les commandes restent là pour la lancer. */
+      lecteur.play().catch(() => {});
+      return;
+    }
+
+    montrerImage();
+
+    /* On décode avant de permuter : sans ça, la grande vue disparaît le
+       temps du téléchargement et l'apparition se fait sur du vide. */
+    const suivante = new Image();
+    suivante.src = DOSSIER_IMAGES + image.fichier;
+    try { await suivante.decode(); } catch { /* image manquante : on tente quand même */ }
+
+    /* L'image est posée tout de suite, puis elle apparaît en fondu. Elle
+       n'est jamais retirée avant d'être remplacée.
+
+       Les deux versions précédentes faisaient l'inverse : effacer, attendre
+       la fin de l'effacement, puis échanger. Les deux se bloquaient dès que
+       ce signal de fin n'arrivait pas — onglet en arrière-plan, animation
+       suspendue par le navigateur — et la galerie restait vide pour de bon.
+       Un fondu qui ne démarre pas doit laisser une image visible, pas un
+       trou. */
+    poserImage(principale, image);
+
+    /* Onglet en arrière-plan : le navigateur suspend les animations, et un
+       fondu suspendu à son premier pas laisse l'image à zéro d'opacité.
+       On s'en passe, l'image est déjà en place. */
+    if (document.hidden || mouvementReduit() || typeof principale.animate !== "function") return;
+
+    /* La durée est lue dans tokens.css : elle ne vit qu'à un seul endroit. */
+    principale.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: dureeDuFondu(), easing: "ease-out" }
+    );
+  };
+
+  atelier.images.forEach((image, rang) => {
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "atelier__vignette";
+    bouton.setAttribute("aria-current", rang === 0 ? "true" : "false");
+    bouton.setAttribute("aria-label", image.video
+      ? `Lire la vidéo : ${image.alt ?? ""}`
+      : `Afficher en grand : ${image.alt ?? "vue " + (rang + 1)}`);
+
+    const vignette = document.createElement("img");
+    vignette.className = "atelier__image--secondaire";
+    vignette.decoding = "async";
+    vignette.loading = "lazy";
+    vignette.alt = "";
+    if (image.largeur) vignette.width = image.largeur;
+    if (image.hauteur) vignette.height = image.hauteur;
+    vignette.src = DOSSIER_IMAGES + (image.affiche ?? image.fichier);
+
+    bouton.append(vignette);
+
+    /* Sans repère, rien ne distingue une vidéo d'une photo. Le triangle est
+       décoratif : ce que le bouton fait est déjà dit dans son aria-label. */
+    if (image.video) {
+      const repere = document.createElement("span");
+      repere.className = "atelier__lecture";
+      repere.setAttribute("aria-hidden", "true");
+      bouton.append(repere);
+    }
+    bouton.addEventListener("click", () => montrer(image, bouton));
+    boutons.push(bouton);
+    rangee.append(bouton);
+  });
+
+  galerie.append(rangee);
+  return galerie;
+}
+
+
 /* --------------------------------------------------------------------------
    Les ateliers
    -------------------------------------------------------------------------- */
@@ -25,6 +203,14 @@ const zoneParcours = document.querySelector("[data-parcours]");
 function construireAtelier(atelier) {
   const article = document.createElement("article");
   article.className = "atelier";
+
+  /* Les visuels passent avant le titre, comme sur un cartel : l'image, puis
+     le filet, puis les données. Une structure qui cherche un intervenant
+     regarde d'abord ce qui sort de l'atelier. Un atelier sans photo
+     n'affiche rien de plus : c'est un manque, pas une panne. */
+  if (atelier.images?.length) {
+    article.append(construireGalerie(atelier));
+  }
 
   const titre = document.createElement("h3");
   titre.className = "atelier__titre";
