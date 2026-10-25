@@ -1,4 +1,17 @@
 # Fins de ligne normalisees : le depot garde du LF, Windows voit du CRLF
 * text=auto
+
+# Les fichiers binaires sont exclus de cette conversion. Git devine
+# souvent qu'un fichier est binaire, mais « souvent » ne suffit pas : s'il
+# se trompe une fois, il remplace des octets au hasard dans une photo ou
+# un PDF, et le fichier est irrecuperable sans qu'aucun message ne le
+# signale. On le lui dit donc explicitement pour chaque format employe.
 *.webp binary
 *.woff2 binary
+*.pdf  binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.ico  binary
+*.mp4  binary
+*.webm binary

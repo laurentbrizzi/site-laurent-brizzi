@@ -34,7 +34,8 @@
     "periode": "2019–2022",
     "intitule": "Soleils Boulonnais — dix bas-reliefs monumentaux, six en 2019 et quatre ajoutés ensuite",
     "lieu": "Boulogne-sur-Mer, voûte de la place de Lorraine",
-    "partenaire": "Festival Street Art"
+    "partenaire": "Festival Street Art",
+    "description": "Premiers bas-reliefs du festival. Réinterprétation de la coiffe des matelotes boulonnaises, en critique du transhumanisme. S'y glissent un masque de Toutankhamon revisité, la bague boulonnaise, le blason de la ville et l'hameçon du pêcheur."
   },
   {
     "categorie": "exposition",
@@ -52,17 +53,19 @@
   },
   {
     "categorie": "exposition",
-    "periode": "2020",
-    "intitule": "Le Bouillon",
+    "periode": "octobre 2020",
+    "intitule": "Kawa Coffee House",
     "lieu": "Boulogne-sur-Mer",
-    "partenaire": ""
+    "partenaire": "",
+    "description": "Suite de l'exposition du Bouillon."
   },
   {
     "categorie": "exposition",
-    "periode": "2020",
-    "intitule": "Kawa Coffee House",
-    "lieu": "Boulogne-sur-Mer",
-    "partenaire": ""
+    "periode": "septembre – octobre 2020",
+    "intitule": "Le Bouillon",
+    "lieu": "Boulogne-sur-Mer, Vieille-Ville",
+    "partenaire": "",
+    "description": "Une dizaine de toiles biomécaniques et surréalistes."
   },
   {
     "categorie": "exposition",
@@ -70,6 +73,22 @@
     "intitule": "Galerie Kromozon",
     "lieu": "Boulogne-sur-Mer",
     "partenaire": ""
+  },
+  {
+    "categorie": "exposition",
+    "periode": "",
+    "intitule": "Rollmops Théâtre",
+    "lieu": "Boulogne-sur-Mer",
+    "partenaire": "",
+    "description": "Exposition collective « Je Tu Elle », avec Amélie Le Lan."
+  },
+  {
+    "categorie": "exposition",
+    "periode": "",
+    "intitule": "Rollmops Théâtre",
+    "lieu": "Boulogne-sur-Mer",
+    "partenaire": "",
+    "description": "Première exposition."
   },
   {
     "categorie": "collaboration",
@@ -105,6 +124,14 @@
     "intitule": "Compagnie Proscenium",
     "lieu": "Ruda Śląska, Pologne",
     "partenaire": ""
+  },
+  {
+    "categorie": "diffusion",
+    "periode": "depuis octobre 2026",
+    "intitule": "Dépôt-vente au château-musée",
+    "lieu": "Château-musée de Boulogne-sur-Mer",
+    "partenaire": "",
+    "description": "Les deux répliques de la Basilique Notre-Dame, la grande et la petite, sont en vente à la boutique du musée."
   },
   {
     "categorie": "diffusion",
