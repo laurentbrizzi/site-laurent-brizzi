@@ -20,7 +20,7 @@
     "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
-    "stock": null,
+    "stock": 2,
     "pause": "",
     "images": [
       {
@@ -64,7 +64,7 @@
     "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
-    "stock": null,
+    "stock": 10,
     "pause": "",
     "images": [
       {
