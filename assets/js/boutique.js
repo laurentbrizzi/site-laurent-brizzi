@@ -92,6 +92,77 @@ const estUneSerie = (produit) =>
   Array.isArray(produit.variantes) && produit.variantes.length > 0;
 
 
+/* --------------------------------------------------------------------------
+   Les stocks
+
+   Deux mécanismes, et il ne faut pas les confondre.
+
+   UNE SÉRIE se compte toute seule : le nombre de pièces encore libres est
+   celui des variantes non vendues. Rien à tenir à jour, donc rien qui
+   puisse mentir — c'est la seule façon fiable d'afficher un nombre sur un
+   site sans serveur.
+
+   UNE PIÈCE FABRIQUÉE À LA COMMANDE n'a pas de stock au sens habituel :
+   elle a un délai. Le champ `stock` ne compte donc que les exemplaires
+   DÉJÀ FINIS, prêts à partir le jour même. À zéro, la vente continue :
+   la fiche bascule sur le délai de fabrication. Un compteur ne doit jamais
+   empêcher d'acheter une pièce que Laurent sait faire.
+
+   Ce nombre-là, personne ne le met à jour à sa place. Stripe ne le sait
+   pas, le site ne le sait pas. S'il vend une pièce au château-musée et
+   oublie de décrémenter, le site annonce une pièce qui n'existe plus.
+   D'où la règle : `null` quand on ne suit pas, et on préfère `null` à un
+   chiffre approximatif. Le vrai garde-fou contre la survente est du côté
+   de Stripe, qui sait limiter le nombre de paiements d'un lien.
+   -------------------------------------------------------------------------- */
+
+const piecesRestantes = (produit) =>
+  produit.variantes.filter((variante) => !variante.vendue).length;
+
+/* Le stock n'est suivi que si c'est un nombre. Absent, null, ou écrit par
+   mégarde en toutes lettres : on considère qu'il n'y a pas de suivi, et on
+   n'affiche rien plutôt que « NaN pièces prêtes ». */
+const suitLeStock = (produit) => Number.isInteger(produit.stock) && produit.stock >= 0;
+
+
+/* --------------------------------------------------------------------------
+   La pause
+
+   Pour une résidence, des vacances, une imprimante en panne. Le champ
+   `pause` porte une date au format AAAA-MM-JJ — le seul qui ne soit pas
+   ambigu, et le seul que la page sache relire.
+
+   Elle se lève toute seule le jour dit : Laurent la pose avant de partir
+   et n'a rien à faire au retour. C'est le but, et c'est ce qui la rend
+   utilisable par quelqu'un qui ne touchera pas au fichier pendant un mois.
+
+   Si la date est illisible, la pause reste active et le texte est affiché
+   tel quel. Le mauvais réflexe serait de l'ignorer : entre vendre ce qu'on
+   ne peut pas livrer et suspendre un jour de trop, le choix est vite fait.
+   -------------------------------------------------------------------------- */
+
+function pauseEnCours(produit) {
+  const brut = typeof produit.pause === "string" ? produit.pause.trim() : "";
+  if (!brut) return null;
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(brut)) return { texte: brut, date: null };
+
+  /* Sans l'heure, un navigateur lit « 2027-03-15 » en temps universel et
+     peut lever la pause la veille au soir pour qui vit à l'est. */
+  const jour = new Date(`${brut}T00:00:00`);
+  if (Number.isNaN(jour.getTime())) return { texte: brut, date: null };
+
+  const aujourdhui = new Date();
+  aujourdhui.setHours(0, 0, 0, 0);
+  if (jour <= aujourdhui) return null;
+
+  return {
+    texte: new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" }).format(jour),
+    date: jour,
+  };
+}
+
+
 function construireVariante(produit, variante) {
   const bloc = document.createElement("li");
   bloc.className = "variante";
@@ -215,6 +286,25 @@ function construireMentions(produit) {
 
   if (produit.inclus?.length) ajouter("Inclus", produit.inclus.join(" · "));
 
+  /* La disponibilité, dite en clair et avant le prix. Pour une série, elle
+     est calculée ; pour une pièce d'atelier, elle vient du champ `stock`.
+     Les deux phrases sont différentes parce que les deux réalités le
+     sont : d'un côté des pièces uniques qui s'épuisent pour de bon, de
+     l'autre un objet qu'on refait. */
+  if (estUneSerie(produit)) {
+    const libres = piecesRestantes(produit);
+    const total = produit.edition?.total ?? produit.variantes.length;
+
+    ajouter("Disponibilité", libres === 0
+      ? "Série épuisée"
+      : `${libres} pièce${libres > 1 ? "s" : ""} encore disponible${libres > 1 ? "s" : ""} sur ${total}`);
+
+  } else if (suitLeStock(produit)) {
+    ajouter("Disponibilité", produit.stock === 0
+      ? "Fabriquée à la commande"
+      : `${produit.stock} pièce${produit.stock > 1 ? "s" : ""} prête${produit.stock > 1 ? "s" : ""} à expédier`);
+  }
+
   /* Deux réalités, un seul emplacement. Une pièce fabriquée à la commande
      annonce un délai de fabrication ; une pièce déjà faite — les séries
      uniques, terminées avant la mise en vente — annonce un délai
@@ -224,7 +314,15 @@ function construireMentions(produit) {
      Ce n'est pas cosmétique : la vente à distance oblige à indiquer une
      date ou un délai de livraison avant le paiement. « Rien à fabriquer »
      ne dispense pas d'annoncer sous combien de temps le colis part. */
-  ajouter("Fabrication", produit.delaiFabrication);
+  /* Quand des pièces sont prêtes, le délai de fabrication ne concerne plus
+     que celles d'après. L'écrire sans ce « Au-delà » ferait lire « 2 pièces
+     prêtes » et « 5 jours » comme une contradiction. */
+  const enReserve = !estUneSerie(produit) && suitLeStock(produit) && produit.stock > 0;
+
+  ajouter("Fabrication", produit.delaiFabrication && enReserve
+    ? `Au-delà, ${produit.delaiFabrication.charAt(0).toLowerCase()}${produit.delaiFabrication.slice(1)}`
+    : produit.delaiFabrication);
+
   ajouter("Expédition", produit.delaiExpedition);
   ajouter("Livraison", produit.fraisPort);
   ajouter("Retour", produit.retour);
@@ -237,16 +335,52 @@ function construireAchat(produit) {
   const zone = document.createElement("p");
   zone.className = "produit__achat";
 
+  /* La pause passe avant tout le reste, prix compris. Laisser un bouton
+     « Commander » sous une phrase qui annonce des commandes suspendues
+     serait la pire des deux options : l'acheteur paie, et personne
+     n'expédie. */
+  const pause = pauseEnCours(produit);
+
+  if (pause) {
+    const mention = document.createElement("span");
+    mention.className = "produit__prix produit__prix--pause mono";
+    mention.textContent = pause.date
+      ? `Commandes suspendues jusqu'au ${pause.texte}`
+      : `Commandes suspendues — ${pause.texte}`;
+
+    const contact = document.createElement("a");
+    contact.href = "contact.html";
+    contact.textContent = "Se renseigner";
+
+    zone.append(mention, contact);
+    return zone;
+  }
+
   /* Une série se commande pièce par pièce : le bouton vit sur chaque
      vignette, jamais ici. Cette zone ne porte que le prix, et le renvoi au
      courriel tant qu'aucune pièce n'a son lien de paiement. */
   if (estUneSerie(produit)) {
+    const epuisee = piecesRestantes(produit) === 0;
+
     const prix = document.createElement("span");
     prix.className = "produit__prix mono";
+
+    /* Une série épuisée garde son prix affiché : il dit ce que valait la
+       pièce, et la série 2 se vendra dans le même ordre de grandeur. Mais
+       elle ne renvoie plus vers « Commander par courriel » — il n'y a plus
+       rien à commander. */
     prix.textContent = produit.prix != null
       ? `${formaterPrix(produit.prix, produit.devise)} la pièce`
       : "Tarif à venir";
     zone.append(prix);
+
+    if (epuisee) {
+      const fin = document.createElement("span");
+      fin.className = "produit__prix produit__prix--epuise mono";
+      fin.textContent = "Série épuisée";
+      zone.append(fin);
+      return zone;
+    }
 
     if (produit.variantes.every((variante) => !variante.lienStripe)) {
       const contact = document.createElement("a");

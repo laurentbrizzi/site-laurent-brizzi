@@ -20,6 +20,8 @@
     "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
+    "stock": null,
+    "pause": "",
     "images": [
       {
         "fichier": "basilique-1-200-01.webp",
@@ -62,6 +64,8 @@
     "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
+    "stock": null,
+    "pause": "",
     "images": [
       {
         "fichier": "basilique-1-300-01.webp",
@@ -105,6 +109,7 @@
     "retour": "14 jours pour changer d'avis, frais de retour à votre charge",
     "lienStripe": "",
     "disponible": true,
+    "pause": "",
     "images": [
       {
         "fichier": "veilleuse-vitrail-01.webp",
@@ -114,13 +119,48 @@
       }
     ],
     "variantes": [
-      { "numero": 1, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 2, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 3, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 4, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 5, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 6, "vendue": false, "lienStripe": "", "image": null },
-      { "numero": 7, "vendue": false, "lienStripe": "", "image": null }
+      {
+        "numero": 1,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 2,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 3,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 4,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 5,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 6,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      },
+      {
+        "numero": 7,
+        "vendue": false,
+        "lienStripe": "",
+        "image": null
+      }
     ]
   },
   {
@@ -141,6 +181,8 @@
     "retour": "",
     "lienStripe": "",
     "disponible": true,
+    "stock": null,
+    "pause": "",
     "images": [
       {
         "fichier": "basilique-kit-01.webp",

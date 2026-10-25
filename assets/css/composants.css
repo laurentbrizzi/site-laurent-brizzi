@@ -976,6 +976,17 @@
   color: var(--texte);
 }
 
+/* Une commande suspendue, une série épuisée : ce sont des états, pas des
+   prix. Ils occupent la même place et doivent donc se distinguer du
+   montant — en retrait, à la taille du texte courant. Pas de rouge : rien
+   n'est en panne, et le site n'a qu'un accent (§6). */
+.produit__prix--pause,
+.produit__prix--epuise {
+  font-size: var(--taille-texte);
+  font-weight: var(--graisse-texte);
+  color: var(--texte-secondaire);
+}
+
 
 /* --- Les séries de pièces uniques -----------------------------------------
    Sept veilleuses différentes sous un même intitulé. La grille est posée
