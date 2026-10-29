@@ -390,6 +390,55 @@
 }
 
 
+/* --- Le verre grossissant --------------------------------------------------
+   Ce que Laurent appelle « la loupe ». Le mot `loupe` désigne déjà la vue
+   plein écran, plus haut dans ce fichier — ne pas les confondre.
+
+   Il est CARRÉ, et c'est volontaire : le site n'a aucun angle arrondi
+   (§6), et un disque y ferait tache. Le filet de 1 px qui le borde est le
+   même que celui des cartels, l'unique ornement autorisé.
+
+   Le fond est posé par JavaScript, à la taille réelle du fichier de loupe :
+   le grossissement est donc le rapport entre cette taille et celle
+   affichée, soit environ trois fois. Rien n'est écrit en dur ici.          */
+
+.a-verre {
+  position: relative;
+  /* Le verre est rogné au bord de l'œuvre : près d'un angle, il se coupe
+     net au lieu de déborder sur le fond de la page. */
+  overflow: hidden;
+}
+
+.verre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--verre-cote);
+  height: var(--verre-cote);
+
+  /* Il suit le pointeur, il ne doit jamais l'intercepter : sans ceci, le
+     verre passe sous le curseur et le survol s'interrompt aussitôt. */
+  pointer-events: none;
+
+  background-repeat: no-repeat;
+  /* L'origine au bord du cadre, et non à l'intérieur du filet : sinon le
+     calcul de position est décalé de l'épaisseur du filet. */
+  background-origin: border-box;
+  border: var(--filet-epaisseur) solid var(--filet-couleur);
+
+  opacity: 0;
+  transition: opacity var(--duree-court) var(--courbe);
+}
+
+.a-verre--actif .verre {
+  opacity: 1;
+}
+
+/* Sous l'œuvre grossie, l'image de fond s'efface légèrement — c'est la
+   règle de survol ci-dessus, qui joue ici à notre avantage : l'œil va au
+   détail net plutôt qu'à l'ensemble. */
+
+
 /* --- Les voisines ---------------------------------------------------------- */
 
 .fiche__navigation {

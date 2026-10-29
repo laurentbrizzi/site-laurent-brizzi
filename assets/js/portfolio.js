@@ -235,13 +235,20 @@ function montrerDansLoupe(rang) {
   /* L'image est recréée à chaque vue plutôt que recyclée : source,
      dimensions et alt sont ainsi toujours posés ensemble, et le document ne
      contient jamais d'image sans source. */
+  /* La vue plein écran sert l'image de loupe quand elle existe : c'est le
+     seul endroit du site où l'on regarde une œuvre en grand, et c'est ce
+     qui donne aux écrans tactiles l'équivalent du verre grossissant — ils
+     n'ont pas de survol, mais ils ont le pincement. Au-delà, c'est la même
+     image, en mieux. */
+  const source = image.zoom ?? image;
+
   const vue = document.createElement("img");
   vue.className = "loupe__image";
-  if (image.largeur) vue.width = image.largeur;
-  if (image.hauteur) vue.height = image.hauteur;
+  if (source.largeur) vue.width = source.largeur;
+  if (source.hauteur) vue.height = source.hauteur;
   vue.alt = image.alt ?? "";
   vue.decoding = "async";
-  vue.src = DOSSIER_IMAGES + image.fichier;
+  vue.src = DOSSIER_IMAGES + source.fichier;
   loupeCadre.replaceChildren(vue);
 
   loupeLegende.textContent = loupeImages.length > 1
@@ -319,6 +326,98 @@ function construireCartelFiche(oeuvre) {
   return cartel;
 }
 
+/* --------------------------------------------------------------------------
+   Le verre grossissant
+
+   Ce que Laurent appelle « la loupe ». Le mot `loupe` était déjà pris dans
+   ce fichier, dans le CSS et dans le HTML : il y désigne la vue plein
+   écran. Renommer l'existant aurait touché une quarantaine d'endroits sans
+   rien apporter à personne, d'où ce second nom. **Ne pas les confondre :**
+   `loupe` = vue plein écran, `verre` = grossissement au survol.
+
+   Pourquoi il existe : éviter à Laurent de photographier chaque tableau
+   deux fois. La deuxième prise servait à montrer un détail au survol de la
+   vignette (§6) ; le verre laisse le visiteur choisir lui-même où regarder,
+   à partir de la même photo.
+
+   Trois décisions qui tiennent à la matière, pas au code :
+
+   - **il n'apparaît que si l'œuvre a une image `zoom`.** Grossir une photo
+     de 960 px ne montrerait que du flou, et une loupe décevante est pire
+     qu'une absence de loupe. Neuf œuvres sur seize en ont une, au
+     29 octobre 2026 ;
+   - **au pointeur seulement.** Sur un écran tactile il n'y a pas de survol,
+     et le doigt sert déjà à ouvrir la vue plein écran. Un geste de
+     glissement entrerait en conflit avec ce clic. Les mobiles ont mieux :
+     la vue plein écran leur sert désormais l'image de loupe, qu'ils
+     agrandissent au pincement ;
+   - **rien n'est retiré à personne.** Le bouton reste un bouton, accessible
+     au clavier, et ouvre la vue plein écran comme avant. Le verre est un
+     supplément, jamais un passage obligé.
+   -------------------------------------------------------------------------- */
+
+const COTE_VERRE = 240;   /* diamètre du verre, en pixels d'écran */
+
+const pointeurFin = () =>
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+function poserVerre(conteneur, image) {
+  if (!image.zoom || !pointeurFin()) return;
+
+  const verre = document.createElement("div");
+  verre.className = "verre";
+  verre.setAttribute("aria-hidden", "true");   /* purement visuel : le texte
+                                                  de remplacement de l'image
+                                                  dit déjà ce qu'on voit */
+  verre.style.setProperty("--verre-cote", `${COTE_VERRE}px`);
+
+  /* L'image de loupe n'est demandée qu'au premier survol. Elle pèse de 400
+     à 1100 Ko : la charger avec la page la rendrait lourde pour tous ceux
+     qui ne s'en serviront pas. */
+  let demandee = false;
+  const charger = () => {
+    if (demandee) return;
+    demandee = true;
+    verre.style.backgroundImage = `url("${DOSSIER_IMAGES + image.zoom.fichier}")`;
+  };
+
+  const suivre = (evenement) => {
+    const boite = conteneur.getBoundingClientRect();
+    const x = evenement.clientX - boite.left;
+    const y = evenement.clientY - boite.top;
+
+    /* Le fond est posé à la taille réelle du fichier de loupe, donc le
+       grossissement est le rapport entre cette taille et celle affichée —
+       de l'ordre de trois fois. On le calcule à chaque passage : la largeur
+       affichée change avec la fenêtre. */
+    const echelleX = image.zoom.largeur / boite.width;
+    const echelleY = image.zoom.hauteur / boite.height;
+
+    verre.style.backgroundSize = `${image.zoom.largeur}px ${image.zoom.hauteur}px`;
+    verre.style.backgroundPosition =
+      `${-(x * echelleX) + COTE_VERRE / 2}px ${-(y * echelleY) + COTE_VERRE / 2}px`;
+    verre.style.transform =
+      `translate(${x - COTE_VERRE / 2}px, ${y - COTE_VERRE / 2}px)`;
+  };
+
+  conteneur.addEventListener("pointerenter", (e) => {
+    if (e.pointerType !== "mouse") return;
+    charger();
+    conteneur.classList.add("a-verre--actif");
+    suivre(e);
+  });
+  conteneur.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
+    suivre(e);
+  });
+  conteneur.addEventListener("pointerleave", () => {
+    conteneur.classList.remove("a-verre--actif");
+  });
+
+  conteneur.classList.add("a-verre");
+  conteneur.append(verre);
+}
+
 function construireVisuelsFiche(oeuvre) {
   const galerie = document.createElement("div");
   galerie.className = "fiche__visuels";
@@ -352,6 +451,7 @@ function construireVisuelsFiche(oeuvre) {
     vignette.src = DOSSIER_IMAGES + image.fichier;
 
     declencheur.append(vignette);
+    poserVerre(declencheur, image);
     galerie.append(declencheur);
   });
 

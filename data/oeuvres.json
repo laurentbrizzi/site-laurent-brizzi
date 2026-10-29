@@ -14,7 +14,12 @@
         "fichier": "twin-01.webp",
         "largeur": 1595,
         "hauteur": 1600,
-        "alt": "Composition organique rose et violette : deux têtes lisses aux yeux clos se font face sous un grand œil unique, prises dans un réseau de veines et de cavités. Des champignons poussent au premier plan."
+        "alt": "Composition organique rose et violette : deux têtes lisses aux yeux clos se font face sous un grand œil unique, prises dans un réseau de veines et de cavités. Des champignons poussent au premier plan.",
+        "zoom": {
+          "fichier": "twin-01-zoom.webp",
+          "largeur": 2592,
+          "hauteur": 2600
+        }
       }
     ],
     "aLaUne": true
@@ -34,7 +39,12 @@
         "fichier": "help-01.webp",
         "largeur": 1600,
         "hauteur": 1294,
-        "alt": "Gorge rouge aux parois striées s'ouvrant sur une cascade et un ciel bleu ; au sol, des coulées claires convergent vers le spectateur. Le mot « HELP » est inscrit en haut, « THE ENVIRONMENT » en bas."
+        "alt": "Gorge rouge aux parois striées s'ouvrant sur une cascade et un ciel bleu ; au sol, des coulées claires convergent vers le spectateur. Le mot « HELP » est inscrit en haut, « THE ENVIRONMENT » en bas.",
+        "zoom": {
+          "fichier": "help-01-zoom.webp",
+          "largeur": 2600,
+          "hauteur": 2102
+        }
       }
     ],
     "aLaUne": false
@@ -54,7 +64,12 @@
         "fichier": "pretre-01.webp",
         "largeur": 1295,
         "hauteur": 1600,
-        "alt": "Figure biomécanique grise dressée sur fond clair : un visage de profil surmonté d'une crête recourbée, le corps fait de plaques rivetées, de nervures et d'engrenages. Des formes sphériques s'accumulent à sa base."
+        "alt": "Figure biomécanique grise dressée sur fond clair : un visage de profil surmonté d'une crête recourbée, le corps fait de plaques rivetées, de nervures et d'engrenages. Des formes sphériques s'accumulent à sa base.",
+        "zoom": {
+          "fichier": "pretre-01-zoom.webp",
+          "largeur": 2103,
+          "hauteur": 2600
+        }
       }
     ],
     "aLaUne": false
@@ -74,7 +89,12 @@
         "fichier": "paysage-1-01.webp",
         "largeur": 1600,
         "hauteur": 1117,
-        "alt": "Paysage horizontal partagé entre un bleu profond à gauche et des lavis ocre et crème à droite. Une silhouette filiforme tire un fil depuis un rectangle rouge, au-dessus d'une vallée bleue aux contours ondulants."
+        "alt": "Paysage horizontal partagé entre un bleu profond à gauche et des lavis ocre et crème à droite. Une silhouette filiforme tire un fil depuis un rectangle rouge, au-dessus d'une vallée bleue aux contours ondulants.",
+        "zoom": {
+          "fichier": "paysage-1-01-zoom.webp",
+          "largeur": 2600,
+          "hauteur": 1815
+        }
       }
     ],
     "aLaUne": false
@@ -94,7 +114,12 @@
         "fichier": "etude-beksinski-cite-01.webp",
         "largeur": 1600,
         "hauteur": 1038,
-        "alt": "Cité grise suspendue dans la brume : arcades, galeries et tours percées de baies s'imbriquent en une masse osseuse, sans sol visible."
+        "alt": "Cité grise suspendue dans la brume : arcades, galeries et tours percées de baies s'imbriquent en une masse osseuse, sans sol visible.",
+        "zoom": {
+          "fichier": "etude-beksinski-cite-01-zoom.webp",
+          "largeur": 2600,
+          "hauteur": 1687
+        }
       }
     ],
     "aLaUne": false
@@ -114,7 +139,12 @@
         "fichier": "etude-beksinski-crane-01.webp",
         "largeur": 1266,
         "hauteur": 1600,
-        "alt": "Toile partagée verticalement : à gauche un ciel bleu sombre au-dessus d'un crâne blanc, à droite une paroi ocre mouchetée. Une grande forme membraneuse et blanche, comme une raie, se déploie au centre."
+        "alt": "Toile partagée verticalement : à gauche un ciel bleu sombre au-dessus d'un crâne blanc, à droite une paroi ocre mouchetée. Une grande forme membraneuse et blanche, comme une raie, se déploie au centre.",
+        "zoom": {
+          "fichier": "etude-beksinski-crane-01-zoom.webp",
+          "largeur": 2057,
+          "hauteur": 2600
+        }
       }
     ],
     "aLaUne": false
@@ -134,7 +164,12 @@
         "fichier": "l-ile-des-morts-01.webp",
         "largeur": 1600,
         "hauteur": 1197,
-        "alt": "Île minérale gris pâle se reflétant dans une eau immobile : des flèches sombres se dressent au centre, encadrées par deux masses arrondies aux formes osseuses."
+        "alt": "Île minérale gris pâle se reflétant dans une eau immobile : des flèches sombres se dressent au centre, encadrées par deux masses arrondies aux formes osseuses.",
+        "zoom": {
+          "fichier": "l-ile-des-morts-01-zoom.webp",
+          "largeur": 2600,
+          "hauteur": 1944
+        }
       }
     ],
     "aLaUne": false
@@ -174,7 +209,12 @@
         "fichier": "cerca-trova-1-01.webp",
         "largeur": 1269,
         "hauteur": 1600,
-        "alt": "Fond rouge sombre où des empreintes de mains blanches forment un cercle autour d'une petite fleur claire. Le titre « Cerca Trova » est écrit verticalement à gauche, et des lignes griffonnées traversent le haut et le bas."
+        "alt": "Fond rouge sombre où des empreintes de mains blanches forment un cercle autour d'une petite fleur claire. Le titre « Cerca Trova » est écrit verticalement à gauche, et des lignes griffonnées traversent le haut et le bas.",
+        "zoom": {
+          "fichier": "cerca-trova-1-01-zoom.webp",
+          "largeur": 2061,
+          "hauteur": 2600
+        }
       }
     ],
     "aLaUne": false
@@ -214,7 +254,12 @@
         "fichier": "rouge-1-01.webp",
         "largeur": 1586,
         "hauteur": 1600,
-        "alt": "Sur un fond rouge uni, un relief pâle s'élève comme une montagne, formé de corps et de membres fondus les uns dans les autres. Une petite lune claire flotte à gauche, au-dessus d'un horizon bas."
+        "alt": "Sur un fond rouge uni, un relief pâle s'élève comme une montagne, formé de corps et de membres fondus les uns dans les autres. Une petite lune claire flotte à gauche, au-dessus d'un horizon bas.",
+        "zoom": {
+          "fichier": "rouge-1-01-zoom.webp",
+          "largeur": 2576,
+          "hauteur": 2600
+        }
       }
     ],
     "aLaUne": false
