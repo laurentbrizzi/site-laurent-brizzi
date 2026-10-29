@@ -89,9 +89,10 @@ function construireVisuel(oeuvre, prioritaire) {
   return visuel;
 }
 
-function construireChamp(terme, valeur) {
+function construireChamp(terme, valeur, modificateur) {
   const champ = document.createElement("div");
   champ.className = "cartel__champ";
+  if (modificateur) champ.classList.add(`cartel__champ--${modificateur}`);
 
   const intitule = document.createElement("dt");
   intitule.className = "visuellement-cache";
@@ -103,6 +104,12 @@ function construireChamp(terme, valeur) {
   champ.append(intitule, contenu);
   return champ;
 }
+
+/* Une œuvre vendue le dit, mais toutes les mentions de statut ne sont pas
+   des ventes : un bas-relief installé sous une voûte n'est pas à vendre et
+   ne l'a jamais été. On ne met donc en valeur que la vente, et le reste
+   s'affiche comme une donnée de cartel ordinaire. */
+const estVendue = (oeuvre) => /^vendue?$/i.test((oeuvre.statut ?? "").trim());
 
 function construireCartel(oeuvre, prioritaire) {
   const figure = document.createElement("figure");
@@ -127,6 +134,12 @@ function construireCartel(oeuvre, prioritaire) {
   if (oeuvre.annee) donnees.append(construireChamp("Année", String(oeuvre.annee)));
   if (oeuvre.materiaux) donnees.append(construireChamp("Matériaux", oeuvre.materiaux));
   if (oeuvre.dimensions) donnees.append(construireChamp("Dimensions", oeuvre.dimensions));
+
+  /* Le statut vient en dernier, après les données de fabrication : c'est
+     une information sur le sort de l'œuvre, pas sur sa nature. */
+  if (oeuvre.statut) {
+    donnees.append(construireChamp("Statut", oeuvre.statut, estVendue(oeuvre) ? "vendue" : null));
+  }
 
   if (donnees.children.length > 0) legende.append(donnees);
 

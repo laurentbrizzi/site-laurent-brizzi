@@ -1338,3 +1338,17 @@
 .cartel__champ > dd {
   margin: 0;
 }
+
+/* Une œuvre vendue le reste sur le site : on ne la retire pas du
+   portfolio, elle fait partie du parcours. La mention est mise en avant
+   comme dans la boutique (§10), jamais barrée — ce n'est pas une erreur,
+   c'est une vente.
+
+   Les autres statuts — une œuvre permanente dans l'espace public, par
+   exemple — restent en gris : ce sont des données de cartel, pas des
+   événements. */
+.cartel__champ--vendue > dd {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: var(--interlettre-mono);
+}
