@@ -12,76 +12,136 @@
     "images": [
       {
         "fichier": "twin-01.webp",
-        "largeur": 1600,
-        "hauteur": 1603,
-        "alt": "Composition organique rose et violette : des formes internes entrelacées, veines et cavités, autour de deux silhouettes symétriques."
+        "largeur": 1595,
+        "hauteur": 1600,
+        "alt": "Composition organique rose et violette : deux têtes lisses aux yeux clos se font face sous un grand œil unique, prises dans un réseau de veines et de cavités. Des champignons poussent au premier plan."
       }
     ],
     "aLaUne": true
   },
   {
-    "id": "mains-et-oeil",
-    "titre": "Sans titre — mains et œil",
+    "id": "help",
+    "titre": "Help",
     "annee": null,
     "discipline": "peinture",
-    "materiaux": "",
-    "dimensions": "",
+    "materiaux": "Acrylique et collage sur toile",
+    "dimensions": "79 × 100 cm",
     "lieu": "",
     "statut": "",
     "texte": "",
     "images": [
       {
-        "fichier": "mains-et-oeil-01.webp",
+        "fichier": "help-01.webp",
         "largeur": 1600,
-        "hauteur": 790,
-        "alt": "Peinture panoramique : deux mains ouvertes encadrent un œil inscrit dans une forme organique, sur un fond ocre et rouille."
+        "hauteur": 1294,
+        "alt": "Gorge rouge aux parois striées s'ouvrant sur une cascade et un ciel bleu ; au sol, des coulées claires convergent vers le spectateur. Le mot « HELP » est inscrit en haut, « THE ENVIRONMENT » en bas."
       }
     ],
-    "aLaUne": true
+    "aLaUne": false
   },
   {
-    "id": "masque-a-gaz",
-    "titre": "Sans titre — masque à gaz",
+    "id": "pretre",
+    "titre": "Prêtre",
     "annee": null,
     "discipline": "peinture",
-    "materiaux": "",
-    "dimensions": "",
+    "materiaux": "Acrylique et encre sur toile",
+    "dimensions": "100 × 80 cm",
     "lieu": "",
     "statut": "",
     "texte": "",
     "images": [
       {
-        "fichier": "masque-a-gaz-01.webp",
-        "largeur": 1600,
-        "hauteur": 1933,
-        "alt": "Figure encapuchonnée portant un masque à gaz aux filtres rouges, sur un fond rouge sombre traversé d'un disque noir."
+        "fichier": "pretre-01.webp",
+        "largeur": 1295,
+        "hauteur": 1600,
+        "alt": "Figure biomécanique grise dressée sur fond clair : un visage de profil surmonté d'une crête recourbée, le corps fait de plaques rivetées, de nervures et d'engrenages. Des formes sphériques s'accumulent à sa base."
       }
     ],
-    "aLaUne": true
+    "aLaUne": false
   },
   {
-    "id": "cite-nuages",
-    "titre": "Sans titre — cité dans les nuages",
+    "id": "paysage-1",
+    "titre": "Paysage I",
     "annee": null,
     "discipline": "peinture",
-    "materiaux": "",
-    "dimensions": "",
+    "materiaux": "Acrylique, pigments et encre sur toile",
+    "dimensions": "70 × 100 cm",
     "lieu": "",
     "statut": "",
     "texte": "",
     "images": [
       {
-        "fichier": "cite-nuages-01.webp",
+        "fichier": "paysage-1-01.webp",
         "largeur": 1600,
-        "hauteur": 1037,
-        "alt": "Cité biomécanique aux tours imbriquées, flottant dans une brume claire, en camaïeu de gris et de blancs."
+        "hauteur": 1117,
+        "alt": "Paysage horizontal partagé entre un bleu profond à gauche et des lavis ocre et crème à droite. Une silhouette filiforme tire un fil depuis un rectangle rouge, au-dessus d'une vallée bleue aux contours ondulants."
       }
     ],
-    "aLaUne": true
+    "aLaUne": false
+  },
+  {
+    "id": "etude-beksinski-cite",
+    "titre": "Étude d'après Beksiński — la cité",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique et encre sur toile",
+    "dimensions": "75 × 115 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "etude-beksinski-cite-01.webp",
+        "largeur": 1600,
+        "hauteur": 1038,
+        "alt": "Cité grise suspendue dans la brume : arcades, galeries et tours percées de baies s'imbriquent en une masse osseuse, sans sol visible."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "etude-beksinski-crane",
+    "titre": "Étude d'après Beksiński — le crâne",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique et encre sur toile",
+    "dimensions": "76 × 61 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "etude-beksinski-crane-01.webp",
+        "largeur": 1266,
+        "hauteur": 1600,
+        "alt": "Toile partagée verticalement : à gauche un ciel bleu sombre au-dessus d'un crâne blanc, à droite une paroi ocre mouchetée. Une grande forme membraneuse et blanche, comme une raie, se déploie au centre."
+      }
+    ],
+    "aLaUne": false
   },
   {
     "id": "l-ile-des-morts",
-    "titre": "L'Île des morts",
+    "titre": "Étude — L'Île des morts I",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique et encre sur toile",
+    "dimensions": "60 × 90 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "l-ile-des-morts-01.webp",
+        "largeur": 1600,
+        "hauteur": 1197,
+        "alt": "Île minérale gris pâle se reflétant dans une eau immobile : des flèches sombres se dressent au centre, encadrées par deux masses arrondies aux formes osseuses."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "l-ile-des-morts-2",
+    "titre": "Étude — L'Île des morts II",
     "annee": null,
     "discipline": "peinture",
     "materiaux": "Encre et acrylique sur papier",
@@ -91,13 +151,33 @@
     "texte": "",
     "images": [
       {
-        "fichier": "l-ile-des-morts-01.webp",
+        "fichier": "l-ile-des-morts-2-01.webp",
         "largeur": 1600,
         "hauteur": 1238,
-        "alt": "Masse rocheuse sombre hérissée de pointes, dressée au-dessus d'une eau calme où se tiennent deux silhouettes."
+        "alt": "Masse rocheuse sombre hérissée de pointes, dressée au-dessus d'une eau calme où se tiennent deux silhouettes. Le ciel passe du rose au brun."
       }
     ],
-    "aLaUne": true
+    "aLaUne": false
+  },
+  {
+    "id": "cerca-trova-1",
+    "titre": "Cerca Trova I",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "Acrylique sur toile",
+    "dimensions": "80,5 × 65 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "cerca-trova-1-01.webp",
+        "largeur": 1269,
+        "hauteur": 1600,
+        "alt": "Fond rouge sombre où des empreintes de mains blanches forment un cercle autour d'une petite fleur claire. Le titre « Cerca Trova » est écrit verticalement à gauche, et des lignes griffonnées traversent le haut et le bas."
+      }
+    ],
+    "aLaUne": false
   },
   {
     "id": "cerca-trova-2",
@@ -120,10 +200,30 @@
     "aLaUne": false
   },
   {
-    "id": "visage-structure",
-    "titre": "Sans titre — visage et structure",
+    "id": "rouge-1",
+    "titre": "Rouge I",
     "annee": null,
-    "discipline": "bas-relief",
+    "discipline": "peinture",
+    "materiaux": "Acrylique sur toile",
+    "dimensions": "80 × 80 cm",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "rouge-1-01.webp",
+        "largeur": 1586,
+        "hauteur": 1600,
+        "alt": "Sur un fond rouge uni, un relief pâle s'élève comme une montagne, formé de corps et de membres fondus les uns dans les autres. Une petite lune claire flotte à gauche, au-dessus d'un horizon bas."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "mains-et-oeil",
+    "titre": "Sans titre — mains et œil",
+    "annee": null,
+    "discipline": "peinture",
     "materiaux": "",
     "dimensions": "",
     "lieu": "",
@@ -131,10 +231,30 @@
     "texte": "",
     "images": [
       {
-        "fichier": "visage-structure-01.webp",
-        "largeur": 1457,
-        "hauteur": 2048,
-        "alt": "Visage aux yeux clos pris dans une structure sombre de tubes et de nervures, fortement contrasté."
+        "fichier": "mains-et-oeil-01.webp",
+        "largeur": 1600,
+        "hauteur": 790,
+        "alt": "Peinture panoramique : deux mains ouvertes encadrent un œil inscrit dans une forme organique, sur un fond ocre et rouille."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "masque-a-gaz",
+    "titre": "Sans titre — masque à gaz",
+    "annee": null,
+    "discipline": "peinture",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "masque-a-gaz-01.webp",
+        "largeur": 1600,
+        "hauteur": 1933,
+        "alt": "Figure encapuchonnée portant un masque à gaz aux filtres rouges, sur un fond rouge sombre traversé d'un disque noir."
       }
     ],
     "aLaUne": false
@@ -155,6 +275,26 @@
         "largeur": 960,
         "hauteur": 540,
         "alt": "Visage biomécanique symétrique, tons vert-de-gris, encadré de volutes tubulaires qui se referment sur lui."
+      }
+    ],
+    "aLaUne": false
+  },
+  {
+    "id": "visage-structure",
+    "titre": "Sans titre — visage et structure",
+    "annee": null,
+    "discipline": "bas-relief",
+    "materiaux": "",
+    "dimensions": "",
+    "lieu": "",
+    "statut": "",
+    "texte": "",
+    "images": [
+      {
+        "fichier": "visage-structure-01.webp",
+        "largeur": 1457,
+        "hauteur": 2048,
+        "alt": "Visage aux yeux clos pris dans une structure sombre de tubes et de nervures, fortement contrasté."
       }
     ],
     "aLaUne": false
