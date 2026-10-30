@@ -109,8 +109,8 @@ const estUneSerie = (produit) =>
    empêcher d'acheter une pièce que Laurent sait faire.
 
    Ce nombre-là, personne ne le met à jour à sa place. Stripe ne le sait
-   pas, le site ne le sait pas. S'il vend une pièce au château-musée et
-   oublie de décrémenter, le site annonce une pièce qui n'existe plus.
+   pas, le site ne le sait pas. S'il vend une pièce de la main à la main
+   et oublie de décrémenter, le site annonce une pièce qui n'existe plus.
    D'où la règle : `null` quand on ne suit pas, et on préfère `null` à un
    chiffre approximatif. Le vrai garde-fou contre la survente est du côté
    de Stripe, qui sait limiter le nombre de paiements d'un lien.
